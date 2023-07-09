@@ -19,19 +19,19 @@ import clientPromise from "../../lib/mongodb";
 //       break;
 //   }
 // }
-export default async function handlers(req, res) {
+export default async function handler(req, res) {
   try {
     const client = await clientPromise;
     const db = client.db("Database");
 
-    const movies = await db
+    const packs = await db
       .collection("samplepacks")
       .find({})
       // .sort({ metacritic: -1 })
       // .limit(20)
       .toArray();
 
-    res.status(200).json({ movies });
+    res.status(200).json({ packs });
   } catch (e) {
     console.error("this is the error", e);
   }

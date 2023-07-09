@@ -1,7 +1,6 @@
 import Cart from "@mui/icons-material/AddShoppingCart";
 import Play from "@mui/icons-material/PlayCircle";
 import { Typography } from "@mui/material";
-import { background } from "../../slider/Sliderdata";
 
 const PacksCard = ({ pack }) => {
   const { _id, packname, imagename, keywords, size } = pack;
@@ -10,7 +9,7 @@ const PacksCard = ({ pack }) => {
   return (
     <div className=' w-48  md:max-w-xs m-5 rounded overflow-hidden shadow-md bg-complimentsec shadow-green-400'>
       <img
-        src={`http://localhost:5000/assets/images/${imagename}`}
+        src={`http://localhost:3000/assets/images/${imagename}`}
         className='w-full h-20  md:h-40  object-cover hover:object-fill'
         alt='show me'
       />

@@ -44,7 +44,7 @@ const Playlist = ({ source }) => {
       <audio ref={audio} src={src}></audio>
       <motion.div
         onClick={() => togglePlay(source)}
-        className='play_icon inline-block mt-2'
+        className='play_icon cursor-pointer inline-block mt-2'
       >
         {IsPlaying & (source === src) ? <PauseCircle /> : <Play />}
       </motion.div>

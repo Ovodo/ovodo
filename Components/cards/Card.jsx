@@ -12,7 +12,7 @@ const variants = {
   left: { x: -30 },
 };
 
-const Card = ({ title, clefs, artiste, url }) => {
+const Card = ({ title, clefs, artiste, pack, url }) => {
   const route = useRouter();
 
   return (
@@ -37,7 +37,7 @@ const Card = ({ title, clefs, artiste, url }) => {
         style={{
           width: "100%",
           height: "60%",
-          background: `url(${url})`,
+          background: `url(/assets/images/${pack.imagename})`,
           backgroundSize: "cover",
         }}
       >
@@ -72,14 +72,16 @@ const Card = ({ title, clefs, artiste, url }) => {
       </motion.div>
       <div className='details_card px-1  flex flex-col mt-2 overflow-hidden border-opacity-20 border-x-slate-700 border-x-[1px] p-0  mx-1'>
         <div className='relative'>
-          <span onClick={() => {
-          }
-          } className='font-[600] text-[13px] inline-block text-primary'>
+          <span
+            onClick={() => {}}
+            className='font-[600] text-[13px] inline-block text-primary'
+          >
             <Link
-              href={"/sounds/packs/[name]"} as={`/sounds/packs/${}`}
-              state={{ title, artiste, url, clefs, use: "Working" }}
+              href={"/sounds/packs/[name]"}
+              as={`/sounds/packs/${pack.packname}`}
+              // state={{ title, artiste, url, clefs, use: "Working" }}
             >
-              {title}
+              {pack.packname}
             </Link>
           </span>
           <p
@@ -94,7 +96,7 @@ const Card = ({ title, clefs, artiste, url }) => {
           style={{ color: "var(--lemon)" }}
           className='text-myBrown mt-[-2px]  opacity-90'
         >
-          {artiste}
+          {artiste || "Ovd"}
         </span>
       </div>
       <motion.div className='playlist_div  ml-1'>

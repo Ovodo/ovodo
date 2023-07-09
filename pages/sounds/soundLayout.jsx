@@ -8,18 +8,6 @@ import { HeartIcon, PlusIcon } from "@radix-ui/react-icons";
 import { BsHeart } from "react-icons/bs";
 import { useRouter } from "next/router";
 
-const images = [
-  "https://example.com/image1.jpg",
-  "https://example.com/image2.jpg",
-  "https://example.com/image3.jpg",
-  "https://example.com/image4.jpg",
-  "https://example.com/image5.jpg",
-  "https://example.com/image6.jpg",
-  "https://example.com/image7.jpg",
-  "https://example.com/image8.jpg",
-  "https://example.com/image9.jpg",
-];
-
 const SoundLayout = (children) => {
   const [term, setTerm] = useState("");
   const route = useRouter();
@@ -54,9 +42,11 @@ const SoundLayout = (children) => {
             )}
           </div>
           <div className='flex justify-between'>
-            <p className='text-myYellow font-semibold mr-5 flex items-center'>
-              Pricing
-            </p>
+            <Link href={"/pricing"}>
+              <p className='text-myYellow font-semibold mr-5 flex items-center'>
+                Pricing
+              </p>
+            </Link>
             <p className=' mr-2 text-slate-400 border-l-2 h-[70%] self-center text-center flex pl-2 items-center border-l-slate-400'>
               𝄢 {0}
             </p>
@@ -71,7 +61,7 @@ const SoundLayout = (children) => {
                 display: "flex",
                 alignItems: "center",
                 // color: "#25092c",
-                fontFamily: "Patrick Hand, cursive",
+                // fontFamily: "Patrick Hand",
               }}
               className={route.pathname == "/sounds" ? "utility" : "navlink"}
             >
@@ -84,7 +74,7 @@ const SoundLayout = (children) => {
                 display: "flex",
                 alignItems: "center",
                 // color: "#25092c",
-                fontFamily: "Patrick Hand, cursive",
+                // fontFamily: "Patrick Hand",
               }}
               className={route.pathname == "/sounds" ? "utility" : "navlink"}
             >
@@ -97,7 +87,7 @@ const SoundLayout = (children) => {
                 display: "flex",
                 alignItems: "center",
                 // color: "#25092c",
-                fontFamily: "Patrick Hand, cursive",
+                // fontFamily: "Patrick Hand",
               }}
               className={route.pathname == "/sounds" ? "utility" : "navlink"}
             >
@@ -110,7 +100,7 @@ const SoundLayout = (children) => {
                 display: "flex",
                 alignItems: "center",
                 // color: "#25092c",
-                fontFamily: "Patrick Hand, cursive",
+                // fontFamily: "Patrick Hand",
               }}
               className={route.pathname == "/sounds" ? "utility" : "navlink"}
             >
