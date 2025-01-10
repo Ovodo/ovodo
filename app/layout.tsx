@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${ubuntu.className} bg-night px-[20px] sm:px-[40px] md:px-[60px] antialiased`}
+        className={`${ubuntu.className} bg-night text-primary px-[20px] sm:px-[40px] md:px-[60px] h-full antialiased`}
       >
         <Navbar />
         {children}

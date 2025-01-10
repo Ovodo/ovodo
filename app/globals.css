@@ -10,7 +10,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #F1EDE4;
   }
 }
 
@@ -23,3 +23,83 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@property --angle {
+  syntax:"<angle>";
+  initial-value:0deg;
+  inherits: false;
+}
+
+.card::before {
+  filter:blur(1.5rem);
+  opacity: 0.4;
+}
+.card::after, .card::before {
+  content:'';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle),transparent 60%,#0e79b2);
+  top:50%;
+  left:50%;
+  translate: -50% -50%;
+  z-index: -1;
+  box-sizing: initial;
+  border-radius: 12px;
+  padding:2px;
+  animation:4s spin linear infinite;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg
+    
+  }
+  to {
+    --angle: 360deg
+
+  }
+}
+
+  .hero-image2 {
+        filter: sepia(20%);
+
+  }
+  /* .hero-image {
+        filter: blur(10px);
+
+  } */
+   
+
+  section {
+    margin-bottom: 150px;
+  }
+
+  /* .hero-image2:hover {
+    filter: blur(5%);
+    cursor: pointer;
+  } */
+
+
+
+@keyframes watery-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .hero-image {
+        background-position: 10% 0%;
+        
+  }
+
+  section {
+    margin-bottom: 100px;
+  }
+}
+

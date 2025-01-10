@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: "500px",
+      },
       colors: {
         primary: "#F1EDE4",
         night: "#0C1713",
