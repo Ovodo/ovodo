@@ -23,7 +23,7 @@ const Navbar = () => {
       // ref={}
       onOutsideClick={() => setMenuOpen(false)}
     >
-      <div className='relative'>
+      <div className='relative '>
         <nav className='w-full z-20 flex h-[92px]  bg-night md:bg-transparent relative items-center md:items-end pb-[1.5%] gap-[10px] sm:gap-[20px] md:gap-[40px]'>
           <h5
             id='logo'
@@ -66,7 +66,7 @@ const Navbar = () => {
               <Link
                 href={`${item}`}
                 key={item}
-                className='text-night  tracking-wider cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10'
+                className='text-night   cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10'
               >
                 {item}
               </Link>
@@ -84,7 +84,7 @@ const Navbar = () => {
             <Link
               href={`${item}`}
               key={item}
-              className='text-night  tracking-wider cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10'
+              className='text-night   cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10'
             >
               {item}
             </Link>

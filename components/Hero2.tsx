@@ -5,7 +5,7 @@ const Hero2 = () => {
   return (
     <section className='w-full h-[80vh]  sm:mt-[15px] md:mt-[30px]  flex flex-col  items-center  justify-between'>
       <div className='flex flex-col sm:flex-row gap-4 sm:gap-8 w-full items-center md:items-start   justify-between'>
-        <h1 className='text-primary sm:w-1/2 text-[32px] sm:text-[48px] md:text-[56px] max-w-[656px] leading-[1.1] sm:leading-none font-bold'>
+        <h1 className='text-primary sm:w-1/2  sm:text-[48px] md:text-[56px] max-w-[656px] leading-[1.1] sm:leading-none font-bold'>
           Innovative Software Engineer & Blockchain Developer
         </h1>
         <div className='flex  flex-col sm:w-1/2 md:w-max gap-4 sm:gap-8'>
@@ -24,7 +24,7 @@ const Hero2 = () => {
           </div>
         </div>
       </div>
-      <div className='w-full relative flex item-start justify-end mt-[5%] overflow-hidde rounded-md  h-[567px]'>
+      <div className='w-full relative flex item-start justify-end mt-[5%] overflow-hidde rounded-md flex-1'>
         <Image
           src={"/kools.jpg"}
           className='object-cover  blur-sm hero-image cursor-pointer duration-500 rounded-md shadow-sm shadow-primary hover:sm:blur-lg'

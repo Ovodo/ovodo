@@ -14,9 +14,54 @@
   }
 }
 
-.bord {
-  border: 1px solid aquamarine;
+/* -------------------------------------------- */
+/*------------------ scrollbar */
+/* -------------------------------------------- */
+
+/* Firefox */
+html {
+  scrollbar-width: thin; /* Options: auto, thin, none */
+  scrollbar-color:  mediumspringgreen transparent; /* thumb and track colors */
 }
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  /* display: none; */
+  border-radius: 1rem;
+  /* background: rgba(220, 146, 73, 1); */
+  transition: all 0.5s ease-in-out;
+  background: #90050F;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #90050F;
+}
+
+::-webkit-scrollbar-track {
+  background: mediumspringgreen;
+} 
+/* This will hide the scrollbar for Chrome, Safari, etc. */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* This will hide the scrollbar for Firefox */
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.bord {
+  border: 1px solid saddlebrown;
+}
+
+h1 {
+
+}
+
 
 body {
   color: var(--foreground);
@@ -30,8 +75,29 @@ body {
   inherits: false;
 }
 
-.card::before {
+.card-off::before {
   filter:blur(1.5rem);
+  opacity: 0.4;
+}
+.card-off::after, .card::before {
+  content:'';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #63BB93 ;
+  /* background-image: conic-gradient(from var(--angle),transparent 10%,#0e79b2); */
+  top:50%;
+  left:50%;
+  opacity: 0.2;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  box-sizing: initial;
+  border-radius: 8px;
+  padding:2px;
+  animation:4s spin linear infinite;
+}
+.card::before {
+  filter:blur(0.5rem);
   opacity: 0.4;
 }
 .card::after, .card::before {
@@ -39,13 +105,15 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: conic-gradient(from var(--angle),transparent 60%,#0e79b2);
+  /* background: red; */
+  background: #0e79b2;
+  /* background-image: conic-gradient(from var(--angle),transparent 10%,#0e79b2); */
   top:50%;
   left:50%;
-  translate: -50% -50%;
+  transform: translate(-50%, -50%);
   z-index: -1;
   box-sizing: initial;
-  border-radius: 12px;
+  border-radius: 8px;
   padding:2px;
   animation:4s spin linear infinite;
 }
@@ -72,7 +140,9 @@ body {
    
 
   section {
-    margin-bottom: 150px;
+    /* margin-bottom: 150px; */
+    /* border:1px solid saddlebrown; */
+    height: 100vh;
   }
 
   /* .hero-image2:hover {
@@ -82,14 +152,7 @@ body {
 
 
 
-@keyframes watery-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
+
 
 @media only screen and (max-width: 768px) {
 
@@ -100,6 +163,19 @@ body {
 
   section {
     margin-bottom: 100px;
+    min-height: max-content;
   }
 }
 
+
+@media only screen and (max-width: 480px) {
+
+ h1 {
+  font-size: 28px;
+ }
+
+  section {
+    margin-bottom: 100px;
+    min-height: max-content;
+  }
+}

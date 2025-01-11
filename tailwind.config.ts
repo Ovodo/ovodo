@@ -12,9 +12,12 @@ export default {
         sm: "500px",
       },
       colors: {
+        // primary: "#0C1713",
+        // night: "#F1EDE4",
         primary: "#F1EDE4",
         night: "#0C1713",
         secondary: "#360A14",
+        mint: "#4FB286",
         10: "#0e79b2",
       },
     },

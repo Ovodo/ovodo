@@ -20,7 +20,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section className='flex flex-col gap-14 md:gap-28'>
+    <section className='flex flex-col justify-center gap-14 md:gap-28'>
       <div className='flex flex-col sm:flex-row  gap-4 sm:gap-8 w-full items-center md:items-center   justify-between'>
         <div className='flex flex-col gap-3'>
           <h3 className='text-primary text-xl sm:text-2xl md:text-xl   leading-[1.1] sm:leading-none font-bold'>

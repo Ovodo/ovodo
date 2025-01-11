@@ -1,6 +1,7 @@
 import DevProjects from "@/components/DevProjects";
 // import Hero from "@/components/Hero";
 import Hero2 from "@/components/Hero2";
+import Music from "@/components/Music";
 import Skills from "@/components/Skills";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero2 />
       <Skills />
       <DevProjects />
+      <Music />
     </div>
   );
 }
