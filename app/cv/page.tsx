@@ -19,7 +19,7 @@ const CV = () => {
   return (
     <div
       style={rubik.style}
-      className='bg-white p-[3vw] w-full h-max text-res_primary'
+      className='bg-white p-[5vw] w-full h-max text-res_primary'
     >
       <TopSection />
       <div className='grid mt-[7vh] gap-20 grid-cols-[1.8fr,1fr]'>
