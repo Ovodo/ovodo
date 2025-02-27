@@ -7,9 +7,9 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
+    --background: #070D0B;
     --foreground: #F1EDE4;
   }
 }
@@ -25,12 +25,13 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 1px;
   height: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
   /* display: none; */
+  width: 1px;
   border-radius: 1rem;
   /* background: rgba(220, 146, 73, 1); */
   transition: all 0.5s ease-in-out;
@@ -58,17 +59,25 @@ html {
   border: 1px solid saddlebrown;
 }
 
-h1 {
-
-}
-
-
-body {
+html,body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: auto;
+  scroll-snap-type: y mandatory;
+  /* height: 100vh; */
+  overflow-y: scroll;
 }
+  section {
+    margin-bottom: 100px;
+    /* border:1px solid saddlebrown; */
+    height: 100vh;
+    scroll-snap-align: center;
+  }
 
+h1 {
+  background: linear-gradient(to left, #FCD0A1, #AFD2E9);
+  background-clip: text;
+  color: transparent;
+}
 @property --angle {
   syntax:"<angle>";
   initial-value:0deg;
@@ -118,6 +127,13 @@ body {
   animation:4s spin linear infinite;
 }
 
+.skill-card{
+box-shadow: 6px 6px 22px #c8ecdf0f inset,-5px -5px 10px #33574a32 inset;
+/* backdrop-filter: blur(2px); */
+
+
+}
+/* https://coolors.co/7cfef0-6bffb8-2ceaa3-28965a-2a6041 */
 @keyframes spin {
   from {
     --angle: 0deg
@@ -139,11 +155,7 @@ body {
   } */
    
 
-  section {
-    /* margin-bottom: 150px; */
-    /* border:1px solid saddlebrown; */
-    height: 100vh;
-  }
+
 
   /* .hero-image2:hover {
     filter: blur(5%);

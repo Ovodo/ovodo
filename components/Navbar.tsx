@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { MuseoModerno } from "next/font/google";
 import Link from "next/link";
 import OutsideClickHandler from "react-outside-click-handler";
+import { usePathname } from "next/navigation";
 
 const muse = MuseoModerno({
   weight: ["600"],
@@ -12,6 +13,7 @@ const muse = MuseoModerno({
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const path = usePathname();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -23,7 +25,7 @@ const Navbar = () => {
       // ref={}
       onOutsideClick={() => setMenuOpen(false)}
     >
-      <div className='relative '>
+      <div className={`relative ${path.includes("cv") ? "hidden" : ""} `}>
         <nav className='w-full z-20 flex h-[92px]  bg-night md:bg-transparent relative items-center md:items-end pb-[1.5%] gap-[10px] sm:gap-[20px] md:gap-[40px]'>
           <h5
             id='logo'
@@ -74,10 +76,10 @@ const Navbar = () => {
           </ul>
         </nav>
         <ul
-          className={`bg-primary  w-full absolute z-10 flex flex-col items-start gap-8 ease-in md:hidden p-[20px] h-auto transition-transform duration-400 ${
+          className={`bg-primary  w-full absolute z-10 flex flex-col items-start gap-8 ease-in md:hidden p-[20px] h-auto transition-transform duration-[400ms] ${
             menuOpen
-              ? "translate-y-0  items-start md:items-center"
-              : "-translate-y-[300px]"
+              ? "translate-y-0  items-center md:items-center rounded-b-full"
+              : "-translate-y-[300px] items-center rounded-b-full"
           } md:translate-y-0 `}
         >
           {["Home", "Projects", "Blog", "Contact"].map((item) => (

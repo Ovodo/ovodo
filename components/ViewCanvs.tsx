@@ -6,21 +6,23 @@ import { Mesh, TextureLoader } from "three";
 
 type Props = { textureUrl: string };
 
-// RotatingSphere Component
-const RotatingSphere = ({ textureUrl }: Props) => {
-  const sphereRef = useRef<Mesh>(null);
+// RotatingCube Component
+const RotatingCube = ({ textureUrl }: Props) => {
+  const cubeRef = useRef<Mesh>(null);
 
-  // Rotate the sphere automatically
+  // Rotate the cube automatically
   useFrame(() => {
-    if (sphereRef.current) {
-      sphereRef.current.rotation.y += 0.01; // Rotate around the Y-axis
+    if (cubeRef.current) {
+      cubeRef.current.rotation.y += 0.01; // Rotate around the Y-axis
+      cubeRef.current.rotation.z += 0.01; // Rotate around the Z-axis
+      cubeRef.current.rotation.x += 0.01; // Rotate around the X-axis
     }
   });
 
   return (
-    <mesh ref={sphereRef}>
-      {/* Sphere Geometry */}
-      <sphereGeometry args={[3, 32, 32]} />
+    <mesh ref={cubeRef}>
+      {/* Cube Geometry */}
+      <boxGeometry args={[3, 3, 3]} />
       {/* Material with texture */}
       <meshStandardMaterial map={new TextureLoader().load(textureUrl)} />
     </mesh>
@@ -32,8 +34,8 @@ export default function ViewCanvas({ textureUrl }: Props) {
     <Canvas>
       {/* Orbit controls for interactivity */}
       <OrbitControls />
-      {/* Rotating Sphere */}
-      <RotatingSphere textureUrl={textureUrl} />
+      {/* Rotating Cube */}
+      <RotatingCube textureUrl={textureUrl} />
       {/* Lighting */}
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 5, 5]} intensity={1} />

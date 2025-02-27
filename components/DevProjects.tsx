@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 const categories = [
   {
@@ -24,10 +25,18 @@ const categories = [
 const DevProjects = () => {
   const [currentVideo, setCurrentVideo] = useState(categories[0].video);
   const [active, setActive] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleVideoChange = (video: any, index: any) => {
+    setIsLoading(true);
+    setCurrentVideo(video);
+    setActive(index);
+  };
+
   return (
-    <section className='justify-center sm:justify-between gap-8  flex md:flex-row flex-col items-center'>
-      <div className='flex flex-col gap-8  md:w-[45%]'>
-        <h1 className='text-primary sm:text-[48px] md:text-[56px]  leading-[1.1] sm:leading-none font-bold'>
+    <section className='justify-center sm:justify-between gap-8 flex md:flex-row flex-col items-center'>
+      <div className='flex flex-col gap-8 md:w-[45%]'>
+        <h1 className='sm:text-[48px] md:text-[56px] leading-[1.1] sm:leading-none font-bold'>
           Explore My Expertise in Innovative Blockchain Development Projects
         </h1>
         <p className='sm:w-[80%] text-sm sm:text-base'>
@@ -39,17 +48,11 @@ const DevProjects = () => {
           <div className='flex flex-row gap-8 justify-start items-start h-max sm:items-center'>
             {categories.map((item, index) => (
               <div
-                onClick={() => {
-                  setCurrentVideo(item.video);
-                  setActive(index);
-                }}
-                onMouseEnter={() => {
-                  setCurrentVideo(item.video);
-                  setActive(index);
-                }}
-                className={`flex  ${
+                onClick={() => handleVideoChange(item.video, index)}
+                onMouseEnter={() => handleVideoChange(item.video, index)}
+                className={`flex ${
                   index == active ? "card" : "card-off"
-                } flex-col p-4  mx-auto h-max  my-0 w-[300px] bg-night relative rounded-[8px] cursor-pointer gap-2`}
+                } flex-col p-4 mx-auto card h-max my-0 w-[300px] bg-night relative rounded-[8px] cursor-pointer gap-2`}
                 key={index.toString()}
               >
                 <h4 className='text-lg font-semibold'>{item.header}</h4>
@@ -65,15 +68,22 @@ const DevProjects = () => {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1 }}
-          className='w-full md:w-[45%] sm:h-[70%]   video bg-primar flex items-center justify-center rounded-xl  '
+          className='w-full md:w-[45%] sm:h-[70%] video bg-primar flex items-center justify-center rounded-xl'
         >
+          {isLoading && (
+            <div className='absolute'>
+              <ClipLoader color='#ffffff' size={50} />
+            </div>
+          )}
           <video
             src={currentVideo}
             autoPlay
             loop
             muted
-            // className='w-full h-full object-cover'
-            className='w-full sm:h-[350px]  object-fit  sm:object-cover cursor-pointer rounded-xl transition-transform duration-500'
+            onCanPlayThrough={() => setIsLoading(false)}
+            className={`w-full sm:h-[350px] object-fit sm:object-cover cursor-pointer rounded-xl transition-transform duration-500 ${
+              isLoading ? "hidden" : ""
+            }`}
           />
         </motion.div>
       </AnimatePresence>

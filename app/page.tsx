@@ -6,7 +6,7 @@ import Skills from "@/components/Skills";
 
 export default function Home() {
   return (
-    <div className='min-h-screen  h-[150vh]'>
+    <div className='px-[20px] sm:px-[40px] md:px-[60px]'>
       <Hero2 />
       <Skills />
       <DevProjects />
