@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { MuseoModerno } from "next/font/google";
 import Link from "next/link";
 import OutsideClickHandler from "react-outside-click-handler";
+import { usePathname } from "next/navigation";
 
-const muse = MuseoModerno({
+export const muse = MuseoModerno({
   weight: ["600"],
   subsets: ["latin"],
   style: ["normal"],
@@ -12,30 +13,32 @@ const muse = MuseoModerno({
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const path = usePathname();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+  console.log(path);
 
   return (
     <OutsideClickHandler
-      display='block'
+      display="block"
       // ref={}
       onOutsideClick={() => setMenuOpen(false)}
     >
-      <div className='relative '>
-        <nav className='w-full z-20 flex h-[92px]  bg-night md:bg-transparent relative items-center md:items-end pb-[1.5%] gap-[10px] sm:gap-[20px] md:gap-[40px]'>
+      <div className="relative ">
+        <nav className="w-full  z-20 flex h-[92px]  bg-night md:bg-transparent relative items-center md:items-end pb-[1.5%] gap-[10px] sm:gap-[20px] md:gap-[40px]">
           <h5
-            id='logo'
-            className=' text-[32px] sm:text-[40px] shadow-primary  leading-none  cursor-pointer md:text-[48px] text-primary font-semibold'
+            id="logo"
+            className=" text-[32px]  sm:text-[40px] shadow-primary  leading-none  cursor-pointer md:text-[48px] text-primary font-semibold"
             style={muse.style}
           >
-            Ovodo.
+            Ovodo O.
           </h5>
 
           {/* Hamburger Menu Button */}
           <div
-            id='menu-button'
+            id="menu-button"
             className={`md:hidden  z-50 w-[48px] h-[48px] md:w-[60px] flex flex-col justify-center bg-primary rounded-full gap-1 md:h-[60px] cursor-pointer ${
               menuOpen ? "opacity-50" : "opacity-100"
             }`}
@@ -60,13 +63,27 @@ const Navbar = () => {
 
           {/* Navigation Menu */}
           <ul
-            className={` md:flex  hidden relative p-1 bg-transparent w-full  gap-8 flex-row  items-center h-auto `}
+            className={` md:flex  hidden relative p-1 bg-transparent flex-1  gap-8 flex-row  items-center h-auto `}
           >
-            {["Home", "Projects", "Blog", "Contact"].map((item) => (
+            {["Home", "Projects", "Blog", "Services", "Contact"].map((item) => (
               <Link
-                href={`${item}`}
+                href={`${
+                  item == "Home"
+                    ? "/"
+                    : item == "Services"
+                    ? "#services"
+                    : item == "Contact"
+                    ? "#contact"
+                    : `/${item.toLowerCase()}`
+                }`}
                 key={item}
-                className='text-night   cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10'
+                className={`text-night  ${
+                  path == "/" && item == "Home"
+                    ? "underline md:text-10"
+                    : path.includes(item.toLowerCase())
+                    ? "underline md:text-10"
+                    : "no-underline md:text-primary"
+                }     cursor-pointer  font-bold underline-offset-2  duration-75  hover:underline underline-to-10 md:hover:text-10`}
               >
                 {item}
               </Link>
@@ -84,7 +101,7 @@ const Navbar = () => {
             <Link
               href={`${item}`}
               key={item}
-              className='text-night   cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10'
+              className="text-night   cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10"
             >
               {item}
             </Link>

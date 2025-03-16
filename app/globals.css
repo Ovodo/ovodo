@@ -20,13 +20,14 @@
 
 /* Firefox */
 html {
+  scroll-behavior: auto;
   scrollbar-width: thin; /* Options: auto, thin, none */
-  scrollbar-color:  mediumspringgreen transparent; /* thumb and track colors */
+  scrollbar-color:  rgba(0, 250, 154, 0.199) transparent; /* thumb and track colors */
 }
 
 ::-webkit-scrollbar {
   width: 3px;
-  height: 2px;
+  height: 1px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -140,7 +141,7 @@ body {
    
 
   section {
-    /* margin-bottom: 150px; */
+    margin-bottom: 100px;
     /* border:1px solid saddlebrown; */
     height: 100vh;
   }

@@ -4,16 +4,17 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Mesh, TextureLoader } from "three";
 
-type Props = { textureUrl: string };
+type Props = { textureUrl: string; index: number };
 
 // RotatingSphere Component
-const RotatingSphere = ({ textureUrl }: Props) => {
+const RotatingSphere = ({ textureUrl, index }: Props) => {
   const sphereRef = useRef<Mesh>(null);
 
-  // Rotate the sphere automatically
-  useFrame(() => {
+  // Rotate the sphere slightly left and right
+  useFrame(({ clock }) => {
     if (sphereRef.current) {
-      sphereRef.current.rotation.y += 0.01; // Rotate around the Y-axis
+      const time = clock.getElapsedTime() + index; // Offset by index for domino effect
+      sphereRef.current.rotation.y = Math.sin(time) * 0.5; // Oscillate around the Y-axis
     }
   });
 
@@ -27,13 +28,13 @@ const RotatingSphere = ({ textureUrl }: Props) => {
   );
 };
 
-export default function ViewCanvas({ textureUrl }: Props) {
+export default function ViewCanvas({ textureUrl, index }: Props) {
   return (
     <Canvas>
       {/* Orbit controls for interactivity */}
       <OrbitControls />
       {/* Rotating Sphere */}
-      <RotatingSphere textureUrl={textureUrl} />
+      <RotatingSphere index={index} textureUrl={textureUrl} />
       {/* Lighting */}
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 5, 5]} intensity={1} />

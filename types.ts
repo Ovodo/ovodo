@@ -1,0 +1,20 @@
+export type Experience = {
+  title: string;
+  company: string;
+  image: string;
+  images?: any[];
+  dates: string;
+  link: string;
+  summary?: string;
+  location: string;
+  achievements: string[];
+  category?: string[];
+  languages?: string[];
+  tools?: string[];
+  keywords?: string[];
+  repo?: string;
+  services?: {
+    title: string;
+    description: string;
+  }[];
+};
