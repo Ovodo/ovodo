@@ -1,5 +1,4 @@
 import { resume } from "@/app/lib/data";
-import { div } from "framer-motion/client";
 
 const Services = () => {
   // --------------------------------------------VARIABLES
