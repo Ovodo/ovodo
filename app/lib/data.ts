@@ -198,7 +198,7 @@ export const resume = {
         { src: "/projects/tbh/waiting.png", title: "Waiting Arena" },
         { src: "/projects/tbh/game.png", title: "Game Arena" },
       ],
-      video: "/projects/tbh/tbh.mp4",
+      video: "/projects/tbh/tbhs.mp4",
       repo: "https://github.com/ovodo/thebountyhunter",
       keywords: [
         "smart contract",
@@ -226,7 +226,7 @@ export const resume = {
       category: ["content", "education", "learning"],
       languages: ["javascript", "nodejs"],
       image: "/projects/edusoul/edusoul.svg",
-      video: "/projects/edusoul/edusoul.mp4",
+      video: "/projects/edusoul/edusouls.mp4",
       repo: "https://github.com/tricodenetwork/edusoul",
       keywords: [
         "lms",
@@ -261,7 +261,7 @@ export const resume = {
       category: ["saas", "software", "recruitment"],
       languages: ["javascript", "nodejs"],
       image: "/projects/tricode/home.png",
-      video: "/projects/tricode/tricode.mp4",
+      video: "/projects/tricode/tricodes.mp4",
       repo: "https://github.com/tricodenetwork/edusoul",
       keywords: [
         "javascript",
