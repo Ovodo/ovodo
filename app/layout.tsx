@@ -32,11 +32,11 @@ export const metadata: Metadata = {
     title: "Full-Stack & Blockchain Engineer | Ovodo",
     description:
       "Expert Full-Stack and Blockchain Engineer specializing in web3 development, smart contracts, and modern web applications.",
-    url: "https://ovd.dev", // Replace with your actual domain
+    url: "https://www.ovd.dev", // Replace with your actual domain
     siteName: "Ovodo Portfolio",
     images: [
       {
-        url: "https://ovd.dev/kools.jpg", // Replace with your actual image path
+        url: "https://www.ovd.dev/graph.png", // Replace with your actual image path
         width: 1200,
         height: 630,
         alt: "Ovodo - Full-Stack & Blockchain Engineer",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "Full-Stack & Blockchain Engineer | Ovodo",
     description:
       "Expert Full-Stack and Blockchain Engineer specializing in web3 development, smart contracts, and modern web applications.",
-    images: ["https://ovd.dev/kools.jpg"], // Replace with your actual image path
+    images: ["https://www.ovd.dev/graph.png"], // Replace with your actual image path
   },
 };
 
@@ -62,7 +62,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://ovd.dev" />{" "}
+        <link rel="canonical" href="https://www.ovd.dev" />{" "}
         {/* Replace with your actual domain */}
         <meta name="theme-color" content="#070d0b" />{" "}
         {/* Match your bg-night color */}
