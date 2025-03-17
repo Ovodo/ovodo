@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import SkillCard from "./SkillCard";
+import Link from "next/link";
 const skills = [
   {
     src: "/ts.png",
@@ -24,6 +26,13 @@ const skills = [
 ];
 
 const Skills = () => {
+  const handleContactClick = () => {
+    const whatsappUrl = "https://wa.me/2348181983519";
+
+    // Change the preferred contact method
+    // window.open(whatsappUrl, "_blank");
+    window.open(whatsappUrl, "_blank"); // Uncomment if you prefer Telegram
+  };
   return (
     <section className="flex flex-col   justify-center gap-20">
       <div className="flex flex-col sm:flex-row  gap-4 sm:gap-8 w-full items-center md:items-center   justify-between">
@@ -57,10 +66,16 @@ const Skills = () => {
           ))}
         </div>
         <div className="flex items-center md:mt-8 gap-4 sm:gap-8">
-          <button className="text-night  hover:bg-10 hover:text-primary p-4 hover:scale-105 active:scale-95 duration-150 bg-primary rounded-[12px]">
+          <Link
+            href={"/projects"}
+            className="text-night  hover:bg-10 hover:text-primary p-4 hover:scale-105 active:scale-95 duration-150 bg-primary rounded-[12px]"
+          >
             Learn More
-          </button>
-          <button className="text-primary p-4 bg-transparent duration-150  hover:scale-105 active:scale-95 border-primary border rounded-[12px]">
+          </Link>
+          <button
+            onClick={handleContactClick}
+            className="text-primary p-4 bg-transparent duration-150  hover:scale-105 active:scale-95 border-primary border rounded-[12px]"
+          >
             Contact
           </button>
         </div>
