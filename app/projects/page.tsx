@@ -25,7 +25,7 @@ const Projects = () => {
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
         />
       </div>
-      <div className="flex mt-12 justify-start flex-wrap gap-14">
+      <div className="flex pb-[5vh] lg:flex-row flex-col mt-12 justify-start lg:flex-wrap gap-14">
         {resume.projects
           .filter((item) =>
             search

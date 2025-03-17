@@ -7,7 +7,7 @@ import ReactMarkdown from "react-markdown";
 
 const ProjectCard = ({ project }: { project: Experience }) => {
   return (
-    <div className="flex gap-1 relative w-[22%] h-[350px]  bg-[#152821] rounded-lg  p-1  flex-col">
+    <div className="flex gap-1 relative  lg:w-[22%] h-[350px]  bg-[#152821] rounded-lg  p-1  flex-col">
       {project.image && (
         <Link
           className="w-full   h-[191px]   rounded-lg  relative"

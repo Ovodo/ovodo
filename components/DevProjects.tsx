@@ -25,7 +25,7 @@ const DevProjects = () => {
   const [currentVideo, setCurrentVideo] = useState(categories[0].video);
   const [active, setActive] = useState(0);
   return (
-    <section className="justify-center sm:justify-between gap-8  flex md:flex-row flex-col items-center">
+    <section className="justify-center sm:justify-between gap-8 h-max lg:h-auto  flex md:flex-row flex-col items-center">
       <div className="flex flex-col gap-8  md:w-[45%]">
         <h1 className="text-primary sm:text-[48px] md:text-[56px]  leading-[1.1] sm:leading-none font-bold">
           Explore My Expertise in Developing Blockchain Projects

@@ -99,7 +99,16 @@ const Navbar = () => {
         >
           {["Home", "Projects", "Blog", "Contact"].map((item) => (
             <Link
-              href={`${item}`}
+              href={`${
+                item == "Home"
+                  ? "/"
+                  : item == "Services"
+                  ? "/#services"
+                  : item == "Contact"
+                  ? "/#contact"
+                  : `/${item.toLowerCase()}`
+              }`}
+              onClick={() => setMenuOpen(false)}
               key={item}
               className="text-night   cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10"
             >

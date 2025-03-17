@@ -61,12 +61,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="canonical" href="https://www.ovd.dev" />{" "}
-        {/* Replace with your actual domain */}
-        <meta name="theme-color" content="#070d0b" />{" "}
-        {/* Match your bg-night color */}
-      </head>
       <body
         className={`${ubuntu.className} bg-night text-primary px-[20px] sm:px-[40px] md:px-[60px] h-full antialiased`}
       >

@@ -24,11 +24,11 @@ const Services = () => {
             key={item.title}
             className="flex gap-2 border-b-[1px] border-primary/20  items-center"
           >
-            <div className="rounded-full w-2 h-2 bg-mint animate-pulse" />
-            <p className="text-primary py-4 lg:min-w-[250px] text-sm  sm:text-[16px]  md:text-[20px] leading-tight font-light max-w-[620px]">
-              {item.title} -
+            <div className="rounded-full min-w-2 h-2 bg-mint animate-pulse" />
+            <p className="text-primary py-4 min-w-[30%] lg:min-w-[250px] text-sm  sm:text-[16px]  md:text-[20px] leading-tight font-light max-w-[620px]">
+              {item.title}
             </p>{" "}
-            <p className="text-primary py-4 border-l-[1px] border-l-slate-50/20 px-4 ml-10 text-sm  sm:text-[16px]  leading-tight font-light">
+            <p className="text-primary py-4 border-l-[1px] border-l-slate-50/20 px-4 ml-10 text-xs  sm:text-[16px]  leading-tight font-light">
               {item.description}
             </p>
           </div>

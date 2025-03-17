@@ -12,7 +12,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 lg:gap-10 items-center py-[10vh] mb-[15vh] justify-center">
+    <div className="flex flex-col gap-5 lg:gap-10 items-center py-[10vh] lg:mb-[15vh] justify-center">
       <div className="flex flex-col gap-4 sm:gap-8 w-full items-center md:items-center justify-between">
         <h1 className="text-primary text-[32px] sm:text-[48px] lg:max-w-[500px] text-center md:text-[56px] leading-[1.1] sm:leading-none font-bold">
           Let&apos;s Connect Explore My Work
