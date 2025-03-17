@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Contact = () => {
   const handleContactClick = () => {
-    const whatsappUrl = "https://wa.me/2349067885409";
+    // const whatsappUrl = "https://wa.me/2349067885409";
     const telegramUrl = "https://t.me/ovdizzle";
 
     // Change the preferred contact method
