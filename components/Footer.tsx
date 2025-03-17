@@ -2,6 +2,12 @@
 import Link from "next/link";
 import { muse } from "./Navbar";
 import { usePathname } from "next/navigation";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandX,
+  IconMail,
+} from "@tabler/icons-react";
 
 const Footer = () => {
   // --------------------------------------------VARIABLES
@@ -50,25 +56,42 @@ const Footer = () => {
               </Link>
             ))}
           </div>
-          <div className="flex gap-5 flex-col">
+          <div id="contact" className="flex gap-5 flex-col">
             <h6 className="font-medium mb-4 text-lg text-primary lg:text-xl">
               Connect with me
             </h6>
-            {["Github", "Twitter", "Linkedin"].map((item) => (
-              <Link
-                href={`${item == "Home" ? "/" : `/${item.toLowerCase()}`}`}
-                key={item}
-                className={`text-night  ${
-                  path == "/" && item == "Home"
-                    ? "underline md:text-10"
-                    : path.includes(item.toLowerCase())
-                    ? "underline md:text-10"
-                    : "no-underline md:text-primary"
-                }     cursor-pointer  font-light underline-offset-2  duration-75  hover:underline underline-to-10 md:hover:text-10`}
-              >
-                {item}
-              </Link>
-            ))}
+            <Link
+              target="_blank"
+              href="https://github.com/ovodo"
+              className="flex items-center text-primary cursor-pointer font-light underline-offset-2 duration-75 hover:underline underline-to-10 md:hover:text-10"
+            >
+              <IconBrandGithub className="mr-2" />
+              Github
+            </Link>
+            <Link
+              target="_blank"
+              href="https://x.com/ovdizzle"
+              className="flex items-center text-primary cursor-pointer font-light underline-offset-2 duration-75 hover:underline underline-to-10 md:hover:text-10"
+            >
+              <IconBrandX className="mr-2" />
+              Twitter
+            </Link>
+            <Link
+              target="_blank"
+              href="https://linkedin.com/in/ovodo"
+              className="flex items-center text-primary cursor-pointer font-light underline-offset-2 duration-75 hover:underline underline-to-10 md:hover:text-10"
+            >
+              <IconBrandLinkedin className="mr-2" />
+              Linkedin
+            </Link>
+            <Link
+              target="_blank"
+              href="mailto:ohwovoriole@gmail.com"
+              className="flex items-center text-primary cursor-pointer font-light underline-offset-2 duration-75 hover:underline underline-to-10 md:hover:text-10"
+            >
+              <IconMail className="mr-2" />
+              ohwovoriole@gmail.com
+            </Link>
           </div>
         </div>
       </div>

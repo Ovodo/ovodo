@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Hero2 = () => {
@@ -15,9 +16,12 @@ const Hero2 = () => {
             success.
           </p>
           <div className="flex items-center gap-4 sm:gap-8">
-            <button className="text-night p-4 hover:scale-105 active:scale-95 duration-150 bg-primary rounded-[4px]">
+            <Link
+              href={"/projects"}
+              className="text-night p-4 hover:scale-105 active:scale-95 duration-150 bg-primary rounded-[4px]"
+            >
               Explore
-            </button>
+            </Link>
             {/* <button className='text-primary p-4 bg-transparent duration-150  hover:scale-105 active:scale-95 border-primary border rounded-[4px]'>
               Donate
             </button> */}

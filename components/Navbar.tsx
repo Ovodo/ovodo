@@ -71,9 +71,9 @@ const Navbar = () => {
                   item == "Home"
                     ? "/"
                     : item == "Services"
-                    ? "#services"
+                    ? "/#services"
                     : item == "Contact"
-                    ? "#contact"
+                    ? "/#contact"
                     : `/${item.toLowerCase()}`
                 }`}
                 key={item}
