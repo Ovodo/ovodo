@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/react";
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
@@ -70,7 +71,10 @@ export default function RootLayout({
         className={`${ubuntu.className} bg-night text-primary px-[20px] sm:px-[40px] md:px-[60px] h-full antialiased`}
       >
         <Navbar />
-        <main>{children}</main>
+        <main>
+          {children}
+          <Analytics />
+        </main>
       </body>
     </html>
   );
