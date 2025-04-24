@@ -13,47 +13,47 @@ export const resume = {
     {
       title: "Social Bots",
       description:
-        "Custom Telegram and Discord bots with automation, integrations, and AI capabilities.",
+        "Automated Telegram and Discord bots that boost community engagement and save hours of manual work through AI-driven integrations.",
     },
     {
       title: "Websites",
       description:
-        "Stunning websites with Next.js, TypeScript, Tailwind, and Framer Motion.",
+        "High-performance, visually stunning websites that increase user retention and drive conversions using Next.js, TypeScript, and modern UI/UX.",
     },
     {
       title: "Mobile Applications",
       description:
-        "Cross-platform mobile apps with smooth UI and performance optimization.",
+        "Cross-platform mobile apps that deliver seamless user experiences and improve customer satisfaction, optimized for speed and reliability.",
     },
     {
       title: "Blockchain Development",
       description:
-        "Blockchain integrations and secure smart contracts using Solidity, Rust, and Move on Ethereum, Solana, Aptos, and Sui.",
+        "Secure smart contracts and blockchain integrations that reduce vulnerabilities and enable new revenue streams on Ethereum, Solana, Aptos, and Sui.",
     },
     {
       title: "Trading Bots",
       description:
-        "Automated trading bots with custom strategies and API support.",
+        "Automated trading bots with custom strategies that maximize returns and minimize risk, supporting multiple exchanges and APIs.",
     },
     {
       title: "API Integrations",
       description:
-        "Seamless integration of third-party and custom APIs, including secure payment gateways like Stripe for smooth transactions.",
+        "Robust API integrations, including secure payment gateways, that streamline business operations and improve transaction success rates.",
     },
     {
       title: "Maintenance",
       description:
-        "Ongoing website and application maintenance for smooth performance.",
+        "Proactive website and app maintenance that ensures 99.9% uptime and optimal performance for your digital products.",
     },
     {
       title: "Bug Fixes",
       description:
-        "Efficient debugging and fixing for websites, bots, and applications.",
+        "Rapid debugging and issue resolution that minimizes downtime and keeps your business running smoothly.",
     },
     {
       title: "Browser Extensions",
       description:
-        "Custom Chrome and browser extensions with tailored functionalities.",
+        "Custom Chrome and browser extensions that enhance productivity and deliver unique features tailored to your workflow.",
     },
   ],
   summary:
@@ -188,6 +188,41 @@ export const resume = {
   projects: [
     {
       title: "Lead Developer",
+      company: "Tricode Pro",
+      summary:
+        "Tricode Pro is a SaaS product built to enhance collaborative working and project management. The company also speciallized in building of software and hardware products",
+      category: ["saas", "software", "recruitment", "full stack"],
+      languages: ["javascript", "nodejs"],
+      image: "/projects/tricode/home.png",
+      video: "/projects/tricode/tricodes.mp4",
+      repo: "https://github.com/tricodenetwork/tricode",
+      keywords: [
+        "javascript",
+        "figma",
+        "project management",
+        "cms",
+        "redux",
+        "tailwind",
+        "vercel storage",
+      ],
+      images: [
+        { src: "/projects/tricode/landing.png", title: "Landing Page" },
+        { src: "/projects/tricode/features.png", title: "Features" },
+        { src: "/projects/tricode/testimonials.png", title: "Testimonials" },
+        // { src: "/projects/tricode/learn.png", title: "Learn Section" },
+        { src: "/projects/tricode/auth.png", title: "Auth Page" },
+      ],
+
+      location: "",
+
+      achievements: [
+        "Built a **Learning Management System (LMS)** with **Role-Based Access Control (RBAC)** and content management, improving administrative efficiency by **20%** and student engagement by **15%**.",
+      ],
+      dates: "",
+      link: "https://www.tricode.pro",
+    },
+    {
+      title: "Lead Developer",
       company: "The Bounty Hunter",
       category: ["gaming", "blockchain", "nft"],
       languages: ["typescript", "nodejs", "solidity"],
@@ -199,24 +234,10 @@ export const resume = {
         { src: "/projects/tbh/game.png", title: "Game Arena" },
       ],
       video: "/projects/tbh/tbhs.mp4",
-      repo: "https://github.com/ovodo/thebountyhunter",
-      keywords: [
-        "smart contract",
-        "nft",
-        "erc20",
-        "etheruem",
-        "redux",
-        "tailwind",
-        "erc721",
-      ],
-      location: "",
+      repo: "https://github.com/Ovodo/tbh",
       achievements: [
-        "Won a $200 bounty for being among the top submissions in the **Game** category of the **Stackup.dev** Bounties.",
+        "Developed a blockchain-based NFT gaming platform with real-time multiplayer features and smart contract integration.",
       ],
-      dates: "",
-      link: "https://www.edusouldistinct.com",
-      summary:
-        "The Bounty Hunter is a blockchain-based game where users catch criminals on a level-by-level basis. Rewards in in-game dollars are awarded per level and can later be converted to BTY tokens. At the end of all levels, the user is awarded an NFT to showcase their accomplishments. Future version upgrades will include purchasing weapons and hints, which can be traded on a marketplace.",
     },
     {
       title: "Lead Developer",
@@ -253,41 +274,7 @@ export const resume = {
       dates: "",
       link: "https://www.edusouldistinct.com",
     },
-    {
-      title: "Lead Developer",
-      company: "Tricode Pro",
-      summary:
-        "Tricode Pro is a SaaS product built to enhance collaborative working and project management. The company also speciallized in building of software and hardware products",
-      category: ["saas", "software", "recruitment"],
-      languages: ["javascript", "nodejs"],
-      image: "/projects/tricode/home.png",
-      video: "/projects/tricode/tricodes.mp4",
-      repo: "https://github.com/tricodenetwork/edusoul",
-      keywords: [
-        "javascript",
-        "figma",
-        "project management",
-        "cms",
-        "redux",
-        "tailwind",
-        "vercel storage",
-      ],
-      images: [
-        { src: "/projects/tricode/landing.png", title: "Landing Page" },
-        { src: "/projects/tricode/features.png", title: "Features" },
-        { src: "/projects/tricode/testimonials.png", title: "Testimonials" },
-        // { src: "/projects/tricode/learn.png", title: "Learn Section" },
-        { src: "/projects/tricode/auth.png", title: "Auth Page" },
-      ],
 
-      location: "",
-
-      achievements: [
-        "Built a **Learning Management System (LMS)** with **Role-Based Access Control (RBAC)** and content management, improving administrative efficiency by **20%** and student engagement by **15%**.",
-      ],
-      dates: "",
-      link: "https://www.tricode.pro",
-    },
     {
       title: "Lead Developer",
       company: "Donacare Foundation",
@@ -318,36 +305,6 @@ export const resume = {
     },
     {
       title: "Lead Developer",
-      company: "SuiAI",
-      summary:
-        "SuiAi is a Large Language Model specifically tailored to solving questions,teaching, and improving developers on the sui move programming language.",
-      image: "/projects/suiai/main.png",
-      category: ["move", "ai", "hackathon"],
-      languages: ["typescript", "nodejs"],
-      video: "/projects/suiai/suiai.webm",
-      repo: "https://github.com/lukewalth/suiai",
-      keywords: [
-        "rag",
-        "vector database",
-        "mongodb atlas",
-        "openai",
-        "embedding model",
-      ],
-      images: [
-        { src: "/projects/suiai/landing.png", title: "Landing Page" },
-        { src: "/projects/suiai/auth.png", title: "Auth Section" },
-        { src: "/projects/suiai/chat.png", title: "Chat Section" },
-        // { src: "/projects/suiai/learn.png", title: "Learn Section" },
-      ],
-      location: "",
-      achievements: [
-        "Developed an online platform for an NGO, integrating **Paystack** for seamless donation processing, resulting in a **40% increase in donations** within the first 3 months.",
-      ],
-      dates: "",
-      link: "https://suiai.vercel.app",
-    },
-    {
-      title: "Lead Developer",
       company: "Arc911",
       summary:
         "Arc911 is a design and architecture company offering desing and rendering services to inidividuals at an affordable rate and in good time. Filed with experts they claim to be one of the best in the game.",
@@ -374,14 +331,16 @@ export const resume = {
     {
       title: "Open Source Contributor",
       company: "Solana Foundation",
-      image: "/solana.jpg",
+      image: "/solana.webp",
+      category: ["design", "blockchain"],
+
       location: "",
       dates: "11/09/2024",
       achievements: [
         "Enhanced escrow and token swap examples using the **Steel** framework and **Rust**, with testing implemented via **Solana** bankrun.js and native **Rust**, improving code reliability by **25%**.",
         "Improved documentation for Solana Oracles, reducing developer onboarding time by **30%**.",
       ],
-      link: "https://github.com/Ovodo/program-examples/tree/tokens/escrow/steel/tokens/escrow/steel",
+      repo: "https://github.com/Ovodo/program-examples/tree/tokens/escrow/steel/tokens/escrow/steel",
     },
   ],
 };

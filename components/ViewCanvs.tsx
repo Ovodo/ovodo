@@ -14,7 +14,7 @@ const RotatingSphere = ({ textureUrl, index }: Props) => {
   useFrame(({ clock }) => {
     if (sphereRef.current) {
       const time = clock.getElapsedTime() + index; // Offset by index for domino effect
-      sphereRef.current.rotation.y = Math.sin(time) * 0.6; // Oscillate around the Y-axis
+      sphereRef.current.rotation.y = Math.sin(time) * 1.7; // Oscillate around the Y-axis
     }
   });
 

@@ -18,7 +18,6 @@ const Navbar = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-  console.log(path);
 
   return (
     <OutsideClickHandler

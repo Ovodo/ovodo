@@ -2,11 +2,11 @@ export type Experience = {
   title: string;
   company: string;
   image: string;
-  images?: any[];
-  dates: string;
-  link: string;
+  images?: unknown[];
+  datess?: string;
+  link?: string;
   summary?: string;
-  location: string;
+  location?: string;
   achievements: string[];
   category?: string[];
   languages?: string[];
@@ -17,4 +17,5 @@ export type Experience = {
     title: string;
     description: string;
   }[];
+  video?: string;
 };

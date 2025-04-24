@@ -11,14 +11,15 @@ const Hero2 = () => {
         </h1>
         <div className="flex  flex-col sm:w-1/2 md:w-max gap-4 sm:gap-8">
           <p className="text-primary text-sm  sm:text-[16px]  md:text-[20px] leading-tight font-light max-w-[620px]">
-            Welcome to my portfolio! With expertise in JavaScript, Python, and
-            blockchain technology, I create impactful solutions that drive
-            success.
+            I help companies accelerate growth and innovation by building
+            scalable, secure, and user-focused digital products. Proven track
+            record of increasing efficiency, engagement, and revenue through
+            technology.
           </p>
           <div className="flex items-center gap-4 sm:gap-8">
             <Link
               href={"/projects"}
-              className="text-night p-4 hover:scale-105 active:scale-95 duration-150 bg-primary rounded-[4px]"
+              className="text-night p-2 md:p-4 hover:scale-105 active:scale-95 text-sm lg:text-base duration-150 bg-primary rounded-[4px]"
             >
               Explore
             </Link>
@@ -30,14 +31,14 @@ const Hero2 = () => {
       </div>
       <div className="w-full relative flex item-start justify-end mt-[5%] overflow-hidde rounded-md flex-1">
         <Image
-          src={"/kools.jpg"}
+          src={"/remote.png"}
           className="object-cover  blur-sm hero-image cursor-pointer duration-500 rounded-md shadow-sm shadow-primary hover:sm:blur-lg"
           alt="hero"
           fill
         />
         <div className="w-[35%] relative overflow-hidden hero-image2 rounded-sm   shadow-primary shadow-[_2px_-2px_4px]  h-full">
           <Image
-            src={"/kools.jpg"}
+            src={"/remote.png"}
             className="object-cover backdrop-blur-xl"
             alt="hero"
             fill
