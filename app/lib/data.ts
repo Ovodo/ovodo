@@ -283,7 +283,7 @@ export const resume = {
       image: "/projects/donacare/hero.png",
       category: ["ngo", "healthcare", "charity"],
       languages: ["typescript", "nodejs"],
-      video: "/projects/donacare/dona.webm",
+      video: "/projects/donacare/dona.mp4",
       repo: "https://github.com/ovodo/ngo",
       keywords: ["typescript", "figma", "charity", "tailwind", "paystack"],
       images: [
