@@ -8,7 +8,7 @@ const testimonials = [
       "Ovodo delivered our project ahead of schedule and exceeded our expectations. His technical expertise and proactive communication made a real difference to our business results.",
   },
   {
-    name: "John Ikibie, CEO at Edusoul",
+    name: "Brian, CEO at Skyopslabs",
     quote:
       "Working with Ovodo was a game-changer. Our user engagement increased by 30% after his improvements to our platform. Highly recommended!",
   },
