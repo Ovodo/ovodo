@@ -21,7 +21,8 @@
 
 /* Firefox */
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
+  /* scroll-timeline: s; */
   scrollbar-width: thin; /* Options: auto, thin, none */
   scrollbar-color:  rgba(0, 250, 154, 0.199) transparent; /* thumb and track colors */
 }

@@ -71,7 +71,7 @@ const Skills = () => {
         aria-hidden="true"
       />
       {/* Certifications Section */}
-      <div className="mt-10 flex flex-col gap-8 items-center w-full">
+      {/* <div className="mt-10 flex flex-col gap-8 items-center w-full">
         <h3 className="text-primary text-2xl font-bold mb-2">Certifications</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-full">
           {resume.certifications?.map((cert, idx) => (
@@ -106,7 +106,7 @@ const Skills = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
