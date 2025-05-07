@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,6 +36,7 @@ html {
 ::-webkit-scrollbar-thumb {
   /* display: none; */
   border-radius: 1rem;
+  width: 3px;
   /* background: rgba(220, 146, 73, 1); */
   transition: all 0.5s ease-in-out;
   background: #90050F;
@@ -46,6 +48,7 @@ html {
 
 ::-webkit-scrollbar-track {
   background: mediumspringgreen;
+  width: 2px;
 } 
 /* This will hide the scrollbar for Chrome, Safari, etc. */
 .scrollbar-hide::-webkit-scrollbar {
@@ -70,6 +73,28 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(150px) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* @scroll-timeline section-fade-in {
+  source: auto;
+  orientation: block;
+  scroll-offsets: start 80%, end 20%;
+} */
+
+.section-animate {
+  animation: fadeInUp both;
+  animation-timeline: view();
 }
 
 @property --angle {

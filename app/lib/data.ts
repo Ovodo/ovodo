@@ -194,7 +194,7 @@ export const resume = {
       category: ["saas", "software", "recruitment", "full stack"],
       languages: ["javascript", "nodejs"],
       image: "/projects/tricode/home.webp",
-      video: "/projects/tricode/tricodes.mp4",
+      video: "/projects/tricode/tricode.webm",
       repo: "https://github.com/tricodenetwork/tricode",
       keywords: [
         "javascript",
@@ -220,6 +220,76 @@ export const resume = {
       ],
       dates: "",
       link: "https://www.tricode.pro",
+    },
+    {
+      title: "Full stack Blockchain Developer",
+      company: "SkyopsLabs",
+      summary:
+        "Skyops is a decentralized AI computing platform that leverages unused GPU power worldwide to significantly reduce AI development costs while providing GPU owners with a way to earn from their idle hardware.",
+      category: ["cloudcomputing", "blockchain", "ai"],
+      languages: ["typescript", "nodejs", "solidity", "rust"],
+      image: "/projects/skyops/tasks.webp",
+      video: "/projects/skyops/skyops.webm",
+      repo: "https://github.com/skyopslabs",
+      keywords: [
+        "typescript",
+        "figma",
+        "rewards",
+        "blockchain",
+        "ai",
+        "gpu",
+        "cloud",
+      ],
+      images: [
+        { src: "/projects/skyops/login.webp", title: "Login Page" },
+        { src: "/projects/skyops/models.webp", title: "Models" },
+        { src: "/projects/skyops/leaderboard.webp", title: "Leaderboard" },
+        // { src: "/projects/skyops/learn.webp", title: "Learn Section" },
+        { src: "/projects/skyops/tasks.webp", title: "Tasks" },
+      ],
+
+      location: "",
+
+      achievements: [
+        "Revamped and completed the **SkyOps** platform, from the old version to a more sophisticated version in one month, embedding solidity and solana smart contracts for claiming rewards and a vesting schedule.",
+      ],
+      dates: "",
+      link: "https://www.skyopslabs.ai",
+    },
+    {
+      title: "Full stack Blockchain Developer",
+      company: "LockUp",
+      summary:
+        "A decentralized platform for making payments across borders and countries. Built to enhance the way we make payments and send money across borders.",
+      category: ["fintech", "payments", "blockchain"],
+      languages: ["typescript", "nodejs", "move"],
+      image: "/projects/lockup/home.webp",
+      video: "/projects/lockup/lockup.webm",
+      repo: "https://github.com/ovodo/lockup",
+      keywords: [
+        "typescript",
+        "figma",
+        "payments",
+        "blockchain",
+        "p2p",
+        "sui",
+        "staking",
+      ],
+      images: [
+        { src: "/projects/lockup/home.webp", title: "Login Page" },
+        { src: "/projects/lockup/dashboard.webp", title: "Dashboard" },
+        { src: "/projects/lockup/investments.webp", title: "Investments" },
+        { src: "/projects/lockup/send-money.webp", title: "Send Money" },
+        { src: "/projects/lockup/marketplace.webp", title: "Marketplace" },
+      ],
+
+      location: "",
+
+      achievements: [
+        "Architected the **LockUp** platform, enabling seamless cross-border payments and a decentralized marketplace via a p2p / intermediary system.",
+      ],
+      dates: "",
+      link: "https://www.tricodepro.xyz",
     },
     {
       title: "Lead Developer",
@@ -304,6 +374,29 @@ export const resume = {
       link: "https://www.donacarefoundation.org",
     },
     {
+      title: "Full Stack Developer",
+      company: "Hydrosat",
+      summary:
+        "This is a sentiment analysis application that allows users to analyze the sentiment of a given text.The customer wants to get better insights into how their customers think about their product, so they are asking you to implement a Proof of Concept for a customer feedback form with sentiment analysis",
+      image: "/projects/hydrosat/login.webp",
+      category: ["ai", "sentiment", "analysis"],
+      languages: ["typescript", "nodejs", "PostgreSQL"],
+      video: "/projects/hydrosat/hydrosat.webm",
+      repo: "https://github.com/ovodo/hydrosat",
+      keywords: ["metamask", "express", "PostgreSQL", "REST API", "web3.js"],
+      images: [
+        { src: "/projects/hydrosat/login.webp", title: "Auth Page" },
+        { src: "/projects/hydrosat/feedback.webp", title: "Submit Feedback" },
+        { src: "/projects/hydrosat/dashboard.webp", title: "Dashboard" },
+      ],
+      location: "",
+      achievements: [
+        "Developed an online platform for an NGO, integrating **Paystack** for seamless donation processing, resulting in a **40% increase in donations** within the first 3 months.",
+      ],
+      dates: "",
+      link: "https://hydrosat.vercel.app",
+    },
+    {
       title: "Lead Developer",
       company: "Arc911",
       summary:
@@ -329,10 +422,35 @@ export const resume = {
       link: "https://arc911.vercel.app",
     },
     {
+      title: "Backend Developer",
+      company: "A Basic Rust Server",
+      summary:
+        "This project is a simple HTTP file server written in Rust. It serves files and directories from the project root over HTTP, allowing you to browse and download files using your web browser",
+      image: "/projects/rust-server/home.webp",
+      category: ["rust", "system"],
+      languages: ["rust", "html", "css"],
+      video: "/projects/rust-server/rust-server.webm",
+      repo: "https://github.com/ovodo/rust-server",
+      keywords: ["rust", "server", "http"],
+      images: [
+        { src: "/projects/rust-server/home.webp", title: "Main Page" },
+
+        { src: "/projects/rust-server/index.webp", title: "Index.html" },
+      ],
+      location: "",
+      achievements: [""],
+      dates: "",
+      link: "",
+    },
+
+    {
       title: "Open Source Contributor",
       company: "Solana Foundation",
+      languages: ["rust", "typescript", "nodejs"],
+
       image: "/solana.webp",
-      category: ["design", "blockchain"],
+      category: ["open source", "blockchain"],
+      keywords: ["open source", "contribution", "anchor", "steel", "solana"],
 
       location: "",
       dates: "11/09/2024",

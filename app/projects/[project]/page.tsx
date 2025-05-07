@@ -6,7 +6,7 @@ import Image from "next/image";
 type Params = Promise<{ project: string }>;
 
 const bgGradient =
-  "bg-gradient-to-r from-black/70 from-25%  via-transparent to-cyan-950/60";
+  "bg-gradient-to-br from-black/70 from-5%  via-transparent via-80%  to-cyan-950/60";
 
 const Page = async (props: { params: Params }) => {
   // --------------------------------------------VARIABLES

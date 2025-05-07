@@ -26,7 +26,7 @@ const Navbar = () => {
       onOutsideClick={() => setMenuOpen(false)}
     >
       <div className="relative ">
-        <nav className="w-full  z-20 flex h-[92px]  bg-night md:bg-transparent relative items-center md:items-end pb-[1.5%] gap-[10px] sm:gap-[20px] md:gap-[40px]">
+        <nav className="w-full  z-20 flex h-[92px]  bg-night md:bg-transparent   relative items-center md:items-end pb-[1.5%]  gap-[10px] sm:gap-[20px] md:gap-[40px]">
           <h5
             id="logo"
             className=" text-[32px]  sm:text-[40px] shadow-primary  leading-none  cursor-pointer md:text-[48px] text-primary font-semibold"
@@ -62,7 +62,7 @@ const Navbar = () => {
 
           {/* Navigation Menu */}
           <ul
-            className={` md:flex  hidden relative p-1 bg-transparent flex-1  gap-8 flex-row  items-center h-auto `}
+            className={` md:flex  hidden relative p-1 bg-transparent   gap-8 flex-row  items-center h-auto `}
           >
             {["Home", "Projects", "Blog", "Services", "Contact"].map((item) => (
               <Link

@@ -10,7 +10,7 @@ const About = () => {
     >
       <div className="relative w-[180px] h-[180px] rounded-full overflow-hidden border-4 border-primary shadow-lg">
         <Image
-          src="/kools.webp"
+          src="/ovd.webp"
           alt="Ovodo Ohwovoriole"
           fill
           className="object-cover"

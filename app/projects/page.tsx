@@ -38,7 +38,7 @@ const Projects = () => {
                 )
               : true
           )
-          .slice(0, 6)
+          // .slice(0, 6)
           .map((item, index) => (
             <ProjectCard key={index.toString()} project={item} />
           ))}
