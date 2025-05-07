@@ -1,17 +1,14 @@
 "use client";
-import React from "react";
 import SkillCard from "./SkillCard";
-import Link from "next/link";
-import { resume } from "../app/lib/data";
 
 const skills = [
   {
-    src: "/ts.png",
+    src: "/ts.webp",
     header: "TypeScript: JavaScript with Superpowers",
     desc: "JavaScript powers interactive web applications and dynamic content.",
   },
   {
-    src: "/rust.png",
+    src: "/rust.webp",
     header: "Rust: The highly performant language",
     desc: "The most loved language of 2024. Lets get rusty!!",
   },
@@ -21,12 +18,12 @@ const skills = [
     desc: "The First Smart Contract Language!!.",
   },
   {
-    src: "/mov.jpg",
+    src: "/mov.webp",
     header: "Move: A Language for Secure Transactions",
     desc: "Move is designed for safe and efficient blockchain applications.",
   },
   {
-    src: "/python.png",
+    src: "/python.webp",
     header: "Python: The Versatile Language",
     desc: "Python is known for its simplicity and readability, making it a great choice for beginners and experts alike.",
   },

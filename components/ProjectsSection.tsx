@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import ProjectCard from "./ProjectCard";
+// import ProjectCard from "./ProjectCard";
 import { resume } from "../app/lib/data";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+const ProjectCard = dynamic(() => import('@/components/ProjectCard'), { ssr: false });
 
 const FILTERS = ["All", "Blockchain", "Full Stack", "AI"];
 
@@ -18,11 +19,7 @@ const ProjectsSection = () => {
           )
         );
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
+    <div
       className="py-16"
       id="projects"
     >
@@ -49,7 +46,7 @@ const ProjectsSection = () => {
           <ProjectCard key={idx} project={project} />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

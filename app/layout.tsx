@@ -3,7 +3,7 @@ import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
-import SmoothScrollWrapper from "@/components/SmoothScrollWrapper";
+// import SmoothScrollWrapper from "@/components/SmoothScrollWrapper";
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
@@ -69,10 +69,10 @@ export default function RootLayout({
         <Navbar />
         <main>
           {/* SmoothScrollWrapper provides lerp scrolling for the whole app */}
-          <SmoothScrollWrapper>
+          {/* <SmoothScrollWrapper> */}
             {children}
             <Analytics />
-          </SmoothScrollWrapper>
+          {/* </SmoothScrollWrapper> */}
         </main>
       </body>
     </html>

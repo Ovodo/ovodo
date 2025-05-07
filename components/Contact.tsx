@@ -5,15 +5,10 @@ import {
   IconMail,
   IconBrandTelegram,
 } from "@tabler/icons-react";
-import { motion } from "framer-motion";
 
 const Contact = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
+    <div
       className="flex flex-col gap-8 items-center py-[10vh] lg:mb-[15vh] justify-center"
     >
       <div className="flex flex-col gap-4 sm:gap-8 w-full items-center justify-between">
@@ -55,7 +50,7 @@ const Contact = () => {
           <IconBrandTelegram size={22} /> Telegram
         </a>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

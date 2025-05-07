@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { IconBrandGithub, IconWorld } from "@tabler/icons-react";
-import { motion } from "framer-motion";
 
 // Define a type for gallery items
 interface GalleryItem {
@@ -44,11 +43,7 @@ const ProjectCard = ({
   const prev = () =>
     setModalIdx((i) => (i - 1 + gallery.length) % gallery.length);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
+    <div
       className={`flex gap-1 relative lg:w-[22%] h-[400px] bg-[#152821] rounded-lg p-1 flex-col shadow-md transition-transform duration-200 ${
         featured ? "ring-2 ring-primary/80 scale-105" : "hover:scale-105"
       }`}
@@ -189,7 +184,7 @@ const ProjectCard = ({
           </div>
         </div>
       )}
-    </motion.div>
+    </div>
   );
 };
 

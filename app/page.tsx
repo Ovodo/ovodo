@@ -8,6 +8,7 @@ import Services from "@/components/Services";
 import Skills from "@/components/Skills";
 import Testimonials from "@/components/Testimonials";
 
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col gap-0">

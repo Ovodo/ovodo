@@ -31,16 +31,19 @@ const Hero2 = () => {
       </div>
       <div className="w-full relative flex item-start justify-end mt-[5%] overflow-hidde rounded-md flex-1">
         <Image
-          src={"/rem.png"}
+          src={"/rem.webp"}
           className="object-cover  blur-sm hero-image cursor-pointer duration-500 rounded-md shadow-sm shadow-primary hover:sm:blur-lg"
           alt="hero"
+          priority
+          
           fill
         />
         <div className="w-[35%] relative overflow-hidden hero-image2 rounded-sm   shadow-primary shadow-[_2px_-2px_4px]  h-full">
           <Image
-            src={"/rem.png"}
+            src={"/rem.webp"}
             className="object-cover backdrop-blur-xl"
             alt="hero"
+            priority
             fill
           />
         </div>

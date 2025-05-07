@@ -11,7 +11,7 @@ const LenisScrollProvider: FC<LenisScrollProviderProps> = ({ children }) => {
     <ReactLenis
       ref={lenisRef}
       root
-      options={{ lerp: 0.025, smoothWheel: true }}
+      options={{ lerp: 0.15, smoothWheel: false }}
     >
       {children}
     </ReactLenis>

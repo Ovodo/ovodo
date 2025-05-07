@@ -1,21 +1,16 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
+    <div
       className="flex flex-col md:flex-row items-center gap-20 py-16"
       id="about"
     >
       <div className="relative w-[180px] h-[180px] rounded-full overflow-hidden border-4 border-primary shadow-lg">
         <Image
-          src="/kools.jpg"
+          src="/kools.webp"
           alt="Ovodo Ohwovoriole"
           fill
           className="object-cover"
@@ -87,7 +82,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

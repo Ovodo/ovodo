@@ -1,23 +1,22 @@
 "use client";
-import { motion } from "framer-motion";
 import { IconSparkles } from "@tabler/icons-react";
 import { resume } from "@/app/lib/data";
 
 const Services = () => {
   // Animation variants must be serializable objects, not functions
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, type: "spring", bounce: 0.3 },
-    },
-    hover: {
-      scale: 1.04,
-      boxShadow: "0 4px 32px 0 rgba(79,178,134,0.15)",
-      transition: { duration: 0.3 },
-    },
-  };
+  // const cardVariants = {
+  //   hidden: { opacity: 0, y: 40 },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: { duration: 0.7, type: "spring", bounce: 0.3 },
+  //   },
+  //   hover: {
+  //     scale: 1.04,
+  //     boxShadow: "0 4px 32px 0 rgba(79,178,134,0.15)",
+  //     transition: { duration: 0.3 },
+  //   },
+  // };
 
   return (
     <div id="services" className="flex flex-col gap-5 lg:gap-10">
@@ -33,14 +32,9 @@ const Services = () => {
       </div>
       <div className="flex gap-5 flex-col flex-wrap">
         {resume.services.map((item) => (
-          <motion.div
+          <div
             key={item.title}
             className="relative flex px-5 gap-2 border-b-[1px] border-primary/20 items-center bg-[#152821] card overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-            // initial="hidden"
-            // whileInView="visible"
-            // whileHover="hover"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={cardVariants}
           >
             <div className="rounded-full min-w-2 h-2 bg-mint animate-pulse" />
             <div className="flex flex-col min-w-[30%] lg:min-w-[250px]">
@@ -52,7 +46,7 @@ const Services = () => {
                 {item.description}
               </p>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

@@ -27,14 +27,14 @@ const Hero = () => {
       </div>
       <div className="w-full sm:w-1/2 relative flex item-center overflow-hidden rounded-md  h-[55%]  sm:h-full">
         <Image
-          src={"/kools.jpg"}
+          src={"/kools.webp"}
           className="object-cover  hover:blur-sm hero-image cursor-pointer duration-500 rounded-md shadow-sm shadow-primary md:blur-xl"
           alt="hero"
           fill
         />
         <div className="w-[50%] relative overflow-hidden m-auto rounded-sm   shadow-primary shadow-[_2px_-2px_4px]  md:h-[60%]">
           <Image
-            src={"/kools.jpg"}
+            src={"/kools.webp"}
             className="object-cover backdrop-blur-xl"
             alt="hero"
             fill
