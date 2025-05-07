@@ -3,6 +3,7 @@ import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import SmoothScrollWrapper from "@/components/SmoothScrollWrapper";
 
 const ubuntu = Ubuntu({
@@ -72,6 +73,7 @@ export default function RootLayout({
           <SmoothScrollWrapper>
             {children}
             <Analytics />
+            <SpeedInsights />
           </SmoothScrollWrapper>
         </main>
       </body>
