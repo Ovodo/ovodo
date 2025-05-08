@@ -208,7 +208,7 @@ export const resume = {
       company: "Stackup",
       dates: "11/2023 - 01/2025",
       image: "/stackup.png",
-      link: "https://www.tricode.pro",
+      link: "https://app.stackup.dev",
       location: "Remote",
       achievements: [
         "Completed **50+ technical learning paths** in **Blockchain Development**, **Smart Contracts**, and **Web3**, achieving a **95% success rate** in assessments.",
@@ -233,7 +233,7 @@ export const resume = {
       dates: "08/2023 - 02/2024",
       location: "Remote",
       image: "/overmind.png",
-      link: "https://www.tricode.pro",
+      link: "https://overmind.xyz",
       achievements: [
         "Designed and deployed **15+ advanced smart contracts** for **DeFi**, gaming, and e-commerce applications on **Aptos** and **Sui**, enhancing transaction efficiency by **30%** and reducing security vulnerabilities by **20%**.",
         "Ranked in the **top 20 out of thousands of developers** on the platform, leveraging the **Move** programming language for scalable decentralized solutions.",
