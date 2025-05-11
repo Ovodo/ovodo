@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "Ovodo Portfolio",
     images: [
       {
-        url: "https://www.ovd.dev/re.png", // Replace with your actual image path
+        url: "https://www.ovd.dev/re.webp", // Replace with your actual image path
         width: 1200,
         height: 630,
         alt: "Ovodo - Full-Stack & Blockchain Engineer",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Full-Stack & Blockchain Engineer | Ovodo",
     description:
       "Expert Full-Stack and Blockchain Engineer specializing in web3 development, smart contracts, and modern web applications.",
-    images: ["https://www.ovd.dev/re.png"], // Replace with your actual image path
+    images: ["https://www.ovd.dev/re.webp"], // Replace with your actual image path
   },
 };
 

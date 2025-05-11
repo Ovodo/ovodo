@@ -199,8 +199,10 @@ export const resume = {
       keywords: [
         "javascript",
         "figma",
+        "flutterwave",
         "project management",
         "cms",
+        "payments",
         "redux",
         "tailwind",
         "vercel storage",
@@ -294,6 +296,7 @@ export const resume = {
     {
       title: "Lead Developer",
       company: "The Bounty Hunter",
+      summary: "",
       category: ["gaming", "blockchain", "nft"],
       languages: ["typescript", "nodejs", "solidity"],
       image: "/projects/tbh/tbh.svg",
