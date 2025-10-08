@@ -260,6 +260,33 @@ export const resume = {
     },
     {
       title: "Full stack Blockchain Developer",
+      company: "ExyraLabs",
+      summary:
+        "Exyra is an autonomous Defi AI agent that helps users to manage their crypto assets and make informed decisions. The platform leverages the power of AI to provide users with personalized investment strategies and insights.",
+      category: ["agents", "defi", "ai"],
+      languages: ["typescript", "nodejs"],
+      image: "/projects/exyra/home.png",
+      video: "/projects/exyra/video.webm",
+      repo: "https://github.com/ExyraLabs",
+      keywords: ["typescript", "figma", "defi", "blockchain", "ai", "agents"],
+      images: [
+        { src: "/projects/exyra/home.png", title: "Home Page" },
+        { src: "/projects/exyra/bots.png", title: "Bots" },
+        { src: "/projects/exyra/agents.png", title: "Agents" },
+        // { src: "/projects/exyra/learn.webp", title: "Learn Section" },
+        // { src: "/projects/exyra/tasks.webp", title: "Tasks" },
+      ],
+
+      location: "",
+
+      achievements: [
+        "Revamped and completed the **SkyOps** platform, from the old version to a more sophisticated version in one month, embedding solidity and solana smart contracts for claiming rewards and a vesting schedule.",
+      ],
+      dates: "",
+      link: "https://www.cerebrum.exyra.ai",
+    },
+    {
+      title: "Full stack Blockchain Developer",
       company: "LockUp",
       summary:
         "A decentralized platform for making payments across borders and countries. Built to enhance the way we make payments and send money across borders.",

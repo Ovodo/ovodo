@@ -20,7 +20,7 @@ const Page = async (props: { params: Params }) => {
   //------------------------------------------------------------------USE EFFECTS
 
   return (
-    <div className=" absolute top-0 left-0 w-full flex flex-col h-screen">
+    <div className=" absolute top-0 overflow-y-auto left-0 w-full flex flex-col h-screen">
       <video
         className="w-full absolute h-full object-cover"
         autoPlay
@@ -36,7 +36,10 @@ const Page = async (props: { params: Params }) => {
       ></div>
 
       {/* Content Above Video */}
-      <section className="overflow-y-scroll max-h-screen w-full absolute">
+      <section
+        className="overflow-y-scroll h-screen w-full absolute"
+        data-lenis-prevent
+      >
         <div className="min-h-[300vh] gap-40 py-[15vh] z-20 px-[20px] sm:px-[40px] md:px-[60px] bg-red-200/5 flex flex-col  w-full">
           <div
             id="details"
