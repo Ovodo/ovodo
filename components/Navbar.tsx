@@ -64,29 +64,31 @@ const Navbar = () => {
           <ul
             className={` md:flex  hidden relative p-1 bg-transparent   gap-8 flex-row  items-center h-auto `}
           >
-            {["Home", "Projects", "Blog", "Services", "Contact"].map((item) => (
-              <Link
-                href={`${
-                  item == "Home"
-                    ? "/"
-                    : item == "Services"
-                    ? "/#services"
-                    : item == "Contact"
-                    ? "/#contact"
-                    : `/${item.toLowerCase()}`
-                }`}
-                key={item}
-                className={`text-night  ${
-                  path == "/" && item == "Home"
-                    ? "underline md:text-10"
-                    : path.includes(item.toLowerCase())
-                    ? "underline md:text-10"
-                    : "no-underline md:text-primary"
-                }     cursor-pointer  font-bold underline-offset-2  duration-75  hover:underline underline-to-10 md:hover:text-10`}
-              >
-                {item}
-              </Link>
-            ))}
+            {["Home", "Projects", "Blog", "Music", "Services", "Contact"].map(
+              (item) => (
+                <Link
+                  href={`${
+                    item == "Home"
+                      ? "/"
+                      : item == "Services"
+                      ? "/#services"
+                      : item == "Contact"
+                      ? "/#contact"
+                      : `/${item.toLowerCase()}`
+                  }`}
+                  key={item}
+                  className={`text-night  ${
+                    path == "/" && item == "Home"
+                      ? "underline md:text-10"
+                      : path.includes(item.toLowerCase())
+                      ? "underline md:text-10"
+                      : "no-underline md:text-primary"
+                  }     cursor-pointer  font-bold underline-offset-2  duration-75  hover:underline underline-to-10 md:hover:text-10`}
+                >
+                  {item}
+                </Link>
+              )
+            )}
           </ul>
         </nav>
         <ul
@@ -96,7 +98,7 @@ const Navbar = () => {
               : "-translate-y-[300px]"
           } md:translate-y-0 `}
         >
-          {["Home", "Projects", "Blog", "Contact"].map((item) => (
+          {["Home", "Projects", "Blog", "Music", "Contact"].map((item) => (
             <Link
               href={`${
                 item == "Home"
