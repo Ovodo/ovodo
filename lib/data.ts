@@ -184,7 +184,7 @@ export const resume = {
     location: "Nigeria",
     linkedin: "https://www.linkedin.com/in/ovodo",
     github: "https://www.github.com/ovodo",
-    website: "https://www.tricode.pro",
+    website: "https://www.ovd.dev",
   },
   summary:
     "Versatile software engineer with 5+ years of expertise in full-stack development and blockchain technologies. Proven ability to rapidly adapt to new tools and frameworks, delivering high-impact solutions that improve efficiency, scalability, and user engagement. Adept at leading cross-functional teams and driving innovation in decentralized applications.",
@@ -316,6 +316,40 @@ export const resume = {
     "Team Leadership & Mentorship",
   ],
   projects: [
+    // {
+    //   title: "Lead Developer",
+    //   company: "Exyra AI DeFi Assistant",
+    //   image: "/exyra-logo.svg",
+    //   location: "",
+    //   achievements: [
+    //     "Built an intelligent AI-powered chat platform that helps users navigate and interact with DeFi protocols across multiple blockchains.",
+    //     // "Integrated **CopilotKit** for AI-powered conversations, **WalletConnect** for seamless wallet integration, and **MongoDB** for chat history persistence.",
+    //     // "Implemented multi-chain support for **Ethereum**, **Arbitrum**, **Optimism**, **BSC**, and **Solana**, with real-time token prices and gas estimates.",
+    //     // "Developed DeFi protocol explorer featuring **Lido Finance**, **Uniswap**, **KyberSwap**, and **Pendle Finance** integrations.",
+    //   ],
+    //   dates: "",
+    //   link: "https://cerebrum.vercel.app",
+    //   repo: "https://github.com/Exyralabs/FrontEnd",
+    //   summary: "An AI-powered DeFi assistant that simplifies blockchain interactions through natural language conversations. Users can explore protocols, swap tokens, and manage their crypto portfolio across multiple chains with intelligent guidance.",
+    //   languages: ["TypeScript", "JavaScript"],
+    //   keywords: ["AI", "DeFi", "Blockchain", "Multi-chain", "Web3", "CopilotKit", "Next.js", "MongoDB", "WalletConnect"],
+    //   category: ["AI", "Blockchain", "DeFi", "Full-Stack"],
+    //   video: "",
+    //   images: [
+    //     {
+    //       src: "/exyra-chat.png",
+    //       title: "AI-Powered Chat Interface"
+    //     },
+    //     {
+    //       src: "/exyra-explore.png",
+    //       title: "DeFi Protocol Explorer"
+    //     },
+    //     {
+    //       src: "/exyra-wallet.png",
+    //       title: "Multi-Chain Wallet Integration"
+    //     }
+    //   ]
+    // },
     {
       title: "Lead Developer",
       company: "Edusoul Distinct",
