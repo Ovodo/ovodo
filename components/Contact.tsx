@@ -8,9 +8,7 @@ import {
 
 const Contact = () => {
   return (
-    <div
-      className="flex flex-col gap-8 items-center py-[10vh] lg:mb-[15vh] justify-center"
-    >
+    <div className="flex flex-col gap-8 items-center py-[10vh] lg:mb-[15vh] justify-center">
       <div className="flex flex-col gap-4 sm:gap-8 w-full items-center justify-between">
         <h1 className="text-primary text-[32px] sm:text-[48px] text-center md:text-[56px] leading-[1.1] font-bold">
           Let&apos;s Connect
@@ -23,7 +21,7 @@ const Contact = () => {
       </div>
       <div className="flex flex-wrap gap-4 justify-center mt-4">
         <a
-          href="mailto:ohwovoriole@gmail.com"
+          href="mailto:ovodo@ovd.dev"
           className="flex items-center gap-2 text-night bg-primary px-5 py-3 rounded-lg font-semibold text-lg shadow hover:scale-105 duration-150"
         >
           <IconMail size={22} /> Email

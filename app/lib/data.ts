@@ -256,7 +256,7 @@ export const resume = {
         "Revamped and completed the **SkyOps** platform, from the old version to a more sophisticated version in one month, embedding solidity and solana smart contracts for claiming rewards and a vesting schedule.",
       ],
       dates: "",
-      link: "https://www.skyopslabs.ai",
+      link: "",
     },
     {
       title: "Full stack Blockchain Developer",
@@ -318,7 +318,7 @@ export const resume = {
         "Architected the **LockUp** platform, enabling seamless cross-border payments and a decentralized marketplace via a p2p / intermediary system.",
       ],
       dates: "",
-      link: "https://www.tricodepro.xyz",
+      link: "",
     },
     {
       title: "Lead Developer",

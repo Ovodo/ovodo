@@ -4,7 +4,7 @@ import SkillCard from "./SkillCard";
 
 const Skills = () => {
   return (
-    <div className="flex flex-col gap-20 py-16" id="skills">
+    <div className="flex flex-col  gap-20 py-16" id="skills">
       <div className="flex flex-col gap-8 w-full items-center justify-center">
         {/* <h3 className="text-primary text-xl sm:text-2xl md:text-xl font-bold">
           Skills
@@ -24,7 +24,7 @@ const Skills = () => {
         className="border-primary/20 w-full max-w-8xl mx-auto my-8"
         aria-hidden="true"
       />
-      <div className="flex flex-col scrollbar-hide sm:flex-row gap-16 overflow-x-auto py-8 justify-between items-center">
+      <div className="flex flex-col sm:flex-row gap-16 overflow-x-auto py-8 justify-between items-center">
         {skills.map((item, index) => (
           <SkillCard
             href="/projects"
