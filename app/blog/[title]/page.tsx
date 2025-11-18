@@ -65,7 +65,7 @@ const Page = async ({ params }: Props) => {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <article className="mx-auto mt-12 max-w-[95vw] lg:max-w-[80vw]  bg-card/80 px-6 py-12 shadow-md shadow-black/5 backdrop-blur-sm">
+      <article className="mx-auto mt-12 max-w-[98vw] lg:max-w-[80vw]  bg-card/80 px-6 py-12 shadow-md shadow-black/5 backdrop-blur-sm">
         <header className="mb-8">
           <h1 className="mb-2 text-3xl font-bold tracking-tight text-foreground">
             {post.title}
