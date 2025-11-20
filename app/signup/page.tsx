@@ -121,7 +121,7 @@ export default function SignUp() {
         className="z-20 relative bg-opacity-70 pic_section w-[40%] lg:w-[50%]"
       >
         <Image
-          src="/assets/images/favourite_bear.jfif"
+          src="/assets/images/favourite_bear.jpg"
           alt="Favourite Bear"
           fill
           className="object-cover"
@@ -139,7 +139,7 @@ export default function SignUp() {
               repeat: Infinity,
             }}
             className="ml-5 w-[50px] h-[50px] lg:w-[10%] lg:h-[10%] rounded-full lg:rounded-[10px]  z-10"
-            src="/assets/images/Egyptian_jazz.jfif"
+            src="/assets/images/Egyptian_jazz.jpg"
             alt=""
           />
         </div>
@@ -157,7 +157,7 @@ export default function SignUp() {
                 Join the{" "}
                 <span className="text-gray-500 ml-2 text-3xl">𝄢rew </span>
               </h1>
-              <motion.div
+              {/* <motion.div
                 initial={{ y: 0, rotate: 0 }}
                 transition={{
                   duration: 8,
@@ -170,7 +170,7 @@ export default function SignUp() {
                 className="rounded-full w-12 p-1 h-12 flex items-center justify-center bg-lemon"
               >
                 <Logo />
-              </motion.div>
+              </motion.div> */}
             </div>
 
             <form className="input_div flex flex-col gap-20">
@@ -230,7 +230,7 @@ export default function SignUp() {
                 repeat: Infinity,
               }}
               className="absolute  w-[50px] h-[50px] lg:w-[10%] lg:h-[10%] rounded-full lg:rounded-[10px]  bottom-5 right-5 ml-5 z-10"
-              src="/assets/images/colourful_bear.jfif"
+              src="/assets/images/colourful_bear.jpg"
               alt=""
             />
             <p>

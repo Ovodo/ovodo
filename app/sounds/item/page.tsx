@@ -42,7 +42,7 @@ const names = [
 ];
 
 const data = {
-  url: "/assets/images/Egyptian_jazz.jfif",
+  url: "/assets/images/Egyptian_jazz.jpg",
   artiste: "Artist Name",
   title: "Pack Title",
 };

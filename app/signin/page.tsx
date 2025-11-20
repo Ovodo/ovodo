@@ -85,7 +85,7 @@ export default function SignIn() {
     >
       <section className="z-20 relative bg-opacity-70 pic_section w-[40%] lg:w-[50%]">
         <Image
-          src="/assets/images/warm.jfif"
+          src="/assets/images/warm.jpg"
           alt="Warm"
           fill
           className="object-cover"
@@ -103,7 +103,7 @@ export default function SignIn() {
               repeat: Infinity,
             }}
             className="ml-5 w-[50px] h-[50px] lg:w-[10%] lg:h-[10%] rounded-full lg:rounded-[10px] z-10"
-            src="/assets/images/Egyptian_jazz.jfif"
+            src="/assets/images/Egyptian_jazz.jpg"
             alt=""
           />
         </div>
@@ -117,11 +117,11 @@ export default function SignIn() {
         ) : (
           <>
             <div className="flex flex-col items-start  px-5 gap-3 w-full justify-between  lg:flex-row left-0 absolute top-5 lg:items-center ">
-              <h1 className="text-lemon  text-2xl">
-                Welcome{" "}
-                <span className="text-gray-500 ml-2 text-3xl">Back </span>
+              <h1 className="text-lemon flex items-end text-2xl">
+                <span>Welcome</span>
+                <span className="text-gray-500 ml-2 text-xl">Back </span>
               </h1>
-              <motion.div
+              {/* <motion.div
                 initial={{ y: 0, rotate: 0 }}
                 transition={{
                   duration: 8,
@@ -131,10 +131,16 @@ export default function SignIn() {
                   repeatDelay: 10,
                   repeatType: "mirror",
                 }}
-                className="rounded-full w-12 p-1 h-12 flex items-center justify-center bg-lemon"
+                className="rounded-full w-12 p-1 h-12 flex items-center justify-center "
               >
-                <Logo />
-              </motion.div>
+                <Image
+                  style={{ opacity: 100 }}
+                  src={"/icon.svg"}
+                  width={24}
+                  height={24}
+                  alt="Icon"
+                />
+              </motion.div> */}
             </div>
             <form className="input_div flex flex-col gap-20">
               <div className="flex flex-col gap-5">
@@ -193,7 +199,7 @@ export default function SignIn() {
                 repeat: Infinity,
               }}
               className="absolute  w-[50px] h-[50px] lg:w-[10%] lg:h-[10%] rounded-full lg:rounded-[10px]  bottom-5 right-5 ml-5 z-10"
-              src="/assets/images/colourful_bear.jfif"
+              src="/assets/images/colourful_bear.jpg"
               alt=""
             />
             <p>
