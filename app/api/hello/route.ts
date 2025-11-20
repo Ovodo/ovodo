@@ -1,9 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-  return NextResponse.json({ name: 'John Doe' });
+  return NextResponse.json({ name: "John Doe" });
 }
 
 export async function POST(request: NextRequest) {
-  return NextResponse.json({ message: 'Method not implemented yet' }, { status: 501 });
+  return NextResponse.json(
+    { message: "Method not implemented yet" },
+    { status: 501 }
+  );
 }
