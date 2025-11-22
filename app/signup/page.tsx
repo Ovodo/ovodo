@@ -126,7 +126,7 @@ export default function SignUp() {
           fill
           className="object-cover"
         />
-        <div className="w-full h-full pt-3 bg-gray-90 bg-opacity-50">
+        <div className="w-full h-full pt-3 bg-gray-900 bg-opacity-50">
           <motion.img
             animate={{
               rotate: [0, 360, 0, 540, 0, 360],

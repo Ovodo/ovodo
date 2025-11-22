@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-primary relative overflow-hidden">
+    <div className="min-h-screen bg-primary  relative overflow-hidden">
       {/* Animated gradient orbs */}
       <div className="absolute top-20 right-20 w-96 h-96 bg-lemon/10 rounded-full blur-3xl animate-pulse"></div>
       <div
@@ -27,7 +27,8 @@ export default function Home() {
           className="text-center"
         >
           <h1 className="text-6xl lg:text-8xl font-bold text-lemon mb-6">
-            Welcome to the 𝄢rew
+            Welcome to the <span className="inline-block scale-x-[-1]">𝄢</span>{" "}
+            rew
           </h1>
           <p className="text-xl lg:text-2xl text-myWhite/80 mb-4 max-w-3xl mx-auto">
             Discover, collect, and trade unique sound NFTs on the blockchain
@@ -39,22 +40,14 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link href="/sounds">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-lemon text-primary px-10 py-4 rounded-full text-lg font-bold shadow-lg shadow-lemon/30 hover:shadow-xl hover:shadow-lemon/50 transition-all"
-              >
+              <button className="bg-lemon hover:scale-105 cursor-pointer duration-300 active:scale-95 text-primary px-10 py-4 rounded-full text-lg font-bold shadow-lg shadow-lemon/30  hover:shadow-lemon/50 transition-all">
                 Explore Sounds
-              </motion.button>
+              </button>
             </Link>
             <Link href="/signup">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-lemon text-lemon px-10 py-4 rounded-full text-lg font-bold hover:bg-lemon/10 transition-all"
-              >
+              <button className="hover:scale-105 cursor-pointer duration-300 active:scale-95 border-2 border-lemon text-lemon px-10 py-4 rounded-full text-lg font-bold hover:bg-lemon/10 transition-all">
                 Join Now
-              </motion.button>
+              </button>
             </Link>
           </div>
         </motion.div>

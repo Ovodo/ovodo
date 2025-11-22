@@ -1,6 +1,10 @@
 import React from "react";
 
-function Logo(): React.JSX.Element {
+interface LogoProps {
+  color?: string;
+}
+
+function Logo({ color = "#25092c" }: LogoProps): React.JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +16,7 @@ function Logo(): React.JSX.Element {
       <g display="inline" transform="translate(-636.195 -125.956)">
         <g
           scale="100"
-          stroke="#25092c"
+          stroke={color}
           strokeDasharray="none"
           strokeOpacity="1"
           strokeWidth="0.7"
