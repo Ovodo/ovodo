@@ -980,10 +980,10 @@ WHERE user_id = $1 AND deleted_at IS NULL;`}
             switches (bits).
           </p>
 
-          <div className="relative mb-8 h-[350px] w-[700px]  mx-auto overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/60">
+          <div className="relative mb-8 h-[350px] w-[85vw] lg:w-[700px]  mx-auto overflow-hidden rounded-2xl borde border-dashed border-border/60 bg-card/60">
             <Image
               src={"/images/gas2.png"}
-              className="object-cover object-center"
+              className="object-contain lg:object-cover object-center"
               alt="Gas optimization illustration"
               fill
             />
