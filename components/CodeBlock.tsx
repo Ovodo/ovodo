@@ -32,14 +32,11 @@ export function CodeBlock({ code, language = "tsx", title }: CodeBlockProps) {
             style={style}
           >
             {tokens.map((line, i) => {
-              const { ...lineProps } = getLineProps({ line, key: i });
+              const lineProps = getLineProps({ line });
               return (
                 <div key={i} {...lineProps}>
                   {line.map((token, j) => {
-                    const { ...tokenProps } = getTokenProps({
-                      token,
-                      key: j,
-                    });
+                    const tokenProps = getTokenProps({ token });
                     return <span key={j} {...tokenProps} />;
                   })}
                 </div>

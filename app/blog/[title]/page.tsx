@@ -30,14 +30,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.date,
       tags: post.tags,
       authors: ["Ovodo"],
-      images: [
-        {
-          url: "https://www.ovd.dev/images/gas2.png", // Replace with your actual image path
-          width: 1200,
-          height: 630,
-          alt: "Ovodo - Full-Stack & Blockchain Engineer",
-        },
-      ],
+      images: post.image
+        ? [
+            {
+              url: `https://www.ovd.dev${post.image}`,
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ]
+        : [],
     },
     twitter: {
       card: "summary_large_image",
@@ -71,7 +73,7 @@ const Page = async ({ params }: Props) => {
             {post.title}
           </h1>
           <p className="mb-1 text-sm text-muted-foreground">
-            {post.date} · {post.category}
+            {post.date} · {post.category} · {post.readTime}
           </p>
           {post.tags.length > 0 && (
             <p className="text-xs text-primary/80">

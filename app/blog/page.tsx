@@ -44,7 +44,7 @@ const BlogIndexPage = () => {
                 {post.title}
               </h2>
               <p className="mb-1 text-[10px] text-muted-foreground">
-                {post.date} · {post.category}
+                {post.date} · {post.category} · {post.readTime}
               </p>
               <p className="mb-2 text-sm text-primary/80  text-muted-foreground">
                 {post.summary}
