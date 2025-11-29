@@ -7,7 +7,15 @@ import React from "react";
 const Footer = (): React.JSX.Element => {
   return (
     <div className="bg-thatGreen h-[10vh] px-[2vw] flex  items-center justify-between">
-      <p className="text-lemon font-semiboold text-lg">Ovdizzle Inc.</p>
+      <div className="flex items-center gap-6">
+        <p className="text-lemon font-semiboold text-lg">Ovdizzle Inc.</p>
+        <a
+          href="/whitepaper"
+          className="text-lemon hover:text-secondary transition-colors text-sm font-semibold"
+        >
+          Whitepaper
+        </a>
+      </div>
       <div className="flex mt-2">
         <a
           href="https://twitter.com/ovdizle"
