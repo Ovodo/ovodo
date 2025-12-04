@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   FaMusic,
@@ -12,6 +13,7 @@ import {
   FaRandom,
   FaRedoAlt,
 } from "react-icons/fa";
+import { IoMdArrowRoundDown } from "react-icons/io";
 
 interface Track {
   id: number;
@@ -59,15 +61,81 @@ export default function FloatingMusicPlayer({
   nextTrack,
   selectTrack,
 }: FloatingMusicPlayerProps) {
+  const [showHint, setShowHint] = useState(true);
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  useEffect(() => {
+    // Hide hint after 5 seconds
+    const timer = setTimeout(() => {
+      setShowHint(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleInteraction = () => {
+    if (!hasInteracted) {
+      setHasInteracted(true);
+      setShowHint(false);
+    }
+  };
+
   return (
     <>
       {/* Floating Music Player Button */}
       <div
         className="fixed bottom-8 right-8 z-50"
-        onMouseEnter={() => setIsHoveringPlayer(true)}
+        onMouseEnter={() => {
+          setIsHoveringPlayer(true);
+          handleInteraction();
+        }}
         onMouseLeave={() => setIsHoveringPlayer(false)}
+        onClick={handleInteraction}
       >
-        <motion.div className="relative">
+        {/* Onboarding Hint */}
+        <AnimatePresence>
+          {showHint && !hasInteracted && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ delay: 0.5 }}
+              className="absolute -top-16 right-0 bg-gradient-to-r from-lemon to-secondary px-4 py-2 rounded-lg shadow-lg"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-primary text-sm font-bold whitespace-nowrap">
+                  Tap to explore playlist
+                </span>
+                <motion.div
+                  animate={{ y: [0, 5, 0] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                >
+                  <IoMdArrowRoundDown className="text-primary" size={18} />
+                </motion.div>
+              </div>
+              {/* Arrow pointing down */}
+              <div className="absolute -bottom-2 right-6 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-secondary" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <motion.div
+          className="relative"
+          animate={
+            showHint && !hasInteracted
+              ? {
+                  y: [0, -10, 0, -10, 0],
+                  scale: [1, 1.05, 1, 1.05, 1],
+                }
+              : {}
+          }
+          transition={{
+            duration: 2,
+            times: [0, 0.25, 0.5, 0.75, 1],
+            repeat: showHint && !hasInteracted ? 2 : 0,
+            repeatDelay: 1,
+          }}
+        >
           {/* Expandable Container */}
           <motion.div
             animate={{

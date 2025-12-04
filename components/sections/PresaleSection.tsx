@@ -96,7 +96,7 @@ export default function PresaleSection({ onLearnMore }: PresaleSectionProps) {
               controlsList="nodownload"
               onContextMenu={(e) => e.preventDefault()}
             >
-              <source src="/music/preview.mp3" type="audio/mpeg" />
+              <source src="/music/ovd_chorus.mp3" type="audio/mpeg" />
             </audio>
 
             {/* Header Info Below Image */}
@@ -108,14 +108,14 @@ export default function PresaleSection({ onLearnMore }: PresaleSectionProps) {
               className="text-center"
             >
               <h2 className="text-3xl lg:text-4xl font-[Patrick_Hand] font-bold text-lemon mb-2">
-                Ovdizzle Presale
+                Ovdizzle Launch
               </h2>
               <p className="text-lg text-secondary mb-2">
-                Exclusive First Edition NFT Release
+                Exclusive First Edition NFT Collection
               </p>
               <p className="text-myWhite/70 text-sm">
-                Early supporters get higher royalty shares. The sooner you join,
-                the better your rewards!
+                Early members unlock premium perks and exclusive access. Join
+                the community today!
               </p>
             </motion.div>
           </div>
@@ -139,13 +139,14 @@ export default function PresaleSection({ onLearnMore }: PresaleSectionProps) {
                 />
               </div>
 
-              {/* Total Royalty Pool */}
+              {/* Community Perks */}
               <div className="bg-secondary/10 border-l-4 border-secondary rounded-lg p-4">
                 <p className="text-secondary font-bold mb-1 text-sm">
-                  Total Royalty Pool: 50%
+                  Member Benefits Program
                 </p>
                 <p className="text-myWhite/70 text-xs">
-                  All token holders share 50% of music royalties forever
+                  Token holders get exclusive access to music, events, and
+                  community perks
                 </p>
               </div>
 
@@ -159,7 +160,7 @@ export default function PresaleSection({ onLearnMore }: PresaleSectionProps) {
                   whileTap={{ scale: 0.95 }}
                   className="flex-1 bg-gradient-to-r from-lemon to-secondary text-primary px-6 py-4 rounded-full font-bold text-lg shadow-lg shadow-lemon/40"
                 >
-                  Join Presale
+                  Join Now
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -173,7 +174,9 @@ export default function PresaleSection({ onLearnMore }: PresaleSectionProps) {
 
               {/* Countdown Timer */}
               <div className="text-center">
-                <p className="text-myWhite/50 text-sm mb-3">Presale ends in:</p>
+                <p className="text-myWhite/50 text-sm mb-3">
+                  Early access closes in:
+                </p>
                 <div className="flex justify-center gap-3">
                   {["45", "12", "30", "15"].map((num, idx) => (
                     <div

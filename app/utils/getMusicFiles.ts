@@ -9,7 +9,6 @@ export const getMusicFiles = (): string[] => {
   return [
     '/music/Fami.mp3',
     '/music/Siren.mp3',
-    '/music/Hawaiian Justice.mp3'
     // Add more files here like:
     // '/music/YourSong.mp3',
     // '/music/AnotherTrack.mp3',

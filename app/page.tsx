@@ -130,14 +130,11 @@ export default function Home() {
     }
   }, [currentTrack, playlist]);
 
-  // Auto-play when playlist loads
+  // Load audio source when playlist loads
   useEffect(() => {
     if (playlist.length > 0 && !loading && audioRef.current) {
       audioRef.current.src = playlist[0].url;
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => console.log("Autoplay prevented:", err));
+      // Removed auto-play - user must click play button
     }
   }, [playlist, loading]);
 
@@ -245,17 +242,17 @@ export default function Home() {
 
       {/* All Sections */}
       <HeroSection />
-      <PresaleSection
+      {/* <PresaleSection
         onLearnMore={() => {
           setSelectedTier(null);
           setIsTierModalOpen(true);
         }}
-      />
-      <TradingBotSection />
+      /> */}
+      {/* <TradingBotSection />
       <ArtsSection />
       <FashionSection />
       <StatsSection />
-      <CTASection />
+      <CTASection /> */}
 
       {/* Floating Music Player */}
       <FloatingMusicPlayer
@@ -281,12 +278,12 @@ export default function Home() {
       <audio ref={audioRef} onEnded={handleTrackEnd} />
 
       {/* Tier Details Modal */}
-      <TierModal
+      {/* <TierModal
         isOpen={isTierModalOpen}
         onClose={() => setIsTierModalOpen(false)}
         tier={selectedTier}
         showAll={selectedTier === null}
-      />
+      /> */}
     </div>
   );
 }

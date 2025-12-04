@@ -65,13 +65,11 @@ export default function TradingBotSection() {
                 <div className="bg-primary/50 backdrop-blur-sm rounded-xl p-4 border border-secondary/20">
                   <div className="flex items-center gap-3 mb-2">
                     <BiNetworkChart className="text-secondary text-2xl" />
-                    <h4 className="text-secondary font-bold">
-                      Enhanced Leverage
-                    </h4>
+                    <h4 className="text-secondary font-bold">Enhanced Tools</h4>
                   </div>
                   <p className="text-myWhite/70 text-sm">
-                    Early buyers unlock higher leverage multipliers based on
-                    purchase timing and volume
+                    Early members unlock advanced features based on membership
+                    timing and activity
                   </p>
                 </div>
 
@@ -79,12 +77,12 @@ export default function TradingBotSection() {
                   <div className="flex items-center gap-3 mb-2">
                     <BiNetworkChart className="text-secondary text-2xl" />
                     <h4 className="text-secondary font-bold">
-                      Staking Privileges
+                      Staking Features
                     </h4>
                   </div>
                   <p className="text-myWhite/70 text-sm">
-                    Stake multiples of your initial purchase amount with boosted
-                    returns for early adopters
+                    Access staking features with enhanced capabilities for early
+                    community members
                   </p>
                 </div>
               </div>
@@ -93,8 +91,8 @@ export default function TradingBotSection() {
               <div className="bg-gradient-to-r from-secondary/10 to-transparent border-l-4 border-secondary rounded-lg p-4 mb-6">
                 <p className="text-secondary font-bold mb-2">Tier System</p>
                 <p className="text-myWhite/70 text-sm">
-                  Earlier buyers = Higher tier = Greater leverage & staking
-                  multiples
+                  Earlier members = Higher tier = Better features & exclusive
+                  access
                 </p>
               </div>
 
@@ -149,15 +147,15 @@ export default function TradingBotSection() {
                 <div className="absolute bottom-4 left-4 right-4 bg-primary/90 backdrop-blur-md rounded-lg p-3 border border-secondary/30">
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="text-myWhite/60 text-xs">Win Rate</p>
+                      <p className="text-myWhite/60 text-xs">Success Rate</p>
                       <p className="text-secondary font-bold text-lg">87.3%</p>
                     </div>
                     <div>
-                      <p className="text-myWhite/60 text-xs">Avg Return</p>
-                      <p className="text-lemon font-bold text-lg">+24.5%</p>
+                      <p className="text-myWhite/60 text-xs">Signals</p>
+                      <p className="text-lemon font-bold text-lg">1.2K+</p>
                     </div>
                     <div>
-                      <p className="text-myWhite/60 text-xs">Active Trades</p>
+                      <p className="text-myWhite/60 text-xs">Active Users</p>
                       <p className="text-lovelypink font-bold text-lg">142</p>
                     </div>
                   </div>

@@ -14,6 +14,7 @@ import { updateAddress } from "../../store/slice-reducers/Web3slice";
 import { useDispatch } from "react-redux";
 import { motion, useAnimation } from "framer-motion";
 import Logo from "./Logo";
+import InProgressModal from "../InProgressModal";
 
 interface NavbarProps {
   children?: ReactNode;
@@ -35,6 +36,8 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
   const [defaultAccount, setDefaultAccount] = useState<string | null>(null);
   const [showmenu, setShowmenu] = useState(false);
   const [isInverted, setIsInverted] = useState(false);
+  const [showInProgressModal, setShowInProgressModal] = useState(false);
+  const [inProgressPage, setInProgressPage] = useState("");
   const dispatch = useDispatch();
   const controls = useAnimation();
 
@@ -62,6 +65,12 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
 
   const hideMenu = () => {
     setShowmenu(false);
+  };
+
+  const handleInProgressClick = (pageName: string) => {
+    setInProgressPage(pageName);
+    setShowInProgressModal(true);
+    hideMenu();
   };
 
   const pathname = usePathname();
@@ -170,30 +179,27 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
               whileHover={{ scale: 1.2, y: -5 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "tween", duration: 0.2 }}
-              onClick={hideMenu}
+              onClick={() => handleInProgressClick("$ounds")}
               className="flex"
+              style={{
+                color:
+                  pathname === "/sounds"
+                    ? "rgb(100 116 139)"
+                    : isInverted && !showmenu
+                    ? "#e9ec6b"
+                    : showmenu
+                    ? "#9be8a1"
+                    : primary,
+                cursor: "pointer",
+              }}
             >
-              <Link
-                href="/sounds"
-                style={{
-                  color:
-                    pathname === "/sounds"
-                      ? "rgb(100 116 139)"
-                      : isInverted && !showmenu
-                      ? "#e9ec6b"
-                      : showmenu
-                      ? "#9be8a1"
-                      : primary,
-                }}
-              >
-                $ounds
-              </Link>
+              $ounds
             </motion.li>
             <motion.li
               whileHover={{ scale: 1.2, y: -5 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "tween", duration: 0.2 }}
-              onClick={hideMenu}
+              onClick={() => handleInProgressClick("NFTs")}
               style={{
                 color:
                   isInverted && !showmenu
@@ -201,17 +207,16 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                     : showmenu
                     ? "#9be8a1"
                     : primary,
+                cursor: "pointer",
               }}
             >
-              <Link href="/join" target="targetFrame">
-                NFTs
-              </Link>
+              NFTs
             </motion.li>
             <motion.li
               whileHover={{ scale: 1.2, y: -5 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "tween", duration: 0.2 }}
-              onClick={hideMenu}
+              onClick={() => handleInProgressClick("Merch")}
               style={{
                 color:
                   isInverted && !showmenu
@@ -219,15 +224,16 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                     : showmenu
                     ? "#9be8a1"
                     : primary,
+                cursor: "pointer",
               }}
             >
-              <Link href="./songs">Merch</Link>
+              Merch
             </motion.li>
             <motion.li
               whileHover={{ scale: 1.2, y: -5 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "tween", duration: 0.2 }}
-              onClick={hideMenu}
+              onClick={() => handleInProgressClick("Sales")}
               style={{
                 color:
                   isInverted && !showmenu
@@ -235,71 +241,68 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                     : showmenu
                     ? "#9be8a1"
                     : primary,
+                cursor: "pointer",
+                opacity: 0.5,
               }}
             >
-              <Link className="opacity-50" href="">
-                $ales
-              </Link>
+              $ales
             </motion.li>
           </div>
 
           {/* Mobile Icons in Drawer */}
           <div className="mobile-icons !mt-auto">
-            <li>
-              <Link onClick={connectWallet} href="/">
-                {defaultAccount ? (
-                  <div className="flex flex-col items-center">
-                    <TiTick color="var(--primary)" />
-                    <p className="text-[10px]">Connected!!</p>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <GiWallet />
-                    <span>Connect Wallet</span>
-                  </div>
-                )}
-              </Link>
+            <li
+              onClick={() => handleInProgressClick("Wallet")}
+              className="flex items-center gap-2 cursor-pointer text-secondary"
+            >
+              <GiWallet />
+              <span>Connect Wallet</span>
             </li>
-            <li>
-              <Link href="/songs" className="flex items-center gap-2">
-                <IoMdCart />
-                <span>Cart</span>
-              </Link>
+            <li
+              onClick={() => handleInProgressClick("Cart")}
+              className="flex items-center gap-2 cursor-pointer text-secondary"
+            >
+              <IoMdCart />
+              <span>Cart</span>
             </li>
-            <li>
-              <Link href="/Join" className="flex items-center gap-2">
-                <FaUserAlt />
-                <span>Profile</span>
-              </Link>
+            <li
+              onClick={() => handleInProgressClick("Profile")}
+              className="flex items-center gap-2 cursor-pointer text-secondary"
+            >
+              <FaUserAlt />
+              <span>Profile</span>
             </li>
           </div>
         </motion.ul>
       </menu>
 
       <div className="icon flex items-center">
-        <li style={{ color: isInverted ? "#e9ec6b" : primary }}>
-          <Link onClick={connectWallet} href="/">
-            {defaultAccount ? (
-              <div className="flex flex-col items-center">
-                <TiTick color={isInverted ? "#e9ec6b" : primary} />
-                <p className="text-[10px]">Connected!!</p>
-              </div>
-            ) : (
-              <GiWallet />
-            )}
-          </Link>
+        <li
+          onClick={() => handleInProgressClick("Wallet")}
+          style={{ color: isInverted ? "#e9ec6b" : primary, cursor: "pointer" }}
+        >
+          <GiWallet />
         </li>
-        <li style={{ color: isInverted ? "#e9ec6b" : primary }}>
-          <Link href="/songs">
-            <IoMdCart />
-          </Link>
+        <li
+          onClick={() => handleInProgressClick("Cart")}
+          style={{ color: isInverted ? "#e9ec6b" : primary, cursor: "pointer" }}
+        >
+          <IoMdCart />
         </li>
-        <li style={{ color: isInverted ? "#e9ec6b" : primary }}>
-          <Link href="/Join">
-            <FaUserAlt />
-          </Link>
+        <li
+          onClick={() => handleInProgressClick("Profile")}
+          style={{ color: isInverted ? "#e9ec6b" : primary, cursor: "pointer" }}
+        >
+          <FaUserAlt />
         </li>
       </div>
+
+      {/* In Progress Modal */}
+      <InProgressModal
+        isOpen={showInProgressModal}
+        onClose={() => setShowInProgressModal(false)}
+        pageName={inProgressPage}
+      />
     </motion.nav>
   );
 };

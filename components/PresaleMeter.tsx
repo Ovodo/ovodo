@@ -11,8 +11,8 @@ const TIERS = [
     color: "#e9ec6b",
     glowColor: "rgba(233, 236, 107, 0.6)",
     totalTokens: 25000,
-    royaltyPercent: 25,
-    leverageMultiplier: 5,
+    royaltyPercent: "VIP",
+    leverageMultiplier: "Max",
   },
   {
     name: "Silver",
@@ -21,8 +21,8 @@ const TIERS = [
     color: "#c0c0c0",
     glowColor: "rgba(192, 192, 192, 0.6)",
     totalTokens: 30000,
-    royaltyPercent: 15,
-    leverageMultiplier: 3,
+    royaltyPercent: "Priority",
+    leverageMultiplier: "Advanced",
   },
   {
     name: "Bronze",
@@ -31,8 +31,8 @@ const TIERS = [
     color: "#cd7f32",
     glowColor: "rgba(205, 127, 50, 0.6)",
     totalTokens: 40000,
-    royaltyPercent: 10,
-    leverageMultiplier: 2,
+    royaltyPercent: "Core",
+    leverageMultiplier: "Basic",
   },
 ];
 
@@ -142,8 +142,8 @@ export default function PresaleMeter({
                     {tier.name}
                   </h3>
                   <p className="text-myWhite/60 text-sm">
-                    {tier.royaltyPercent}% Royalties • {tier.leverageMultiplier}
-                    x Leverage
+                    {tier.royaltyPercent} Perks • {tier.leverageMultiplier}{" "}
+                    Access
                   </p>
                 </div>
 
@@ -236,7 +236,7 @@ export default function PresaleMeter({
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">
-                Overall Presale Progress
+                Community Growth Progress
               </h3>
               <p className="text-myWhite/70 text-sm">
                 Current:{" "}
@@ -366,9 +366,9 @@ export default function PresaleMeter({
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-black/20 rounded-xl p-4 backdrop-blur-sm">
-              <div className="text-xs text-myWhite/60 mb-1">Current Price</div>
+              <div className="text-xs text-myWhite/60 mb-1">Members</div>
               <div className="text-xl font-bold text-lemon">
-                ${currentPrice.toFixed(4)}
+                {soldTokens.toLocaleString()}
               </div>
             </div>
             <div className="bg-black/20 rounded-xl p-4 backdrop-blur-sm">
@@ -389,8 +389,7 @@ export default function PresaleMeter({
                 className="text-xl font-bold"
                 style={{ color: currentTier.color }}
               >
-                {currentTier.royaltyPercent}% + {currentTier.leverageMultiplier}
-                x
+                {currentTier.royaltyPercent} + {currentTier.leverageMultiplier}
               </div>
             </div>
           </div>
@@ -415,19 +414,19 @@ export default function PresaleMeter({
             </p>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between items-center">
-                <span className="text-myWhite/70">Royalty Share:</span>
+                <span className="text-myWhite/70">Perks Level:</span>
                 <span className="font-bold text-lemon text-lg">
-                  {TIERS[hoveredTier].royaltyPercent}%
+                  {TIERS[hoveredTier].royaltyPercent}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-myWhite/70">Trading Leverage:</span>
+                <span className="text-myWhite/70">Access Level:</span>
                 <span className="font-bold text-secondary text-lg">
-                  {TIERS[hoveredTier].leverageMultiplier}x
+                  {TIERS[hoveredTier].leverageMultiplier}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-myWhite/70">Total Tokens:</span>
+                <span className="text-myWhite/70">Available Spots:</span>
                 <span className="font-bold text-white text-lg">
                   {TIERS[hoveredTier].totalTokens.toLocaleString()}
                 </span>

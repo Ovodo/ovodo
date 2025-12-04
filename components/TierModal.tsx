@@ -38,10 +38,10 @@ const TIER_DATA: Record<"gold" | "silver" | "bronze", TierDetails> = {
   gold: {
     name: "Gold Tier",
     color: "#e9ec6b",
-    price: "0.5 DIZZLE = 1 USDT",
-    raise: "$50,000",
-    royalty: "25% of pool",
-    leverage: "3x Leverage",
+    price: "Premium Membership",
+    raise: "VIP Access",
+    royalty: "Top Priority",
+    leverage: "Max Benefits",
     benefits: [
       {
         icon: <FaGift className="text-xl" />,
@@ -50,13 +50,15 @@ const TIER_DATA: Record<"gold" | "silver" | "bronze", TierDetails> = {
       },
       {
         icon: <FaRobot className="text-xl" />,
-        title: "Premium Trading Bot",
-        description: "Advanced algo bot with 3x leverage and custom strategies",
+        title: "Premium Trading Tools",
+        description:
+          "Advanced tools access with premium features and custom strategies",
       },
       {
         icon: <FaMusic className="text-xl" />,
-        title: "Multi-Artist Royalties",
-        description: "Earn from multiple artists, not just Ovdizzle releases",
+        title: "Multi-Artist Access",
+        description:
+          "Exclusive content from multiple artists, not just Ovdizzle releases",
       },
       {
         icon: <FaCrown className="text-xl" />,
@@ -71,17 +73,17 @@ const TIER_DATA: Record<"gold" | "silver" | "bronze", TierDetails> = {
       {
         icon: <FaUsers className="text-xl" />,
         title: "Gold Discord & Events",
-        description: "Private channel, alpha calls, and VIP concert access",
+        description: "Private channel, exclusive updates, and VIP event access",
       },
     ],
   },
   silver: {
     name: "Silver Tier",
     color: "#c0c0c0",
-    price: "1 DIZZLE = 1 USDT",
-    raise: "$30,000",
-    royalty: "15% of pool",
-    leverage: "2x Leverage",
+    price: "Standard Membership",
+    raise: "Priority Access",
+    royalty: "Enhanced Perks",
+    leverage: "Advanced Benefits",
     benefits: [
       {
         icon: <FaGift className="text-xl" />,
@@ -90,13 +92,13 @@ const TIER_DATA: Record<"gold" | "silver" | "bronze", TierDetails> = {
       },
       {
         icon: <FaRobot className="text-xl" />,
-        title: "Standard Trading Bot",
-        description: "Algo trading with 2x leverage and preset strategies",
+        title: "Standard Trading Tools",
+        description: "Trading tools access with preset strategies",
       },
       {
         icon: <FaMusic className="text-xl" />,
-        title: "Ovdizzle Royalties",
-        description: "15% share of royalties plus select collaborations",
+        title: "Ovdizzle Content",
+        description: "Exclusive content access plus select collaborations",
       },
       {
         icon: <FaCrown className="text-xl" />,
@@ -118,10 +120,10 @@ const TIER_DATA: Record<"gold" | "silver" | "bronze", TierDetails> = {
   bronze: {
     name: "Bronze Tier",
     color: "#cd7f32",
-    price: "2 DIZZLE = 1 USDT",
-    raise: "$20,000",
-    royalty: "10% of pool",
-    leverage: "1.5x Leverage",
+    price: "Basic Membership",
+    raise: "Community Access",
+    royalty: "Core Perks",
+    leverage: "Essential Benefits",
     benefits: [
       {
         icon: <FaGift className="text-xl" />,
@@ -130,13 +132,13 @@ const TIER_DATA: Record<"gold" | "silver" | "bronze", TierDetails> = {
       },
       {
         icon: <FaRobot className="text-xl" />,
-        title: "Basic Trading Bot",
-        description: "Core trading features with 1.5x leverage access",
+        title: "Basic Trading Tools",
+        description: "Core trading features and tools access",
       },
       {
         icon: <FaMusic className="text-xl" />,
-        title: "Royalty Share",
-        description: "10% of Ovdizzle streaming and licensing royalties",
+        title: "Music Access",
+        description: "Exclusive Ovdizzle streaming and content access",
       },
       {
         icon: <FaCrown className="text-xl" />,
@@ -146,7 +148,7 @@ const TIER_DATA: Record<"gold" | "silver" | "bronze", TierDetails> = {
       {
         icon: <FaPalette className="text-xl" />,
         title: "12h Early Entry",
-        description: "Early access window before general public sales",
+        description: "Early access window before general public",
       },
       {
         icon: <FaUsers className="text-xl" />,
@@ -197,11 +199,10 @@ export default function TierModal({
                 <div className="flex items-start justify-between">
                   <div>
                     <h2 className="text-3xl font-bold text-lemon mb-2">
-                      Presale Tiers Overview
+                      Membership Tiers
                     </h2>
                     <p className="text-myWhite/70 text-sm">
-                      Choose your tier and unlock exclusive benefits • Total
-                      Royalty Pool: 50%
+                      Choose your tier and unlock exclusive community benefits
                     </p>
                   </div>
                   <button
@@ -255,7 +256,7 @@ export default function TierModal({
                           </div>
                           <div className="space-y-2 text-sm">
                             <div className="flex justify-between">
-                              <span className="text-myWhite/60">Price:</span>
+                              <span className="text-myWhite/60">Level:</span>
                               <span
                                 className="font-bold"
                                 style={{ color: tierData.color }}
@@ -264,13 +265,13 @@ export default function TierModal({
                               </span>
                             </div>
                             <div className="flex justify-between">
-                              <span className="text-myWhite/60">Target:</span>
+                              <span className="text-myWhite/60">Access:</span>
                               <span className="font-bold text-myWhite">
                                 {tierData.raise}
                               </span>
                             </div>
                             <div className="flex justify-between">
-                              <span className="text-myWhite/60">Royalty:</span>
+                              <span className="text-myWhite/60">Perks:</span>
                               <span
                                 className="font-bold"
                                 style={{ color: tierData.color }}
@@ -279,7 +280,7 @@ export default function TierModal({
                               </span>
                             </div>
                             <div className="flex justify-between">
-                              <span className="text-myWhite/60">Trading:</span>
+                              <span className="text-myWhite/60">Tools:</span>
                               <span className="font-bold text-secondary">
                                 {tierData.leverage}
                               </span>
@@ -336,8 +337,8 @@ export default function TierModal({
                 </div>
 
                 <p className="text-center text-myWhite/50 text-sm mt-6">
-                  Limited slots available • First come, first served • 30 days
-                  per tier
+                  Join the community • Unlock exclusive benefits • Limited
+                  memberships available
                 </p>
               </div>
             </motion.div>
