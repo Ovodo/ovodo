@@ -242,17 +242,17 @@ export default function Home() {
 
       {/* All Sections */}
       <HeroSection />
-      {/* <PresaleSection
+      <PresaleSection
         onLearnMore={() => {
           setSelectedTier(null);
           setIsTierModalOpen(true);
         }}
-      /> */}
-      {/* <TradingBotSection />
+      />
+      <TradingBotSection />
       <ArtsSection />
       <FashionSection />
       <StatsSection />
-      <CTASection /> */}
+      <CTASection />
 
       {/* Floating Music Player */}
       <FloatingMusicPlayer
@@ -278,12 +278,12 @@ export default function Home() {
       <audio ref={audioRef} onEnded={handleTrackEnd} />
 
       {/* Tier Details Modal */}
-      {/* <TierModal
+      <TierModal
         isOpen={isTierModalOpen}
         onClose={() => setIsTierModalOpen(false)}
         tier={selectedTier}
         showAll={selectedTier === null}
-      /> */}
+      />
     </div>
   );
 }
