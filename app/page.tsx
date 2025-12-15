@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Hero2 from "@/components/Hero2";
 import ProjectsSection from "@/components/ProjectsSection";
 import Services from "@/components/Services";
+import Reveal from "@/components/Reveal";
 import Skills from "@/components/Skills";
 import Testimonials from "@/components/Testimonials";
 
@@ -22,8 +23,10 @@ export default function Home() {
         <div className="w-full py-12 md:py-20">
           <ProjectsSection />
         </div>
-        <div className="w-full py-12 md:py-20 section-animate">
-          <Services />
+        <div className="w-full py-12 md:py-20">
+          <Reveal>
+            <Services />
+          </Reveal>
         </div>
         <div className="w-full py-12 md:py-20 section-animate">
           <Testimonials />

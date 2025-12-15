@@ -65,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ubuntu.className} bg-night text-primary px-[20px] sm:px-[40px] md:px-[60px] h-full antialiased`}
+        className={`${ubuntu.className} bg-[var(--background)] text-[var(--text)] px-[20px] sm:px-[40px] md:px-[60px] md:pl-[96px] min-h-screen antialiased`}
       >
         <Navbar />
         <main>

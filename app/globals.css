@@ -3,14 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Solflare-inspired dark theme variables (default) */
+  --background: #0b0c0d;
+  /* near black */
+  --panel: #0f1113;
+  /* card background */
+  --surface: #131418;
+  --text: #e6e6e6;
+  /* primary text (silverish) */
+  --muted: #9ea3a6;
+  /* muted text */
+  --accent: #FFD400;
+  /* bright Solflare yellow */
+  --accent-strong: #E6C200;
+  --glass: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.04);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #F1EDE4;
+    /* fallback/light-mode values */
+    --background: #ffffff;
+    --panel: #f8fafc;
+    --surface: #ffffff;
+    --text: #171717;
+    --muted: #6b7280;
+    --accent: #f59e0b;
+    --accent-strong: #d97706;
+    --glass: rgba(15, 23, 42, 0.03);
+    --border: rgba(15, 23, 42, 0.06);
   }
 }
 
@@ -22,33 +43,30 @@
 /* Firefox */
 html {
   scroll-behavior: smooth;
-  /* scroll-timeline: s; */
   scrollbar-width: thin;
-  /* Options: auto, thin, none */
-  scrollbar-color: rgba(0, 250, 154, 0.199) transparent;
-  /* thumb and track colors */
+  scrollbar-color: var(--accent) transparent;
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
-  height: 1px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  /* display: none; */
-  border-radius: 1rem;
-  width: 3px;
-  /* background: rgba(220, 146, 73, 1); */
-  transition: all 0.5s ease-in-out;
-  background: #90050F;
+  border-radius: 9999px;
+  width: 8px;
+  transition: all 0.2s ease-in-out;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #90050F;
+  filter: brightness(0.95);
 }
 
 ::-webkit-scrollbar-track {
-  background: mediumspringgreen;
+  background: var(--panel);
   width: 2px;
 }
 
@@ -70,20 +88,20 @@ h1 {}
 
 
 body {
-  color: var(--foreground);
+  color: var(--text);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
 code {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9em;
-  padding: 0.1em 0.35em;
+  padding: 0.12em 0.4em;
   border-radius: 0.35rem;
-  background: rgba(148, 163, 184, 0.12);
-  color: #f97316;
+  background: var(--glass);
+  color: var(--accent);
   font-style: italic;
+  border: 1px solid var(--border);
 }
 
 @keyframes fadeInUp {
@@ -173,6 +191,190 @@ code {
   }
 }
 
+/* Panel / Card base style for Solflare-inspired theme */
+.panel {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+}
+
+.panel--glass {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(10, 12, 14, 0.18));
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+}
+
+/* subtle decorative noise/stripe using pseudo element */
+.panel--glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.01) 0%, rgba(0, 0, 0, 0.02) 50%, rgba(255, 255, 255, 0.01) 100%);
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* Silvery glass variant for floating nav — slightly brighter, metallic sheen */
+.panel--glass-silver {
+  position: relative;
+  /* solid black background (no translucency) per request */
+  background: #000;
+  background-color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 4px 12px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+
+/* top-left soft highlight to give metallic sheen */
+.panel--glass-silver::before,
+.panel--glass-silver::after {
+  display: none;
+  /* remove decorative overlays when using solid black */
+}
+
+/* Sidebar specific tweaks */
+.sidebar-compact {
+  border-radius: 14px;
+  padding: 0.35rem;
+}
+
+.sidebar-compact .w-10 {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+/* new nav item styles */
+.sidebar-compact .nav-item {
+  border-radius: 10px;
+  padding-left: 6px;
+  padding-right: 8px;
+  align-items: center;
+}
+
+.sidebar-compact .nav-item .icon-wrap {
+  transition: background 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.sidebar-compact .nav-item .label {
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-6px);
+}
+
+/* reveal label when sidebar is hovered */
+.panel.group:hover .label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* active item gets a full-width yellow pill */
+.sidebar-compact .nav-item.active {
+  background: linear-gradient(90deg, rgba(255, 212, 0, 1), rgba(255, 212, 0, 0.95));
+  color: var(--background) !important;
+  box-shadow: 0 8px 20px rgba(8, 9, 10, 0.6), inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-compact .nav-item.active .label {
+  color: var(--background) !important;
+}
+
+.sidebar-compact .nav-item:not(.active):hover {
+  background: linear-gradient(90deg, rgba(255, 212, 0, 0.06), rgba(255, 212, 0, 0.03));
+}
+
+.sidebar-compact .nav-item .icon-wrap {
+  min-width: 36px;
+}
+
+.sidebar-compact .nav-item.active .icon-wrap {
+  transform: translateX(-4px);
+}
+
+/* slightly increase rounded radius and subtle inner chrome for active pill */
+.sidebar-compact .nav-item.active {
+  border-radius: 9999px;
+  padding-left: 8px;
+  padding-right: 10px;
+}
+
+/* stronger separation shadow and faint edge to clearly lift nav above page */
+.panel--glass-silver {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 4px 12px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Ensure nav content sits above the decorative pseudo-elements */
+.panel--glass-silver>* {
+  position: relative;
+  z-index: 2;
+}
+
+/* On hover slightly intensify blur and lift */
+.panel--glass-silver.group:hover {
+  backdrop-filter: blur(22px) saturate(160%) contrast(1.08);
+  -webkit-backdrop-filter: blur(22px) saturate(160%) contrast(1.08);
+  box-shadow: 0 22px 60px rgba(2, 6, 23, 0.75), 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+
+/* Accent link + button utilities */
+a {
+  color: var(--accent);
+  transition: all 0.12s ease-in-out;
+}
+
+a:hover {
+  filter: brightness(0.95);
+  text-decoration: underline;
+}
+
+.button--accent {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1rem;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  color: #0b0c0d;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.button--accent:active {
+  transform: translateY(1px);
+}
+
+/* Utility helpers to use the Solflare accent/vairables */
+.text-accent {
+  color: var(--accent) !important;
+}
+
+.bg-accent {
+  background: var(--accent) !important;
+  color: var(--background) !important;
+}
+
+.border-accent {
+  border-color: var(--accent) !important;
+}
+
+.text-muted {
+  color: var(--muted) !important;
+}
+
+.panel-compact {
+  padding: 0.75rem;
+  border-radius: 10px;
+}
+
+
 .hero-image2 {
   filter: sepia(20%);
 
@@ -223,5 +425,35 @@ section {
     height: 100vh;
     margin-bottom: 100px;
     min-height: max-content;
+  }
+}
+
+/* --- Reveal utilities --- */
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Reveal animation used with IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px) scale(0.995);
+  transition: opacity 420ms cubic-bezier(.2, .9, .4, 1), transform 420ms cubic-bezier(.2, .9, .4, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Disable heavy animations when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal,
+  .section-animate {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }

@@ -19,37 +19,44 @@ const Services = () => {
   // };
 
   return (
-    <div id="services" className="flex flex-col gap-5 lg:gap-10">
-      <div className="flex flex-col gap-4">
-        <h3 className="text-primary text-xl sm:text-2xl leading-[1.1] sm:leading-none font-bold flex items-center gap-2">
-          <IconSparkles className="text-mint animate-pulse" size={28} />
-          Services
-        </h3>
-        <p className="text-primary text-sm sm:text-[16px] md:text-[20px] leading-tight font-light ">
-          I provide expert solutions tailored to your needs across the following
-          categories.
+    <section id="services" className="flex flex-col gap-8 lg:gap-14">
+      {" "}
+      <header className="flex flex-col gap-2 mb-2">
+        <h2 className="text-2xl sm:text-3xl font-extrabold flex items-center gap-3 text-[var(--text)]">
+          <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[var(--accent)] text-[var(--background)] mr-1">
+            <IconSparkles size={22} />
+          </span>
+          <span>Services</span>
+        </h2>
+        <p className="text-muted text-base sm:text-lg max-w-2xl">
+          I provide expert solutions tailored to your needs across these
+          categories:
         </p>
-      </div>
-      <div className="flex gap-5 flex-col flex-wrap">
+      </header>
+      <div className="flex flex-col gap-6">
         {resume.services.map((item) => (
           <div
             key={item.title}
-            className="relative flex px-5 gap-2 border-b-[1px] border-primary/20 items-center bg-[#152821] card overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+            className="panel flex items-center gap-0 overflow-hidden relative min-h-[84px] group hover:shadow-lg transition-all duration-200"
+            style={{ borderLeft: "6px solid var(--accent)" }}
           >
-            <div className="rounded-full min-w-2 h-2 bg-mint animate-pulse" />
-            <div className="flex flex-col min-w-[30%] lg:min-w-[250px]">
-              <p className="text-primary py-4 text-sm sm:text-[16px] md:text-[20px] leading-tight font-semibold max-w-[620px] flex items-center gap-2">
-                <IconSparkles className="text-mint" size={18} />
-                {item.title}
-              </p>
-              <p className="text-primary py-2 border-l-[1px] border-l-slate-50/20 px-4 ml-4 text-xs sm:text-[16px] leading-tight font-light">
+            <div className="flex flex-col min-w-0 w-full py-4 px-6">
+              <div className="flex items-center gap-3 mb-1">
+                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--accent)] text-[var(--background)]">
+                  <IconSparkles size={16} />
+                </span>
+                <span className="font-bold text-lg sm:text-xl text-[var(--text)]">
+                  {item.title}
+                </span>
+              </div>
+              <p className="text-muted text-sm sm:text-base pl-1">
                 {item.description}
               </p>
             </div>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 export default Services;
