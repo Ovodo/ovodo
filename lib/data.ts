@@ -201,6 +201,7 @@ export const resume = {
         "Led a team of **10 engineers** to deliver projects on time, enhancing collaboration and increasing user engagement by **25%** through optimized **UI/UX** workflows.",
         "Built a web-based trading platform using **Python** and **Django**, hosted on **AWS EC2** with **S3** integration, reducing trading overhead costs by **15%** and enabling optimized trade execution.",
         "Automated dynamic PDF report generation using **ReportLab**, cutting manual effort by **40%** and accelerating client deliverables by **30%**.",
+        "Implemented **CI/CD pipeline** using **GitHub Actions** and containerized applications with **Docker**, streamlining deployment processes and reducing release time by **35%**.",
       ],
     },
     {
@@ -213,6 +214,7 @@ export const resume = {
       achievements: [
         "Completed **50+ technical learning paths** in **Blockchain Development**, **Smart Contracts**, and **Web3**, achieving a **95% success rate** in assessments.",
         "Earned **$1000+ in bounties** for high-impact projects, including **NFT marketplaces**, **DeFi** applications, and games on **Aptos**, **Sui**, and **Ethereum** blockchains.",
+        "Developed a blockchain adventure game with **ERC20** tokens for in-game currency and **ERC721** NFTs as completion rewards, implementing smart contract logic for level progression and **Web3** wallet integration.",
       ],
     },
     {
@@ -313,9 +315,28 @@ export const resume = {
     "Docker, Git, CI/CD",
     "UI/UX Design (Figma)",
     "Agile Methodologies",
-    "Team Leadership & Mentorship",
+    "GraphQL",
+    "Rust",
+    "Anchor",
+    "AI Integration",
+    "LangChain",
+    "RAG Architecture",
+    "Vector Databases",
   ],
   projects: [
+    {
+      title: "Extension Developer",
+      company: "MoveWithDizzle",
+      image: "/mwd.png",
+      location: "",
+      achievements: [
+        "Developed a **VS Code extension** to enhance developer productivity when writing **Move** smart contracts, integrating **LangChain** for AI-powered code assistance.",
+        "Implemented **RAG (Retrieval-Augmented Generation)** architecture with **MongoDB Vector Database** to chunk and store Move language documentation for context-aware code suggestions.",
+        "Submitted as a **hackathon project**, showcasing innovative integration of AI tooling with blockchain development workflows.",
+      ],
+      dates: "",
+      link: "",
+    },
     // {
     //   title: "Lead Developer",
     //   company: "Exyra AI DeFi Assistant",
