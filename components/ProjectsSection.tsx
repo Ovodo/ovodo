@@ -3,7 +3,9 @@ import React, { useState } from "react";
 // import ProjectCard from "./ProjectCard";
 import { resume } from "../app/lib/data";
 import dynamic from "next/dynamic";
-const ProjectCard = dynamic(() => import('@/components/ProjectCard'), { ssr: false });
+const ProjectCard = dynamic(() => import("@/components/ProjectCard"), {
+  ssr: false,
+});
 
 const FILTERS = ["All", "Blockchain", "Full Stack", "AI"];
 
@@ -19,10 +21,7 @@ const ProjectsSection = () => {
           )
         );
   return (
-    <div
-      className="py-16"
-      id="projects"
-    >
+    <div className="py-16" id="projects">
       <h2 className="text-primary text-3xl font-bold mb-8 text-center">
         Featured Projects
       </h2>

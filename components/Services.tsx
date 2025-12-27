@@ -1,8 +1,57 @@
 "use client";
 import { IconSparkles } from "@tabler/icons-react";
 import { resume } from "@/app/lib/data";
+import { useEffect, useRef, useState } from "react";
 
 const Services = () => {
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [cardsVisible, setCardsVisible] = useState<boolean[]>([]);
+  const headerRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const headerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHeaderVisible(true);
+          } else {
+            setHeaderVisible(false);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const cardsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            resume.services.forEach((_, index) => {
+              setTimeout(() => {
+                setCardsVisible((prev) => {
+                  const newState = [...prev];
+                  newState[index] = true;
+                  return newState;
+                });
+              }, index * 150);
+            });
+          } else {
+            setCardsVisible([]);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (headerRef.current) headerObserver.observe(headerRef.current);
+    if (cardsRef.current) cardsObserver.observe(cardsRef.current);
+
+    return () => {
+      if (headerRef.current) headerObserver.unobserve(headerRef.current);
+      if (cardsRef.current) cardsObserver.unobserve(cardsRef.current);
+    };
+  }, []);
   // Animation variants must be serializable objects, not functions
   // const cardVariants = {
   //   hidden: { opacity: 0, y: 40 },
@@ -19,9 +68,16 @@ const Services = () => {
   // };
 
   return (
-    <section id="services" className="flex flex-col gap-8 lg:gap-14">
+    <section id="services" className="flex h-max flex-col gap-8 lg:gap-14">
       {" "}
-      <header className="flex flex-col gap-2 mb-2">
+      <header
+        ref={headerRef}
+        className={`flex flex-col gap-2 mb-2 transition-all duration-1000 ease-out ${
+          headerVisible
+            ? "opacity-100 translate-x-0"
+            : "opacity-0 -translate-x-10"
+        }`}
+      >
         <h2 className="text-2xl sm:text-3xl font-extrabold flex items-center gap-3 text-[var(--text)]">
           <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[var(--accent)] text-[var(--background)] mr-1">
             <IconSparkles size={22} />
@@ -33,11 +89,15 @@ const Services = () => {
           categories:
         </p>
       </header>
-      <div className="flex flex-col gap-6">
-        {resume.services.map((item) => (
+      <div ref={cardsRef} className="flex  flex-col gap-6">
+        {resume.services.map((item, index) => (
           <div
             key={item.title}
-            className="panel flex items-center gap-0 overflow-hidden relative min-h-[84px] group hover:shadow-lg transition-all duration-200"
+            className={`panel flex items-center gap-0 overflow-hidden relative min-h-[84px] group hover:shadow-lg transition-all duration-700 ease-out ${
+              cardsVisible[index]
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-10"
+            }`}
             style={{ borderLeft: "6px solid var(--accent)" }}
           >
             <div className="flex flex-col min-w-0 w-full py-4 px-6">

@@ -71,9 +71,9 @@ export default function RootLayout({
         <main>
           {/* SmoothScrollWrapper provides lerp scrolling for the whole app */}
           <SmoothScrollWrapper>
-            {children}
-            <Analytics />
-            <SpeedInsights />
+          {children}
+          <Analytics />
+          <SpeedInsights />
           </SmoothScrollWrapper>
         </main>
       </body>

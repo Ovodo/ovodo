@@ -96,7 +96,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="font-thin my-5  text-xs lg:text-sm text-primary">
-        © 2024 Ovodo Ohwovoriole. All rights reserved.
+        © 2025 Ovodo Ohwovoriole. All rights reserved.
       </p>
     </div>
   );

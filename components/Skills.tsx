@@ -1,11 +1,68 @@
 "use client";
 import { skills } from "@/app/lib/const";
 import SkillCard from "./SkillCard";
+import { useEffect, useRef, useState } from "react";
 
 const Skills = () => {
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [cardsVisible, setCardsVisible] = useState<boolean[]>([]);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const headerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setHeaderVisible(true);
+          } else {
+            setHeaderVisible(false);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const cardsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            skills.forEach((_, index) => {
+              setTimeout(() => {
+                setCardsVisible((prev) => {
+                  const newState = [...prev];
+                  newState[index] = true;
+                  return newState;
+                });
+              }, index * 150);
+            });
+          } else {
+            setCardsVisible([]);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (headerRef.current) headerObserver.observe(headerRef.current);
+    if (cardsRef.current) cardsObserver.observe(cardsRef.current);
+
+    return () => {
+      if (headerRef.current) headerObserver.unobserve(headerRef.current);
+      if (cardsRef.current) cardsObserver.unobserve(cardsRef.current);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col  gap-20 py-16" id="skills">
-      <div className="flex flex-col gap-8 w-full items-center justify-center">
+      <div
+        ref={headerRef}
+        className={`flex flex-col gap-8 w-full items-center justify-center transition-all duration-1000 ease-out ${
+          headerVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-10"
+        }`}
+      >
         {/* <h3 className="text-primary text-xl sm:text-2xl md:text-xl font-bold">
           Skills
         </h3> */}
@@ -24,16 +81,27 @@ const Skills = () => {
         className="border-primary/20 w-full max-w-8xl mx-auto my-8"
         aria-hidden="true"
       />
-      <div className="flex flex-col sm:flex-row gap-16 overflow-x-auto py-8 justify-between items-center">
+      <div
+        ref={cardsRef}
+        className="flex flex-row gap-4 lg:gap-16 overflow-x-auto py-8 justify-between items-center"
+      >
         {skills.map((item, index) => (
-          <SkillCard
-            href="/projects"
-            index={index}
+          <div
             key={item.src}
-            src={item.src}
-            header={item.header}
-            desc={item.desc}
-          />
+            className={`transition-all duration-700 ease-out ${
+              cardsVisible[index]
+                ? "opacity-100 translate-y-0 scale-100"
+                : "opacity-0 translate-y-10 scale-95"
+            }`}
+          >
+            <SkillCard
+              href="/projects"
+              index={index}
+              src={item.src}
+              header={item.header}
+              desc={item.desc}
+            />
+          </div>
         ))}
       </div>
       <hr

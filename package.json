@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@react-three/drei": "^9.120.7",
     "@react-three/fiber": "^9.0.0-rc.3",
     "@studio-freight/react-lenis": "^0.0.47",
