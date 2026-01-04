@@ -85,7 +85,7 @@ const About = () => {
 
   return (
     <div
-      className="flex flex-col md:flex-row items-center gap-20 py-16"
+      className="flex overflow-x-hidden flex-col md:flex-row items-center  gap-20 py-16"
       id="about"
     >
       <div
@@ -113,12 +113,12 @@ const About = () => {
           Move, Rust), DApp architecture, and modern full stack frameworks
           (Next.js, Node.js, Python, TypeScript).
         </p>
-        <p className="text-primary text-base md:text-lg font-light">
+        {/* <p className="text-primary text-base md:text-lg font-light">
           I have contributed to open source blockchain projects (Solana
           Foundation), led teams to deliver DeFi, NFT, and Web3 products, and
           thrive on solving complex problems at the intersection of technology
           and finance.
-        </p>
+        </p> */}
         <div ref={bulletsRef} className="bg-primary/10 p-4 rounded-md">
           <h3 className="text-primary font-semibold mb-1">Why hire me?</h3>
           <ul className="list-disc pl-5 text-primary text-base font-light">

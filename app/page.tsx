@@ -11,30 +11,27 @@ import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col gap-0">
+    <div className="min-h-screen h-full scrollbar-hide  flex flex-col gap-0">
       <Hero2 />
-      <div className="flex flex-col gap-0 w-full max-w-[1440px] mx-auto">
-        <div className="w-full py-12 md:py-20 section-animate">
-          <About />
-        </div>
-        <div className="w-full py-12 md:py-20 section-animate">
-          <Skills />
-        </div>
-        <div className="w-full py-12 md:py-20">
-          <ProjectsSection />
-        </div>
-        <div className="w-full  max-h-max py-12 md:py-20">
-          <Services />
-        </div>
-        <div className="w-full py-12 md:py-20 section-animate">
-          <Testimonials />
-        </div>
-        <div className="w-full py-12 md:py-20 section-animate">
-          <Contact />
-        </div>
-        <Footer />
+      <div className="w-full    section-animate">
+        <About />
       </div>
-      {/* <Music /> */}
+      <div className="w-full     section-animate">
+        <Skills />
+      </div>
+      <div className="w-full  mt-[10%]  ">
+        <ProjectsSection />
+      </div>
+      <div className="w-full mt-[150px] lg:mt-0  max-h-max  ">
+        <Services />
+      </div>
+      <div className="w-full   section-animate">
+        <Testimonials />
+      </div>
+      <div className="w-full   section-animate">
+        <Contact />
+      </div>
+      <Footer />
     </div>
   );
 }

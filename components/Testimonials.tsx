@@ -56,12 +56,15 @@ const Testimonials = () => {
       { threshold: 0.3 }
     );
 
-    if (titleRef.current) titleObserver.observe(titleRef.current);
-    if (cardsRef.current) cardsObserver.observe(cardsRef.current);
+    const titleEl = titleRef.current;
+    const cardsEl = cardsRef.current;
+
+    if (titleEl) titleObserver.observe(titleEl);
+    if (cardsEl) cardsObserver.observe(cardsEl);
 
     return () => {
-      if (titleRef.current) titleObserver.unobserve(titleRef.current);
-      if (cardsRef.current) cardsObserver.unobserve(cardsRef.current);
+      if (titleEl) titleObserver.unobserve(titleEl);
+      if (cardsEl) cardsObserver.unobserve(cardsEl);
     };
   }, []);
 

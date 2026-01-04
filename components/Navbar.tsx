@@ -92,7 +92,7 @@ const Navbar = () => {
         {/* Collapsed floating sidebar (desktop) */}
         <aside
           aria-label="Main Navigation"
-          className="hidden md:flex fixed left-6 top-8 z-40"
+          className="hidden md:flex fixed left-6 top-6 z-40"
         >
           <div className="panel panel--glass panel--glass-silver sidebar-compact group w-14 hover:w-56 transition-all duration-200 overflow-hidden flex flex-col items-start p-3">
             <div className="flex items-center w-full mb-4">

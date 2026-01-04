@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Experience } from "../types";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,19 +21,67 @@ const ProjectCard = ({
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalIdx, setModalIdx] = useState(0);
-  // Compose gallery: video (if any) + images (if any)
-  const gallery: GalleryItem[] = [
-    ...(project.video ? [{ type: "video" as const, src: project.video }] : []),
-    ...(Array.isArray(project.images)
-      ? (project.images as { src: string; title?: string }[]).map((img) => ({
+  const [canPlayVideo, setCanPlayVideo] = useState(false);
+  const [heroLoaded, setHeroLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!project.video) return;
+    const videoEl = document.createElement("video");
+    const ext = project.video.split(".").pop()?.toLowerCase();
+    const mime = ext === "mp4" ? "video/mp4" : "video/webm";
+    const supports = videoEl.canPlayType?.(mime) ?? "";
+    const saveData =
+      typeof navigator !== "undefined" &&
+      // @ts-expect-error modern browsers expose connection
+      navigator.connection?.saveData;
+    setCanPlayVideo(
+      (supports === "maybe" || supports === "probably") && !saveData
+    );
+  }, [project.video]);
+
+  // Compose gallery: include video only when the device can play it (mobile Safari often cannot play webm)
+  const gallery: GalleryItem[] = useMemo(() => {
+    const items: GalleryItem[] = [];
+    if (project.video && canPlayVideo) {
+      items.push({ type: "video", src: project.video });
+    }
+    if (Array.isArray(project.images)) {
+      items.push(
+        ...(project.images as { src: string; title?: string }[]).map((img) => ({
           type: "image" as const,
           src: img.src,
           title: img.title,
         }))
-      : project.image
-      ? [{ type: "image" as const, src: project.image, title: project.company }]
-      : []),
-  ];
+      );
+    } else if (project.image) {
+      items.push({
+        type: "image" as const,
+        src: project.image,
+        title: project.company,
+      });
+    }
+    return items;
+  }, [
+    canPlayVideo,
+    project.company,
+    project.image,
+    project.images,
+    project.video,
+  ]);
+
+  const hero = gallery[0];
+
+  const images = useMemo(() => {
+    if (!Array.isArray(project.images))
+      return [] as { src: string; title?: string }[];
+    return project.images as { src: string; title?: string }[];
+  }, [project.images]);
+
+  const poster = project.image || images[0]?.src;
+
+  useEffect(() => {
+    setHeroLoaded(!hero);
+  }, [hero]);
   // const openModal = (idx: number) => {
   //   setModalIdx(idx);
   //   setModalOpen(true);
@@ -44,7 +92,7 @@ const ProjectCard = ({
     setModalIdx((i) => (i - 1 + gallery.length) % gallery.length);
   return (
     <div
-      className={`flex gap-1 relative lg:w-[22%] h-[400px] bg-[#152821] rounded-lg p-1 flex-col shadow-md transition-transform duration-200 ${
+      className={`flex gap-1 relative w-full lg:w-[22%] h-[400px] bg-[#152821] rounded-lg p-1 flex-col shadow-md transition-transform duration-200 ${
         featured ? "ring-2 ring-primary/80 scale-105" : "hover:scale-105"
       }`}
     >
@@ -54,26 +102,35 @@ const ProjectCard = ({
         </span>
       )}
       {/* Main preview: video or image, clickable for modal */}
-      {gallery.length > 0 && (
+      {hero && (
         <Link
           href={`/projects/${project.company}`}
-          // onClick={() => openModal(0)}
           className="cursor-pointer relative w-full h-[191px]"
         >
-          {gallery[0].type === "video" ? (
+          {!heroLoaded && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-black/25 backdrop-blur-sm">
+              <div className="h-12 w-12 rounded-full border-2 border-accent/70 border-t-transparent animate-spin shadow-[0_0_30px_rgba(255,212,0,0.35)]" />
+            </div>
+          )}
+          {hero.type === "video" ? (
             <video
-              src={gallery[0].src}
+              src={hero.src}
               autoPlay
               loop
               muted
               playsInline
+              preload="none"
+              poster={poster}
+              onLoadedData={() => setHeroLoaded(true)}
+              onError={() => setHeroLoaded(true)}
               className="w-full h-[191px] rounded-lg object-cover border-[0.5px] border-opacity-20 border-orange-100 hover:scale-[1.02] transition-transform duration-500 ease-in-out"
             />
           ) : (
             <Image
-              src={gallery[0].src}
-              alt={gallery[0].title || project.company}
+              src={hero.src}
+              alt={hero.title || project.company}
               fill
+              onLoad={() => setHeroLoaded(true)}
               className="object-cover border-[0.5px] border-opacity-20 border-orange-100 rounded-lg hover:scale-[1.02] transition-transform duration-500 ease-in-out"
             />
           )}

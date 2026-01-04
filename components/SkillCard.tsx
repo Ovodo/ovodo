@@ -18,7 +18,7 @@ const SkillCard = ({
   return (
     <Link
       href={href}
-      className="text-primary border-b  cursor-pointer  hover:card hover:border-b-4 duration-300 hover:border-10 w-full min-w-[90vw]  lg:min-w-[362px] h-[220px]  sm:h-[268px] flex gap-2 md:gap-4 flex-col"
+      className="text-primary border-b  cursor-pointer  hover:card hover:border-b-4 duration-300 hover:border-10 w-[90vw] lg:w-[25vw]  h-[220px]  sm:h-auto flex gap-2 md:gap-4 flex-col"
     >
       <div className="w-[48px] animate-bounce h-[48px]  relative">
         <ViewCanvas index={index} textureUrl={src} />
@@ -26,7 +26,7 @@ const SkillCard = ({
       <h3 className="text-2xl sm:text-2xl md:text-3xl   font-semibold">
         {header}
       </h3>
-      <p className="text-lg font-light">{desc}</p>
+      <p className="text-lg lg:h-[80px] font-light">{desc}</p>
     </Link>
   );
 };

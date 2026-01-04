@@ -2,7 +2,7 @@ export const skills = [
   {
     src: "/ts.webp",
     header: "TypeScript: JavaScript with Superpowers",
-    desc: "JavaScript powers interactive web applications and dynamic content.",
+    desc: "Powers interactive web applications and dynamic content.",
   },
   {
     src: "/rust.webp",
@@ -22,7 +22,7 @@ export const skills = [
   {
     src: "/python.webp",
     header: "Python: The Versatile Language",
-    desc: "Python is known for its simplicity and readability, making it a great choice for beginners and experts alike.",
+    desc: "Known for  simplicity and readability, making it a great choice for beginners and experts alike.",
   },
   {
     src: "/html.svg",

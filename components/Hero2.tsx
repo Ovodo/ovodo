@@ -21,8 +21,8 @@ const Hero2 = () => {
   }, []);
 
   return (
-    <section className="w-full h-[80vh]  sm:mt-[15px] md:mt-[30px]  flex flex-col  items-center  justify-between">
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 w-full items-center md:items-start   justify-between">
+    <div className="w-full h-auto min-h-[90vh]  mt-[4%] flex flex-col  items-center  justify-end">
+      <div className="flex  flex-col sm:flex-row gap-4 sm:gap-8 mt-[0%] w-full items-center md:items-start   justify-between">
         <h1
           className={`text-primary sm:w-1/2  sm:text-[48px] md:text-[56px] max-w-[656px] leading-[1.1] sm:leading-none font-bold transition-all duration-1000 ease-out ${
             titleVisible
@@ -65,7 +65,7 @@ const Hero2 = () => {
         </div>
       </div>
       <div
-        className={`w-full relative flex item-start justify-end mt-[5%] overflow-hidde rounded-md flex-1 transition-all duration-1000 ease-out ${
+        className={`w-full relative flex item-start justify-end mt-auto  overflow-hidde rounded-md h-[60vh] lg:h-[50vh] transition-all duration-1000 ease-out ${
           imageVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
         }`}
       >
@@ -86,7 +86,7 @@ const Hero2 = () => {
           />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

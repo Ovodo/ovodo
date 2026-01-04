@@ -44,12 +44,15 @@ const Services = () => {
       { threshold: 0.2 }
     );
 
-    if (headerRef.current) headerObserver.observe(headerRef.current);
-    if (cardsRef.current) cardsObserver.observe(cardsRef.current);
+    const headerEl = headerRef.current;
+    const cardsEl = cardsRef.current;
+
+    if (headerEl) headerObserver.observe(headerEl);
+    if (cardsEl) cardsObserver.observe(cardsEl);
 
     return () => {
-      if (headerRef.current) headerObserver.unobserve(headerRef.current);
-      if (cardsRef.current) cardsObserver.unobserve(cardsRef.current);
+      if (headerEl) headerObserver.unobserve(headerEl);
+      if (cardsEl) cardsObserver.unobserve(cardsEl);
     };
   }, []);
   // Animation variants must be serializable objects, not functions
@@ -68,7 +71,10 @@ const Services = () => {
   // };
 
   return (
-    <section id="services" className="flex h-max flex-col gap-8 lg:gap-14">
+    <section
+      id="services"
+      className="flex overflow-x-hidden h-max flex-col gap-8 lg:gap-14"
+    >
       {" "}
       <header
         ref={headerRef}

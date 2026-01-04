@@ -44,20 +44,26 @@ const Skills = () => {
       { threshold: 0.2 }
     );
 
-    if (headerRef.current) headerObserver.observe(headerRef.current);
-    if (cardsRef.current) cardsObserver.observe(cardsRef.current);
+    const headerEl = headerRef.current;
+    const cardsEl = cardsRef.current;
+
+    if (headerEl) headerObserver.observe(headerEl);
+    if (cardsEl) cardsObserver.observe(cardsEl);
 
     return () => {
-      if (headerRef.current) headerObserver.unobserve(headerRef.current);
-      if (cardsRef.current) cardsObserver.unobserve(cardsRef.current);
+      if (headerEl) headerObserver.unobserve(headerEl);
+      if (cardsEl) cardsObserver.unobserve(cardsEl);
     };
   }, []);
 
   return (
-    <div className="flex flex-col  gap-20 py-16" id="skills">
+    <div
+      className="flex flex-col  h-full overflow-y-clip pt-10 pb-2 justify-between gap-10 "
+      id="skills"
+    >
       <div
         ref={headerRef}
-        className={`flex flex-col gap-8 w-full items-center justify-center transition-all duration-1000 ease-out ${
+        className={`flex flex-col gap-8 w-full  mx-auto items-center justify-center transition-all duration-1000 ease-out ${
           headerVisible
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-10"
@@ -66,29 +72,29 @@ const Skills = () => {
         {/* <h3 className="text-primary text-xl sm:text-2xl md:text-xl font-bold">
           Skills
         </h3> */}
-        <h1 className="text-primary text-[32px] sm:text-[48px] md:text-[56px] leading-[1.1] text-center font-bold">
+        <h1 className="text-primary text-2xl sm:text-3xl md:text-[56px] leading-[1.1] text-center whitespace-pre-wrap font-bold">
           Explore My Key Programming Languages
         </h1>
-        <p className="text-primary text-sm sm:text-[16px] md:text-[20px] leading-tight font-light max-w-[1000px] text-center">
+        <p className="text-primary text-sm sm:text-[16px] md:text-[20px] leading-tight font-light whitespace-pre-wrap max-w-full lg:max-w-[1000px] text-center">
           As a versatile software engineer, I specialize in a variety of
-          programming languages. My expertise spans JavaScript, TypeScript,
-          Move, Rust, and Python, enabling me to tackle diverse projects with
-          confidence. Each language adds a unique tool to my development
-          toolkit, allowing for innovative solutions.
+          programming languages. My expertise spans across JavaScript,
+          TypeScript, Move, Rust, and Python, enabling me to tackle diverse
+          projects with confidence. Each language adds a unique tool to my
+          development toolkit, allowing for innovative solutions.
         </p>
       </div>
       <hr
-        className="border-primary/20 w-full max-w-8xl mx-auto my-8"
+        className="border-primary/20 w-full max-w-8xl mx-auto"
         aria-hidden="true"
       />
       <div
         ref={cardsRef}
-        className="flex flex-row gap-4 lg:gap-16 overflow-x-auto py-8 justify-between items-center"
+        className="flex flex-row gap-4   h-full  px-4  lg:px-0 max-w-[88vw] lg:gap-16 overflow-x-auto justify-between items-center"
       >
         {skills.map((item, index) => (
           <div
             key={item.src}
-            className={`transition-all duration-700 ease-out ${
+            className={`transition-all w-[90vw] lg:w-[25vw] duration-700 ease-out ${
               cardsVisible[index]
                 ? "opacity-100 translate-y-0 scale-100"
                 : "opacity-0 translate-y-10 scale-95"
@@ -104,10 +110,10 @@ const Skills = () => {
           </div>
         ))}
       </div>
-      <hr
-        className="border-primary/20 w-full max-w-8xl mx-auto my-8 sm:my-12"
+      {/* <hr
+        className="border-primary/20 w-full max-w-8xl mx-auto"
         aria-hidden="true"
-      />
+      /> */}
       {/* Certifications Section */}
       {/* <div className="mt-10 flex flex-col gap-8 items-center w-full">
         <h3 className="text-primary text-2xl font-bold mb-2">Certifications</h3>

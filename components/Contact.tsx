@@ -48,12 +48,15 @@ const Contact = () => {
       { threshold: 0.5 }
     );
 
-    if (headerRef.current) headerObserver.observe(headerRef.current);
-    if (buttonsRef.current) buttonsObserver.observe(buttonsRef.current);
+    const headerEl = headerRef.current;
+    const buttonsEl = buttonsRef.current;
+
+    if (headerEl) headerObserver.observe(headerEl);
+    if (buttonsEl) buttonsObserver.observe(buttonsEl);
 
     return () => {
-      if (headerRef.current) headerObserver.unobserve(headerRef.current);
-      if (buttonsRef.current) buttonsObserver.unobserve(buttonsRef.current);
+      if (headerEl) headerObserver.unobserve(headerEl);
+      if (buttonsEl) buttonsObserver.unobserve(buttonsEl);
     };
   }, []);
 

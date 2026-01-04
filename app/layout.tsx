@@ -65,15 +65,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ubuntu.className} bg-[var(--background)] text-[var(--text)] px-[20px] sm:px-[40px] md:px-[60px] md:pl-[96px] min-h-screen antialiased`}
+        className={`${ubuntu.className} bg-[var(--background)] text-[var(--text)] px-[20px] sm:px-[40px] md:px-[60px] overflow-x-hidden scrollbar-hide md:pl-[96px] min-h-screen antialiased`}
       >
         <Navbar />
         <main>
           {/* SmoothScrollWrapper provides lerp scrolling for the whole app */}
           <SmoothScrollWrapper>
-          {children}
-          <Analytics />
-          <SpeedInsights />
+            {children}
+            <Analytics />
+            <SpeedInsights />
           </SmoothScrollWrapper>
         </main>
       </body>

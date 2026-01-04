@@ -16,6 +16,257 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "web3-nutshell-01-shillers-yappers-mods",
+    title: "Web3 in a Nutshell #01: Shillers, Yappers, Moderators",
+    date: "2026-01-04",
+    tags: ["web3", "community", "growth", "moderation", "discord", "marketing"],
+    summary:
+      "A 7-minute primer on the three roles that shape every crypto community: who they are, how to harness them, and how to stop them from wrecking trust.",
+    category: "Web3 in a Nutshell",
+    readTime: "7 min read",
+    image: "/web3/trinity.png",
+    body: () => {
+      return (
+        <>
+          <p className="mb-6 text-lg text-muted-foreground">
+            This is Episode 01 of <strong>Web3 in a Nutshell</strong>—short,
+            practical breakdowns for founders, PMs, and community leads. Today:
+            the three characters that decide whether your Discord feels alive or
+            unbearable.
+          </p>
+
+          <div className="relative mb-8 h-[320px] w-[85vw] lg:w-[700px] mx-auto overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/60">
+            <Image
+              src={"/web3/trinity.png"}
+              className="object-cover object-center"
+              alt="Shillers, yappers, and moderators in a Web3 community"
+              fill
+            />
+          </div>
+
+          <div className="mb-8 rounded-2xl border border-border/60 bg-card/60 p-4 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70 mb-2">
+              Episode TL;DR
+            </div>
+            <ul className="list-disc space-y-2 pl-5">
+              <li>
+                <strong>Shillers</strong> amplify hype; give them disclosures,
+                links, and bounds.
+              </li>
+              <li>
+                <strong>Yappers</strong> create constant chatter; channel it
+                into feedback and FAQs.
+              </li>
+              <li>
+                <strong>Moderators</strong> set tone and safety; define
+                escalation and SLAs.
+              </li>
+            </ul>
+          </div>
+
+          <h2 className="mt-0 text-2xl font-bold text-primary">
+            Scene: a pre-mint Discord
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            It is 48 hours to mint. One channel is a waterfall of moon emojis
+            (shillers). Another is debating tax law (yappers). A moderator is
+            closing tickets at 1 a.m. Which of these three actually moves the
+            needle—and how do you keep the chaos productive?
+          </p>
+
+          <h3 className="mt-8 text-xl font-semibold text-primary">
+            1) The Shillers — hype engines
+          </h3>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            They post threads, spin narratives, and jump on spaces. Done right,
+            they accelerate discovery. Done wrong, they overpromise and set you
+            up for churn.
+          </p>
+          <ul className="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>Give them disclosure rules:</strong> #ad/#sponsored in
+              tweets; no fabricated numbers.
+            </li>
+            <li>
+              <strong>Hand them trackable links:</strong> UTM links or ref codes
+              so you see who actually converts.
+            </li>
+            <li>
+              <strong>Bound the claims:</strong> A two-line “what we are / what
+              we are not” script.
+            </li>
+            <li>
+              <strong>Reward on outcomes, not volume:</strong> conversions,
+              activated wallets, retained users.
+            </li>
+          </ul>
+
+          <h3 className="mt-8 text-xl font-semibold text-primary">
+            2) The Yappers — ambient energy
+          </h3>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            They talk all day, ask half-formed questions, and derail threads.
+            They are also free market research if you funnel them well.
+          </p>
+          <ul className="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>Create “daily prompt” rituals:</strong> one pinned
+              question; synthesize answers weekly.
+            </li>
+            <li>
+              <strong>AMA cadence:</strong> 30 minutes weekly with prepared
+              FAQs. Record and timestamp.
+            </li>
+            <li>
+              <strong>Feedback lanes:</strong> dedicated #bugs and #ideas with
+              forms; close the loop visibly.
+            </li>
+            <li>
+              <strong>Noise guardrails:</strong> slowmode during launches;
+              emoji-only cooldowns for raids.
+            </li>
+          </ul>
+
+          <h3 className="mt-8 text-xl font-semibold text-primary">
+            3) Moderators — guardrails and tone
+          </h3>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            Mods decide whether newcomers feel safe. They are the first
+            responders and the last line before chaos.
+          </p>
+          <ul className="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>Escalation map:</strong> what gets muted, what gets
+              ticketed, what pings founders.
+            </li>
+            <li>
+              <strong>Response SLAs:</strong> e.g., 10 minutes for wallet help
+              during mint windows.
+            </li>
+            <li>
+              <strong>Tone guide:</strong> concise, patient, never sarcastic.
+              One-line macros for common issues.
+            </li>
+            <li>
+              <strong>Wellness:</strong> staggered shifts; backup mod for long
+              events; rotate to avoid burnout.
+            </li>
+          </ul>
+
+          <h3 className="mt-8 text-xl font-semibold text-primary">
+            A simple flywheel
+          </h3>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            Shillers bring newcomers → Yappers surface objections → Mods resolve
+            and document → You ship fixes/content → Shillers get a better story.
+            Close this loop weekly.
+          </p>
+
+          <div className="mt-6 grid gap-3 rounded-xl border border-border/60 bg-card/60 p-4 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70">
+              Playbook: set this up before launch
+            </div>
+            <ul className="list-disc space-y-2 pl-5">
+              <li>
+                One-page <strong>disclosure + claims</strong> doc for shillers
+                (with approved metrics).
+              </li>
+              <li>
+                <strong>Attribution links</strong> per shiller; a simple
+                dashboard (clicks → signups → retained users).
+              </li>
+              <li>
+                <strong>Macro library</strong> for mods (wallet help, delays,
+                refunds, safety tips).
+              </li>
+              <li>
+                <strong>Two channels</strong> for yappers: #ideas (triaged
+                weekly) and #offtopic (rate limited).
+              </li>
+              <li>
+                <strong>Escalation tree</strong>: who to ping for security,
+                payments, downtime.
+              </li>
+            </ul>
+          </div>
+
+          <h3 className="mt-8 text-xl font-semibold text-primary">
+            Metrics that matter
+          </h3>
+          <ul className="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>Activation:</strong> new joiners who connect a wallet or
+              complete first action within 24h.
+            </li>
+            <li>
+              <strong>Retention:</strong> 7/30-day returning users, not just DAU
+              spikes.
+            </li>
+            <li>
+              <strong>Support health:</strong> median ticket time, CSAT after
+              mod interactions.
+            </li>
+            <li>
+              <strong>Referral quality:</strong> shiller-specific conversion vs.
+              churn.
+            </li>
+          </ul>
+
+          <h3 className="mt-8 text-xl font-semibold text-primary">
+            Red flags & fixes
+          </h3>
+          <ul className="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>Astroturfed hype:</strong> require screenshots or proofs
+              for big claims; prune fake volume quickly.
+            </li>
+            <li>
+              <strong>Overbearing mods:</strong> if deletes exceed welcomes,
+              retrain tone; post public mod reports.
+            </li>
+            <li>
+              <strong>Raid fatigue:</strong> use slowmode + staged
+              announcements; recap in one pinned post.
+            </li>
+            <li>
+              <strong>Yapper fatigue:</strong> harvest questions into a living
+              FAQ; reward good reports.
+            </li>
+          </ul>
+
+          <h3 className="mt-8 text-xl font-semibold text-primary">
+            If you only do three things
+          </h3>
+          <ol className="mt-3 list-decimal space-y-2 pl-6 text-muted-foreground">
+            <li>
+              Ship a one-pager for shillers: claims, links, disclosures, and
+              what “success” means.
+            </li>
+            <li>
+              Give mods macros, SLAs, and an escalation tree. Publish it
+              internally.
+            </li>
+            <li>
+              Collect yappers’ noise into weekly insights and show you acted on
+              at least one.
+            </li>
+          </ol>
+
+          <div className="mt-8 rounded-2xl border border-accent/30 bg-accent/10 p-5 text-sm text-primary">
+            <div className="text-xs uppercase tracking-[0.22em] text-night/70">
+              Up next
+            </div>
+            <p className="mt-2 text-night">
+              Episode 02 (teaser):{" "}
+              <strong>Launch Week Without Rugging Trust</strong> — playbooks for
+              announcements, support load, and keeping signal during the spike.
+            </p>
+          </div>
+        </>
+      );
+    },
+  },
+  {
     slug: "database-design-chat-apps-beginners",
     title: "Database Design for Chat Applications: A Complete Beginner's Guide",
     date: "2025-11-18",
