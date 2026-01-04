@@ -77,6 +77,7 @@ const MailIcon = (props: React.SVGProps<SVGSVGElement>) => (
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const path = usePathname();
+  const hideSidebar = path?.startsWith("/projects/");
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -90,56 +91,59 @@ const Navbar = () => {
     >
       <div className="relative ">
         {/* Collapsed floating sidebar (desktop) */}
-        <aside
-          aria-label="Main Navigation"
-          className="hidden md:flex fixed left-6 top-6 z-40"
-        >
-          <div className="panel panel--glass panel--glass-silver sidebar-compact group w-14 hover:w-56 transition-all duration-200 overflow-hidden flex flex-col items-start p-3">
-            <div className="flex items-center w-full mb-4">
-              <div className="w-10 h-10 rounded-full bg-[var(--accent)] flex items-center justify-center text-[var(--background)] font-semibold">
-                O
+        {!hideSidebar && (
+          <aside
+            aria-label="Main Navigation"
+            className="hidden md:flex fixed left-6 top-6 z-40"
+          >
+            <div className="panel panel--glass panel--glass-silver sidebar-compact group w-14 hover:w-56 transition-all duration-200 overflow-hidden flex flex-col items-start p-3">
+              <div className="flex items-center w-full mb-4">
+                <div className="w-10 h-10 rounded-full bg-[var(--accent)] flex items-center justify-center text-[var(--background)] font-semibold">
+                  O
+                </div>
               </div>
-            </div>
-            <nav className="w-full flex flex-col gap-1">
-              {[
-                { name: "Home", href: "/", icon: HomeIcon },
-                { name: "Projects", href: "/projects", icon: FolderIcon },
-                { name: "Blog", href: "/blog", icon: BookIcon },
-                { name: "Music", href: "/music", icon: MusicIcon },
-                { name: "Contact", href: "/#contact", icon: MailIcon },
-              ].map((item) => {
-                const active =
-                  path === item.href || path?.includes(item.name.toLowerCase());
-                return (
-                  <Link
-                    href={item.href}
-                    key={item.name}
-                    className={`nav-item w-full flex items-center gap-3 px-2 py-2 transition-colors duration-150 ${
-                      active ? "active" : ""
-                    }`}
-                  >
-                    <span
-                      className={`icon-wrap inline-flex items-center justify-center w-9 h-9 rounded-full flex-shrink-0 transition-colors duration-150 ${
-                        active
-                          ? "bg-[var(--background)] text-[var(--accent)]"
-                          : "bg-transparent text-[var(--muted)]"
+              <nav className="w-full flex flex-col gap-1">
+                {[
+                  { name: "Home", href: "/", icon: HomeIcon },
+                  { name: "Projects", href: "/projects", icon: FolderIcon },
+                  { name: "Blog", href: "/blog", icon: BookIcon },
+                  { name: "Music", href: "/music", icon: MusicIcon },
+                  { name: "Contact", href: "/#contact", icon: MailIcon },
+                ].map((item) => {
+                  const active =
+                    path === item.href ||
+                    path?.includes(item.name.toLowerCase());
+                  return (
+                    <Link
+                      href={item.href}
+                      key={item.name}
+                      className={`nav-item w-full flex items-center gap-3 px-2 py-2 transition-colors duration-150 ${
+                        active ? "active" : ""
                       }`}
                     >
-                      <item.icon
-                        className={`w-5 h-5 ${
-                          active ? "text-[var(--accent)]" : ""
+                      <span
+                        className={`icon-wrap inline-flex items-center justify-center w-9 h-9 rounded-full flex-shrink-0 transition-colors duration-150 ${
+                          active
+                            ? "bg-[var(--background)] text-[var(--accent)]"
+                            : "bg-transparent text-[var(--muted)]"
                         }`}
-                      />
-                    </span>
-                    <span className="label ml-1 truncate opacity-0 group-hover:opacity-100 transition-opacity duration-200 font-medium text-[var(--text)]">
-                      {item.name}
-                    </span>
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-        </aside>
+                      >
+                        <item.icon
+                          className={`w-5 h-5 ${
+                            active ? "text-[var(--accent)]" : ""
+                          }`}
+                        />
+                      </span>
+                      <span className="label ml-1 truncate opacity-0 group-hover:opacity-100 transition-opacity duration-200 font-medium text-[var(--text)]">
+                        {item.name}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </nav>
+            </div>
+          </aside>
+        )}
 
         <nav className="w-full  z-20 flex h-[92px]  bg-night md:bg-transparent   relative items-center md:items-end pb-[1.5%]  gap-[10px] sm:gap-[20px] md:gap-[40px]">
           <h5

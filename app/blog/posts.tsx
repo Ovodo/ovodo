@@ -31,8 +31,8 @@ export const posts: BlogPost[] = [
           <p className="mb-6 text-lg text-muted-foreground">
             This is Episode 01 of <strong>Web3 in a Nutshell</strong>—short,
             practical breakdowns for founders, PMs, and community leads. Today:
-            the three characters that decide whether your Discord feels alive or
-            unbearable.
+            the three characters that decide whether your community feels alive
+            or unbearable.
           </p>
 
           <div className="relative mb-8 h-[320px] w-[85vw] lg:w-[700px] mx-auto overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/60">
@@ -200,11 +200,11 @@ export const posts: BlogPost[] = [
             </li>
             <li>
               <strong>Retention:</strong> 7/30-day returning users, not just DAU
-              spikes.
+              spikes. (DAU = daily active users)
             </li>
             <li>
               <strong>Support health:</strong> median ticket time, CSAT after
-              mod interactions.
+              mod interactions. (CSAT = customer satisfaction score)
             </li>
             <li>
               <strong>Referral quality:</strong> shiller-specific conversion vs.
@@ -244,7 +244,7 @@ export const posts: BlogPost[] = [
             </li>
             <li>
               Give mods macros, SLAs, and an escalation tree. Publish it
-              internally.
+              internally. (SLA = service level agreement)
             </li>
             <li>
               Collect yappers’ noise into weekly insights and show you acted on
@@ -258,8 +258,8 @@ export const posts: BlogPost[] = [
             </div>
             <p className="mt-2 text-night">
               Episode 02 (teaser):{" "}
-              <strong>Launch Week Without Rugging Trust</strong> — playbooks for
-              announcements, support load, and keeping signal during the spike.
+              <strong>Smart Contracts or Dumb Contracts</strong> — basics,
+              common flaws, and why correctness matters.
             </p>
           </div>
         </>

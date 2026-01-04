@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.ovd.dev"),
+  metadataBase: new URL("https://ovd.dev"),
   title: "Full-Stack & Blockchain Engineer | Ovodo",
   description:
     "Expert Full-Stack and Blockchain Engineer specializing in web3 development, smart contracts, and modern web applications.",
@@ -35,11 +35,11 @@ export const metadata: Metadata = {
     title: "Full-Stack & Blockchain Engineer | Ovodo",
     description:
       "Expert Full-Stack and Blockchain Engineer specializing in web3 development, smart contracts, and modern web applications.",
-    url: "https://www.ovd.dev", // Replace with your actual domain
+    url: "https://ovd.dev", // Replace with your actual domain
     siteName: "Ovodo Portfolio",
     images: [
       {
-        url: "https://www.ovd.dev/re.webp", // Replace with your actual image path
+        url: "https://ovd.dev/re.webp", // Replace with your actual image path
         width: 1200,
         height: 630,
         alt: "Ovodo - Full-Stack & Blockchain Engineer",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Full-Stack & Blockchain Engineer | Ovodo",
     description:
       "Expert Full-Stack and Blockchain Engineer specializing in web3 development, smart contracts, and modern web applications.",
-    images: ["https://www.ovd.dev/re.webp"], // Replace with your actual image path
+    images: ["https://ovd.dev/re.webp"], // Replace with your actual image path
   },
 };
 

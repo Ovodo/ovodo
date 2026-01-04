@@ -23,7 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.summary,
     keywords: post.tags,
     authors: [{ name: "Ovodo" }],
+    alternates: {
+      canonical: `https://ovd.dev/blog/${title}`,
+    },
     openGraph: {
+      url: `https://ovd.dev/blog/${title}`,
       title: post.title,
       description: post.summary,
       type: "article",
@@ -33,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: post.image
         ? [
             {
-              url: `https://www.ovd.dev${post.image}`,
+              url: `https://ovd.dev${post.image}`,
               width: 1200,
               height: 630,
               alt: post.title,
@@ -45,6 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: post.title,
       description: post.summary,
+      images: post.image ? [`https://ovd.dev${post.image}`] : undefined,
     },
   };
 }

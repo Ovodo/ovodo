@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { posts } from "./posts";
+import SubscribeInline from "@/components/SubscribeInline";
 
 const BlogIndexPage = () => {
   const [query, setQuery] = useState("");
@@ -36,13 +37,20 @@ const BlogIndexPage = () => {
           Blog / Insight Drops
         </p>
         <div className="space-y-4">
-          <h1 className="text-3xl font-semibold text-primary sm:text-4xl lg:text-5xl">
+          {/* <h1 className="text-3xl font-semibold text-primary sm:text-4xl lg:text-5xl">
             Precision-grade essays for builders & investors.
-          </h1>
+          </h1> */}
           <p className="max-w-3xl text-sm text-muted-foreground sm:text-base">
             Curated deep-dives on systems, chains, and shipping resilient
             products. Filter by category or search topics; everything is
             chronologically sorted and intentionally concise.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <SubscribeInline />
+          <p className="text-xs text-muted-foreground">
+            One-click subscribe; no spam, just new posts.
           </p>
         </div>
 
@@ -100,7 +108,7 @@ const BlogIndexPage = () => {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group relative overflow-hidden rounded-2xl border border-white/8 bg-white/5 p-[1px] shadow-[0_24px_80px_rgba(0,0,0,0.38)] backdrop-blur-xl transition hover:no-underline duration-300 hover:-translate-y-1 hover:border-accent/30 h-max lg:min-h-[250px] hover:shadow-[0_28px_90px_rgba(0,0,0,0.45)]"
+              className="group relative overflow-hidden rounded-2xl border border-white/8 bg-white/5 p-[1px] shadow-[0_24px_80px_rgba(0,0,0,0.38)] backdrop-blur-xl transition hover:no-underline duration-300 hover:-translate-y-1 hover:border-accent/30 h-[300px] lg:h-[250px] hover:shadow-[0_28px_90px_rgba(0,0,0,0.45)]"
             >
               <div className="relative flex h-full flex-col gap-3 rounded-2xl bg-gradient-to-br from-white/6 via-white/3 to-white/0 px-5 py-6">
                 {topAccent && (
