@@ -16,6 +16,428 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "trading-uis-for-beginners",
+    title: "Trading UI's for Beginners",
+    date: "2026-01-11",
+    tags: [
+      "trading",
+      "frontend",
+      "react",
+      "nextjs",
+      "realtime",
+      "websockets",
+      "performance",
+      "ux",
+      "systems",
+    ],
+    summary:
+      "A practical, no-fluff checklist for building trading UIs: real-time data architecture, correctness, latency, failure modes, and the UX details that make users trust the screen.",
+    category: "Trading UI",
+    readTime: "10 min read",
+    image: "/images/trading-ui-beginners.svg",
+    body: () => {
+      return (
+        <>
+          <p className="mb-6 text-lg text-muted-foreground">
+            Trading UIs look like dashboards, but they behave like real-time
+            systems. The hard part isn&apos;t drawing tables and
+            charts—it&apos;s keeping the UI correct and responsive while
+            thousands of updates arrive per minute.
+          </p>
+
+          <div className="relative mb-8 h-[340px] w-[92vw] lg:w-[880px] mx-auto overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/60">
+            <Image
+              src={"/images/trading-ui-beginners.svg"}
+              className="object-cover object-center"
+              alt="Trading UI architecture cover"
+              fill
+              priority
+            />
+          </div>
+
+          <div className="mb-8 rounded-2xl border border-border/60 bg-card/60 p-4 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70 mb-2">
+              TL;DR
+            </div>
+            <ul className="list-disc space-y-2 pl-5">
+              <li>
+                Separate <strong>raw stream</strong> → <strong>store</strong> →
+                <strong>selectors</strong> → <strong>components</strong>.
+              </li>
+              <li>
+                Optimize for <strong>latency</strong> and{" "}
+                <strong>stability</strong>: throttle rendering, batch updates,
+                virtualize lists.
+              </li>
+              <li>
+                Treat the backend as <strong>authoritative</strong>: optimistic
+                UI is fine, but reconcile aggressively.
+              </li>
+              <li>
+                Financial apps require <strong>precision</strong> and clear
+                failure states (disconnects, stale data, partial books).
+              </li>
+            </ul>
+          </div>
+
+          <h2 className="mt-0 text-2xl font-bold text-primary">
+            What makes a trading UI different?
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            Most apps are request/response: user clicks, app fetches, UI
+            updates. Trading is the opposite: the world changes constantly, and
+            the user is trying to act inside a moving stream.
+          </p>
+
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>Real-time load:</strong> order books, trades, tickers, and
+              positions update continuously.
+            </li>
+            <li>
+              <strong>Correctness pressure:</strong> a rounding bug or stale
+              state costs money (and trust).
+            </li>
+            <li>
+              <strong>Perceived latency:</strong> 100ms of UI lag feels
+              “broken”.
+            </li>
+            <li>
+              <strong>Failure is normal:</strong> sockets drop, partial data
+              arrives, and servers correct state.
+            </li>
+          </ul>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            The architecture you want (and why)
+          </h2>
+
+          <CodeBlock
+            language="text"
+            title="The correct layering"
+            code={`WebSocket/Stream (raw events)
+  → Normalization layer (parse/validate)
+  → External store (Zustand/Redux/RxJS)
+  → Selectors (derived state, memoized)
+  → React components (render only what changed)`}
+          />
+
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            The key move:{" "}
+            <strong>don&apos;t put raw stream events in React state</strong>.
+            React is great at rendering, not at absorbing high-frequency
+            updates. You keep a fast external store, and React subscribes to
+            tiny slices.
+          </p>
+
+          <CodeBlock
+            language="ts"
+            title="A practical WebSocket manager (reconnect + heartbeat)"
+            code={`type Status = "connecting" | "connected" | "reconnecting" | "disconnected";
+
+class WSManager {
+  private ws?: WebSocket;
+  private reconnectAttempt = 0;
+  private heartbeatTimer?: number;
+  private lastMessageAt = 0;
+
+  constructor(private url: string, private onStatus: (s: Status) => void) {}
+
+  connect() {
+    this.onStatus("connecting");
+    this.ws = new WebSocket(this.url);
+
+    this.ws.onopen = () => {
+      this.reconnectAttempt = 0;
+      this.onStatus("connected");
+      this.startHeartbeat();
+    };
+
+    this.ws.onmessage = (evt) => {
+      this.lastMessageAt = Date.now();
+      const msg = JSON.parse(String(evt.data));
+      if (msg.event === "pong") return;
+      // route msg to store(s)
+    };
+
+    this.ws.onclose = () => this.reconnect();
+  }
+
+  private reconnect() {
+    this.stopHeartbeat();
+    this.onStatus("reconnecting");
+    const delay = Math.min(1000 * 2 ** this.reconnectAttempt++, 30_000);
+    setTimeout(() => this.connect(), delay);
+  }
+
+  private startHeartbeat() {
+    this.stopHeartbeat();
+    this.lastMessageAt = Date.now();
+    this.heartbeatTimer = window.setInterval(() => {
+      if (Date.now() - this.lastMessageAt > 40_000) this.reconnect();
+      this.ws?.send(JSON.stringify({ event: "ping" }));
+    }, 30_000);
+  }
+
+  private stopHeartbeat() {
+    if (this.heartbeatTimer) window.clearInterval(this.heartbeatTimer);
+  }
+}`}
+          />
+
+          <CodeBlock
+            language="tsx"
+            title="Pattern: store-first, selector-driven UI"
+            code={`// WebSocket handler (outside React)
+ws.on("orderbook:update", (delta) => {
+  orderBookStore.getState().applyDelta(delta)
+})
+
+// Component (React)
+const bestBid = useOrderBookStore(s => s.bids[0])
+const bestAsk = useOrderBookStore(s => s.asks[0])`}
+          />
+
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            The mental model: your store is the “truthy model” of the market.
+            It handles normalization (sorting, aggregation, totals). Components
+            are just views that subscribe to <strong>tiny slices</strong>.
+          </p>
+
+          <CodeBlock
+            language="ts"
+            title="Store principle: normalize first, render later"
+            code={`type Level = { price: string; qty: string };
+
+type OrderBookState = {
+  bids: Level[]; // sorted desc
+  asks: Level[]; // sorted asc
+  applyDelta: (delta: { bids: Level[]; asks: Level[] }) => void;
+};
+
+// React should NOT subscribe to the entire store:
+//   const state = useOrderBookStore(s => s) // ❌ too many re-renders
+// Prefer slices:
+//   const bestBid = useOrderBookStore(s => s.bids[0]) // ✅`}
+          />
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Performance: the boring details that matter
+          </h2>
+
+          <div className="mt-4 grid gap-3 rounded-xl border border-border/60 bg-card/60 p-4 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70">
+              Performance checklist
+            </div>
+            <ul className="list-disc space-y-2 pl-5">
+              <li>
+                <strong>Throttle rendering:</strong> users can&apos;t perceive
+                100 UI updates/sec; render at 10–20 FPS.
+              </li>
+              <li>
+                <strong>Batch socket updates:</strong> apply deltas in batches
+                (e.g. per animation frame) rather than per message.
+              </li>
+              <li>
+                <strong>Virtualize lists:</strong> order book rows and trades
+                feeds should render only visible rows.
+              </li>
+              <li>
+                <strong>Minimize re-renders:</strong> selector-based
+                subscriptions + memoized derived state.
+              </li>
+              <li>
+                <strong>Mobile-first discipline:</strong> reduce shadows, avoid
+                layout thrash, keep DOM small.
+              </li>
+            </ul>
+          </div>
+
+          <CodeBlock
+            language="tsx"
+            title="Throttle visual updates (keep store hot, UI cool)"
+            code={`function useThrottle<T>(value: T, fps = 12) {
+  const [v, setV] = React.useState(value);
+  const last = React.useRef(0);
+  const interval = 1000 / fps;
+
+  React.useEffect(() => {
+    const now = Date.now();
+    const dueIn = Math.max(0, interval - (now - last.current));
+    const id = window.setTimeout(() => {
+      last.current = Date.now();
+      setV(value);
+    }, dueIn);
+    return () => window.clearTimeout(id);
+  }, [value, interval]);
+
+  return v;
+}
+
+const bestBid = useOrderBookStore((s) => s.bids[0]);
+const smoothBestBid = useThrottle(bestBid, 10); // 10 FPS`}
+          />
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Correctness: decimals, tick sizes, and “truth”
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            In finance, you treat numbers like data—not floats. Prices and sizes
+            should be normalized to <strong>tick size</strong> and{" "}
+            <strong>step size</strong>, and calculations should use decimal math
+            (or integer base units).
+          </p>
+
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>Never rely on JS floats</strong> for order totals, PnL, or
+              fee math.
+            </li>
+            <li>
+              <strong>Format consistently</strong> (e.g. always 2 decimals for
+              price, 4 for size) to avoid “duplicate” levels like 50000 vs
+              50000.00.
+            </li>
+            <li>
+              <strong>Backend is authoritative:</strong> optimistic UI is
+              allowed, but you must reconcile with server confirmations.
+            </li>
+          </ul>
+
+          <CodeBlock
+            language="ts"
+            title="Normalize prices to tick size (avoid duplicate levels)"
+            code={`// If your feed sometimes sends "50000" and sometimes "50000.00",
+// you can accidentally create duplicate levels. Normalize and format.
+function normalizePrice(price: string, tick = 0.01) {
+  const p = Number(price);
+  const snapped = Math.round(p / tick) * tick;
+  return snapped.toFixed(2);
+}`}
+          />
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            UX: trust is the product
+          </h2>
+
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            A trading UI is a trust machine. Even if the backend is perfect,
+            users judge you by what they see.
+          </p>
+
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              Show <strong>connection status</strong> and{" "}
+              <strong>staleness</strong>
+              (e.g. “Last update 2s ago”).
+            </li>
+            <li>
+              Make <strong>pending states</strong> explicit (order submitted vs
+              accepted vs filled vs rejected).
+            </li>
+            <li>
+              Validate inputs aggressively (min size, max leverage, balance,
+              slippage, price band).
+            </li>
+            <li>
+              Prefer clarity over cleverness: consistent colors, stable columns,
+              and readable number formatting.
+            </li>
+          </ul>
+
+          <CodeBlock
+            language="tsx"
+            title="Show staleness (users trust timestamps)"
+            code={`function StaleBadge({ lastUpdateAt }: { lastUpdateAt: number }) {
+  const [now, setNow] = React.useState(Date.now());
+  React.useEffect(() => {
+    const id = window.setInterval(() => setNow(Date.now()), 500);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const ageSec = Math.floor((now - lastUpdateAt) / 1000);
+  const stale = ageSec >= 3;
+  return (
+    <span className={stale ? "text-red-400" : "text-muted-foreground"}>
+      {stale ? "Stale (" + ageSec + "s)" : "Live (" + ageSec + "s)"}
+    </span>
+  );
+}`}
+          />
+
+          <CodeBlock
+            language="ts"
+            title="Order submission: optimistic UI + server reconciliation"
+            code={`// 1) User clicks Buy
+const tempId = crypto.randomUUID();
+ordersStore.add({ id: tempId, status: "pending", side: "buy", price, size });
+
+// 2) Submit to backend
+try {
+  const res = await api.placeOrder({ side: "buy", price, size });
+  // 3) Replace pending with server ID/status
+  ordersStore.replace(tempId, { id: res.id, status: res.status });
+} catch {
+  // 4) Roll back and show error
+  ordersStore.remove(tempId);
+  toast.error("Order rejected");
+}`}
+          />
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Failure modes you must design for
+          </h2>
+
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>Socket disconnects:</strong> show a banner, pause certain
+              actions, and resync via REST snapshot.
+            </li>
+            <li>
+              <strong>Out-of-order events:</strong> use sequence numbers where
+              possible; otherwise detect drift and resnapshot.
+            </li>
+            <li>
+              <strong>Partial data:</strong> you might have a ticker but no
+              book, or positions but stale balances—handle gracefully.
+            </li>
+          </ul>
+
+          <CodeBlock
+            language="ts"
+            title="Out-of-order events: detect gaps and resync"
+            code={`// Many venues include a sequence number (seq). If you can:
+// - drop stale events
+// - detect gaps
+let lastSeq = 0;
+
+function onDelta(delta: { seq: number }) {
+  if (delta.seq <= lastSeq) return; // stale
+  if (delta.seq !== lastSeq + 1) {
+    // gap detected → fetch snapshot and reset lastSeq
+    return resyncSnapshot();
+  }
+
+  lastSeq = delta.seq;
+  // applyDelta(delta)
+}`}
+          />
+
+          <div className="mt-8 rounded-2xl border border-border/60 bg-card/60 p-5 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70">
+              Starter project idea
+            </div>
+            <p className="mt-2 text-muted-foreground">
+              Build a single page with a mock WebSocket feed: ticker + trades +
+              order book. Then add: throttling, reconnection, snapshot resync,
+              and an order form with optimistic pending orders.
+            </p>
+          </div>
+        </>
+      );
+    },
+  },
+  {
     slug: "web3-nutshell-01-shillers-yappers-mods",
     title: "Web3 in a Nutshell #01: Shillers, Yappers, Moderators",
     date: "2026-01-04",
@@ -252,11 +674,11 @@ export const posts: BlogPost[] = [
             </li>
           </ol>
 
-          <div className="mt-8 rounded-2xl border border-accent/30 bg-accent/10 p-5 text-sm text-primary">
-            <div className="text-xs uppercase tracking-[0.22em] text-night/70">
+          <div className="mt-8 rounded-2xl border border-border/60 bg-card/60 p-5 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70">
               Up next
             </div>
-            <p className="mt-2 text-night">
+            <p className="mt-2 text-muted-foreground">
               Episode 02 (teaser):{" "}
               <strong>Smart Contracts or Dumb Contracts</strong> — basics,
               common flaws, and why correctness matters.
