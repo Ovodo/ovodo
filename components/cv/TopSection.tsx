@@ -1,4 +1,4 @@
-import { resume } from "@/lib/data";
+import { resume } from "@/lib/frontend";
 import {
   IconPhone,
   IconAt,

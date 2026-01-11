@@ -3,7 +3,7 @@ import HeaderText from "@/components/cv/HeaderText";
 import JobBox from "@/components/cv/JobBox";
 import TopSection from "@/components/cv/TopSection";
 import React from "react";
-import { resume } from "@/lib/data";
+import { resume } from "@/lib/frontend";
 import { Experience } from "@/types";
 import { Rubik } from "next/font/google";
 import { IconMoon, IconSun } from "@tabler/icons-react";
