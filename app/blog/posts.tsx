@@ -34,7 +34,7 @@ export const posts: BlogPost[] = [
       "A practical, no-fluff checklist for building trading UIs: real-time data architecture, correctness, latency, failure modes, and the UX details that make users trust the screen.",
     category: "Trading UI",
     readTime: "10 min read",
-    image: "/images/trading-ui-beginners.svg",
+    image: "/images/trading-ui-beginners.webp",
     body: () => {
       return (
         <>
@@ -45,9 +45,9 @@ export const posts: BlogPost[] = [
             thousands of updates arrive per minute.
           </p>
 
-          <div className="relative mb-8 h-[340px] w-[92vw] lg:w-[880px] mx-auto overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/60">
+          <div className="relative mb-8 h-[320px] w-[85vw] lg:w-[700px] mx-auto overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/60">
             <Image
-              src={"/images/trading-ui-beginners.svg"}
+              src={"/images/trading-ui-beginners.webp"}
               className="object-cover object-center"
               alt="Trading UI architecture cover"
               fill
@@ -199,9 +199,9 @@ const bestAsk = useOrderBookStore(s => s.asks[0])`}
           />
 
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            The mental model: your store is the “truthy model” of the market.
-            It handles normalization (sorting, aggregation, totals). Components
-            are just views that subscribe to <strong>tiny slices</strong>.
+            The mental model: your store is the “truthy model” of the market. It
+            handles normalization (sorting, aggregation, totals). Components are
+            just views that subscribe to <strong>tiny slices</strong>.
           </p>
 
           <CodeBlock
