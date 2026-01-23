@@ -2,8 +2,105 @@ import Link from "next/link";
 import { resume } from "../../lib/data";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
+import type { Metadata } from "next";
 
 type Params = Promise<{ project: string }>;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const p = await params;
+  const projectName = decodeURIComponent(p.project);
+  const project = resume.projects.find((item) => item.company == projectName);
+
+  if (!project) {
+    return {
+      title: "Project Not Found",
+      description: "The project you're looking for doesn't exist.",
+    };
+  }
+  const extraKeywords = [
+    "web3",
+    "blockchain",
+    "dapp",
+    "decentralized",
+    "smart contracts",
+    "solidity",
+    "rust",
+    "move",
+    "sui",
+    "aptos",
+    "ethereum",
+    "nft",
+    "defi",
+    "full stack",
+    "full-stack",
+    "next.js",
+    "react",
+    "typescript",
+    "node.js",
+    "node",
+    "tailwind",
+    "mongodb",
+    "postgresql",
+    "docker",
+    "ci/cd",
+  ];
+
+  const mergedKeywords = Array.from(
+    new Set([...(project.keywords ?? []), ...extraKeywords]),
+  ).slice(0, 50);
+
+  const ogImage =
+    project.images && project.images.length > 0
+      ? `https://ovd.dev${project.images[0].src}`
+      : project.image
+        ? `https://ovd.dev${project.image}`
+        : `https://ovd.dev/og/re-og.webp`;
+
+  return {
+    title: `${project.company} — ${project.title || "Project"}`,
+    description: project.summary || project.achievements?.[0] || undefined,
+    keywords: mergedKeywords,
+    alternates: {
+      canonical: `https://ovd.dev/projects/${encodeURIComponent(project.company)}`,
+    },
+    authors: [
+      {
+        name: resume.personalInfo.name,
+        url: resume.personalInfo.website,
+      },
+    ],
+    applicationName: "Ovodo — Portfolio",
+    robots: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+    openGraph: {
+      title: project.company,
+      description: project.summary || undefined,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: project.images?.[0]?.title || project.company,
+        },
+      ],
+      type: "website",
+      url: `https://ovd.dev/projects/${encodeURIComponent(project.company)}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.company,
+      description: project.summary || undefined,
+      images: [ogImage],
+    },
+  };
+}
 
 const bgGradient =
   "bg-gradient-to-br from-black/70 from-5%  via-transparent via-80%  to-cyan-950/60";
@@ -73,12 +170,12 @@ const Page = async (props: { params: Params }) => {
                         item.toLowerCase().includes("typescript")
                           ? "bg-[#31D1F1]"
                           : item.toLowerCase().includes("idity")
-                          ? "bg-stone-200"
-                          : item.toLowerCase().includes("javascript")
-                          ? "bg-yellow-300"
-                          : item.toLowerCase().includes("rust")
-                          ? "bg-pink-200"
-                          : "bg-violet-300"
+                            ? "bg-stone-200"
+                            : item.toLowerCase().includes("javascript")
+                              ? "bg-yellow-300"
+                              : item.toLowerCase().includes("rust")
+                                ? "bg-pink-200"
+                                : "bg-violet-300"
                       }`}
                     />
                     <p className="text-xs text-res_primary capitalize">

@@ -70,19 +70,20 @@ const Hero2 = () => {
         }`}
       >
         <Image
-          src="/re.webp"
+          src="/og/re-og.webp"
           className="object-cover  blur-sm hero-image cursor-pointer duration-500 object-right-bottom rounded-md shadow-sm shadow-primary hover:sm:blur-lg"
-          alt="hero"
+          alt="Abstract hero background image with gradients and shapes"
           priority
           fill
         />
         <div className="w-[35%] relative overflow-hidden hero-image2 rounded-sm   shadow-primary/20 shadow-[_2px_-2px_2px]  h-full">
           <Image
-            src={"/re.webp"}
+            src={"/og/re-og.webp"}
             className="object-cover backdrop-blur-xl"
-            alt="hero"
+            alt="Overlay hero image featuring abstract shapes"
             priority
             fill
+            sizes="(max-width: 640px) 100vw, 33vw"
           />
         </div>
       </div>

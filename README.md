@@ -34,3 +34,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+## SEO, RSS & Audits ✅
+
+- Add a Google Search Console verification token as an environment variable named `GOOGLE_SITE_VERIFICATION` (Vercel / hosting UI) to enable the verification meta tag on every page.
+- Run an automated Lighthouse audit locally or in CI:
+
+```bash
+# generates an HTML report in ./reports
+npm run audit:lighthouse
+```
+
+- Quick check for OpenGraph images size (1200x630 recommended):
+
+```bash
+npm run verify-og
+```
+
+- RSS feed for the blog is available at `/rss.xml` (auto-generated from `app/blog/posts.tsx`).
+- Regenerated OpenGraph images are stored under `public/og/` (1200×630 WebP). To regenerate locally:
+
+```bash
+npm run generate-og
+npm run verify-og
+```
+

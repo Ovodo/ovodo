@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   creator: "Ovodo",
   publisher: "Ovodo",
   robots: "index, follow",
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+  },
   openGraph: {
     title: "Full-Stack & Blockchain Engineer | Ovodo",
     description:
@@ -39,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Ovodo Portfolio",
     images: [
       {
-        url: "https://ovd.dev/re.webp", // Replace with your actual image path
+        url: "https://ovd.dev/og/re-og.webp",
         width: 1200,
         height: 630,
         alt: "Ovodo - Full-Stack & Blockchain Engineer",
@@ -53,7 +56,7 @@ export const metadata: Metadata = {
     title: "Full-Stack & Blockchain Engineer | Ovodo",
     description:
       "Expert Full-Stack and Blockchain Engineer specializing in web3 development, smart contracts, and modern web applications.",
-    images: ["https://ovd.dev/re.webp"], // Replace with your actual image path
+    images: ["https://ovd.dev/og/re-og.webp"], // Prefer generated OG image
   },
 };
 
@@ -62,11 +65,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Ovodo",
+    url: "https://ovd.dev",
+    sameAs: ["https://github.com/ovodo", "https://twitter.com/ovdizzle"],
+  };
+
   return (
     <html lang="en">
       <body
         className={`${ubuntu.className} bg-[var(--background)] text-[var(--text)] px-[20px] sm:px-[40px] md:px-[60px] overflow-x-hidden scrollbar-hide md:pl-[96px] min-h-screen antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Navbar />
         <main>
           {/* SmoothScrollWrapper provides lerp scrolling for the whole app */}

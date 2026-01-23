@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -8,6 +9,29 @@ import Services from "@/components/Services";
 // import Reveal from "@/components/Reveal";
 import Skills from "@/components/Skills";
 import Testimonials from "@/components/Testimonials";
+
+export const metadata: Metadata = {
+  title: "Ovodo — Full-Stack & Blockchain Engineer",
+  description:
+    "Portfolio and projects by Ovodo — Full-stack engineer specializing in web3, smart contracts, and high-performance web applications.",
+  alternates: {
+    canonical: `https://ovd.dev/`,
+  },
+  openGraph: {
+    title: "Ovodo — Full-Stack & Blockchain Engineer",
+    description:
+      "Portfolio and projects by Ovodo — Full-stack engineer specializing in web3, smart contracts, and high-performance web applications.",
+    url: "https://ovd.dev",
+    images: [
+      {
+        url: "https://ovd.dev/og/re-og.webp",
+        width: 1200,
+        height: 630,
+        alt: "Ovodo — Full-Stack & Blockchain Engineer",
+      },
+    ],
+  },
+};
 
 export default function Home() {
   return (

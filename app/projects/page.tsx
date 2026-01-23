@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { resume } from "../lib/data";
 import ProjectCard from "@/components/ProjectCard";
-
 const Projects = () => {
   // --------------------------------------------VARIABLES
   const [search, setSearch] = useState("");
@@ -31,12 +30,12 @@ const Projects = () => {
             search
               ? item.company.toLowerCase().includes(search.toLowerCase()) ||
                 item.category?.some((cat) =>
-                  cat.toLowerCase().includes(search.toLowerCase())
+                  cat.toLowerCase().includes(search.toLowerCase()),
                 ) ||
                 item.languages?.some((lang) =>
-                  lang.toLowerCase().includes(search.toLowerCase())
+                  lang.toLowerCase().includes(search.toLowerCase()),
                 )
-              : true
+              : true,
           )
           // .slice(0, 6)
           .map((item, index) => (

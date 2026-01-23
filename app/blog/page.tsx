@@ -4,7 +4,6 @@ import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { posts } from "./posts";
 import SubscribeInline from "@/components/SubscribeInline";
-
 const BlogIndexPage = () => {
   const [query, setQuery] = useState("");
 

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { SpotifyTrack } from "@/types/spotify";
 import Image from "next/image";
 import Link from "next/link";
-
 const MusicPage = () => {
   const [currentTrack, setCurrentTrack] = useState<SpotifyTrack | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);

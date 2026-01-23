@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useMemo, useState } from "react";
 import { Experience } from "../types";
 import Image from "next/image";
@@ -35,7 +36,7 @@ const ProjectCard = ({
       // @ts-expect-error modern browsers expose connection
       navigator.connection?.saveData;
     setCanPlayVideo(
-      (supports === "maybe" || supports === "probably") && !saveData
+      (supports === "maybe" || supports === "probably") && !saveData,
     );
   }, [project.video]);
 
@@ -51,7 +52,7 @@ const ProjectCard = ({
           type: "image" as const,
           src: img.src,
           title: img.title,
-        }))
+        })),
       );
     } else if (project.image) {
       items.push({
