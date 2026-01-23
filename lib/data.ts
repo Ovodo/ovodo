@@ -337,62 +337,79 @@ export const resume = {
       dates: "",
       link: "",
     },
+    {
+      title: "Lead Full Stack Blockchain Developer",
+      company: "Exyra AI DeFi Assistant",
+      image: "/exyra-logo.svg",
+      location: "",
+      achievements: [
+        "Built **Exyra**, a multi-chain AI DeFi assistant with a friendly, accessible conversational UX, enabling users to explore protocols and complete on-chain workflows confidently.",
+        "Implemented AI chat experiences using **CopilotKit** with saved prompts, search, and chat history persisted via **MongoDB**.",
+        "Delivered multi-chain wallet connectivity using **Reown AppKit (WalletConnect v2)** and contract interaction primitives with **wagmi**, **viem**, and **ethers.js**.",
+        "Built protocol and routing experiences across **Ethereum**, **Arbitrum**, **Optimism**, **BSC**, and **Solana**, including explorer flows and real-time market data (token prices, gas estimates).",
+        "Implemented secure exchange-key management (Binance/Bybit) with **AES-256-GCM** encryption and wallet-based syncing, plus a rewards/tasks system using **Redux Toolkit**.",
+      ],
+      dates: "",
+      link: "",
+      repo: "https://github.com/Exyralabs/FrontEnd",
+      summary: "A multi-chain AI DeFi assistant built with Next.js (App Router) and CopilotKit, combining conversational guidance with protocol exploration, wallet connectivity, and real-time market data.",
+      languages: ["TypeScript", "JavaScript"],
+      keywords: ["AI", "DeFi", "Web3", "Multi-chain", "CopilotKit", "Next.js", "TypeScript", "MongoDB", "Redux Toolkit", "Reown AppKit", "WalletConnect", "wagmi", "viem", "ethers.js"],
+      category: ["AI", "Blockchain", "DeFi", "Full-Stack"],
+      video: "",
+      images: [
+        {
+          src: "/exyra-chat.png",
+          title: "AI-Powered Chat Interface"
+        },
+        {
+          src: "/exyra-explore.png",
+          title: "DeFi Protocol Explorer"
+        },
+        {
+          src: "/exyra-wallet.png",
+          title: "Multi-Chain Wallet Integration"
+        }
+      ]
+    },
+    {
+      title: "Full-Stack Blockchain Developer",
+      company: "SkyOps",
+      image: "/skyops-logo.svg",
+      location: "",
+      achievements: [
+        "Built **SkyOps**, a decentralized GPU compute marketplace (**Next.js**, **TypeScript**).",
+        "Implemented wallet + tx flows with **Reown AppKit** (Solana + wagmi adapters), **Solana Web3**, **Anchor**, and **ethers.js**.",
+        "Deployed cross-chain **rewards/claim** contracts on **EVM** and **Solana (SVM)**.",
+        "Built **Express** + **MongoDB (mongoose)** services integrating **OpenAI** and **HuggingFace**.",
+        "Shipped a **Plasmo** (Manifest V3) browser extension with **Redux Toolkit**.",
+        "Contributed tooling + analytics with **Foundry** (EVM) and **Next.js** + **Recharts**.",
+      ],
+      dates: "",
+      link: "",
+    },
     // {
-    //   title: "Lead Developer",
-    //   company: "Exyra AI DeFi Assistant",
-    //   image: "/exyra-logo.svg",
-    //   location: "",
-    //   achievements: [
-    //     "Built an intelligent AI-powered chat platform that helps users navigate and interact with DeFi protocols across multiple blockchains.",
-    //     // "Integrated **CopilotKit** for AI-powered conversations, **WalletConnect** for seamless wallet integration, and **MongoDB** for chat history persistence.",
-    //     // "Implemented multi-chain support for **Ethereum**, **Arbitrum**, **Optimism**, **BSC**, and **Solana**, with real-time token prices and gas estimates.",
-    //     // "Developed DeFi protocol explorer featuring **Lido Finance**, **Uniswap**, **KyberSwap**, and **Pendle Finance** integrations.",
-    //   ],
-    //   dates: "",
-    //   link: "https://cerebrum.vercel.app",
-    //   repo: "https://github.com/Exyralabs/FrontEnd",
-    //   summary: "An AI-powered DeFi assistant that simplifies blockchain interactions through natural language conversations. Users can explore protocols, swap tokens, and manage their crypto portfolio across multiple chains with intelligent guidance.",
-    //   languages: ["TypeScript", "JavaScript"],
-    //   keywords: ["AI", "DeFi", "Blockchain", "Multi-chain", "Web3", "CopilotKit", "Next.js", "MongoDB", "WalletConnect"],
-    //   category: ["AI", "Blockchain", "DeFi", "Full-Stack"],
-    //   video: "",
-    //   images: [
-    //     {
-    //       src: "/exyra-chat.png",
-    //       title: "AI-Powered Chat Interface"
-    //     },
-    //     {
-    //       src: "/exyra-explore.png",
-    //       title: "DeFi Protocol Explorer"
-    //     },
-    //     {
-    //       src: "/exyra-wallet.png",
-    //       title: "Multi-Chain Wallet Integration"
-    //     }
-    //   ]
+    //     title: "Lead Developer",
+    //     company: "Edusoul Distinct",
+    //     image: "/edusoul.svg",
+    //     location: "",
+    //     achievements: [
+    //         "Built a **Learning Management System (LMS)** with **Role-Based Access Control (RBAC)** and content management, improving administrative efficiency by **20%** and student engagement by **15%**.",
+    //     ],
+    //     dates: "",
+    //     link: "https://www.edusouldistinct.com",
     // },
-    {
-      title: "Lead Developer",
-      company: "Edusoul Distinct",
-      image: "/edusoul.svg",
-      location: "",
-      achievements: [
-        "Built a **Learning Management System (LMS)** with **Role-Based Access Control (RBAC)** and content management, improving administrative efficiency by **20%** and student engagement by **15%**.",
-      ],
-      dates: "",
-      link: "https://www.edusouldistinct.com",
-    },
-    {
-      title: "Lead Developer",
-      company: "Donacare Foundation",
-      image: "/dona.png",
-      location: "",
-      achievements: [
-        "Developed an online platform for an NGO, integrating **Paystack** for seamless donation processing, resulting in a **40% increase in donations** within the first 3 months.",
-      ],
-      dates: "",
-      link: "https://www.donacarefoundation.org",
-    },
+    // {
+    //     title: "Lead Developer",
+    //     company: "Donacare Foundation",
+    //     image: "/dona.png",
+    //     location: "",
+    //     achievements: [
+    //         "Developed an online platform for an NGO, integrating **Paystack** for seamless donation processing, resulting in a **40% increase in donations** within the first 3 months.",
+    //     ],
+    //     dates: "",
+    //     link: "https://www.donacarefoundation.org",
+    // },
     {
       title: "Open Source Contributor",
       company: "Solana Foundation",
