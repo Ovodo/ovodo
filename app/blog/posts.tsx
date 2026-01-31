@@ -16,6 +16,704 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "solana-security-father-son-bank",
+    title: "Solana Security: The Father-Son-Bank Story",
+    date: "2026-01-31",
+    tags: [
+      "solana",
+      "security",
+      "anchor",
+      "pinocchio",
+      "rust",
+      "blockchain",
+      "smart-contracts",
+      "vulnerabilities",
+      "web3",
+    ],
+    summary:
+      "Learn Solana security through storytelling: a Father, Son, and Bank model that maps real-world authorization concepts to the 6 most critical vulnerabilities in Solana programs. Includes examples in both Anchor and Pinocchio frameworks.",
+    category: "Web3 Security",
+    readTime: "15 min read",
+    image: "/images/solana-security.webp",
+    body: () => {
+      return (
+        <>
+          <p className="mb-6 text-lg text-muted-foreground">
+            Most Solana security guides throw technical jargon at you. This one
+            tells a story. Every vulnerability maps to a failure in a simple
+            trust model: a Father authorizing transactions, his Son (a PDA), and
+            a Bank (the program) that should verify everything.
+          </p>
+
+          <div className="relative mb-8 h-[320px] w-[85vw] lg:w-[700px] mx-auto overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/60">
+            <Image
+              src={"/images/solana-security.webp"}
+              className="object-cover object-center"
+              alt="Father-Son-Bank security model"
+              fill
+              priority
+            />
+          </div>
+
+          <div className="mb-8 rounded-2xl border border-border/60 bg-card/60 p-4 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70 mb-2">
+              TL;DR
+            </div>
+            <ul className="list-disc space-y-2 pl-5">
+              <li>
+                <strong>Father = Signer</strong>: Must authorize all sensitive
+                operations
+              </li>
+              <li>
+                <strong>Son = PDA</strong>: Derived from Father, owned by
+                program
+              </li>
+              <li>
+                <strong>Bank = Program</strong>: Validates and processes all
+                requests
+              </li>
+              <li>
+                <strong>6 attack patterns</strong> map to failures in this trust
+                model
+              </li>
+              <li>
+                <strong>Two frameworks</strong>: Anchor (high-level) &amp;
+                Pinocchio (low-level)
+              </li>
+            </ul>
+          </div>
+
+          <h2 className="mt-0 text-2xl font-bold text-primary">
+            Why another security guide?
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            Solana exploits have cost hundreds of millions of dollars. The
+            Wormhole hack ($326M), Cashio ($52M), and countless smaller exploits
+            share common patterns. Yet developers keep making the same mistakes
+            because security docs read like legal contracts.
+          </p>
+
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>The problem:</strong> Security checks feel abstract until
+              you see them exploited.
+            </li>
+            <li>
+              <strong>The solution:</strong> Map each vulnerability to a
+              real-world scenario you can visualize.
+            </li>
+            <li>
+              <strong>The result:</strong> 6 attack patterns, 6 story scenes, 32
+              runnable tests (16 Anchor + 16 Pinocchio).
+            </li>
+          </ul>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            The Story: Father, Son, and Bank
+          </h2>
+
+          <div className="mt-4 grid gap-3 rounded-xl border border-border/60 bg-card/60 p-4 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70">
+              Character mapping
+            </div>
+            <ul className="list-disc space-y-2 pl-5">
+              <li>
+                <strong>👨 Father</strong> = Authority/Signer (must authorize
+                transactions)
+              </li>
+              <li>
+                <strong>👦 Son</strong> = PDA Account (derived from Father,
+                owned by program)
+              </li>
+              <li>
+                <strong>🏦 Bank</strong> = Solana Program (validates and
+                processes requests)
+              </li>
+              <li>
+                <strong>💰 Treasury</strong> = Vault Account (stores value, has
+                an owner field)
+              </li>
+            </ul>
+          </div>
+
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            Every security vulnerability is a failure of the Bank to verify
+            something. Let&apos;s look at three critical examples.
+          </p>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            1. Unsigned Allowance Claim (Missing Signer)
+          </h2>
+
+          <div className="mt-4 rounded-xl border border-red-500/30 bg-red-500/5 p-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.22em] text-red-400 mb-2">
+              🎭 The Attack Scene
+            </div>
+            <p className="text-muted-foreground">
+              A stranger walks into the Bank and says &quot;The Father sent me
+              to withdraw his money.&quot; The vulnerable Bank says &quot;Okay,
+              here&apos;s the money!&quot; without checking ID.
+            </p>
+          </div>
+
+          <CodeBlock
+            language="rust"
+            title="❌ Vulnerable: Anyone can pass any pubkey"
+            code={`#[derive(Accounts)]
+pub struct ClaimCheckVulnerable<'info> {
+    #[account(mut)]
+    pub treasury: Account<'info, BankTreasury>,
+    /// CHECK: DANGEROUS - Anyone can pass any pubkey!
+    pub father: AccountInfo<'info>,  // ❌ No signature required
+    #[account(mut)]
+    pub son: Account<'info, Son>,
+}
+
+pub fn claim(ctx: Context<ClaimCheckVulnerable>, amount: u64) -> Result<()> {
+    // No signature verification - ANYONE can call this!
+    ctx.accounts.treasury.balance -= amount;
+    ctx.accounts.son.allowance += amount;
+    Ok(())
+}`}
+          />
+
+          <CodeBlock
+            language="rust"
+            title="✅ Secure: Requires Father's signature"
+            code={`#[derive(Accounts)]
+pub struct ClaimCheckSecure<'info> {
+    #[account(mut)]
+    pub treasury: Account<'info, BankTreasury>,
+    pub father: Signer<'info>,  // ✅ MUST sign the transaction
+    #[account(
+        mut,
+        seeds = [b"son", father.key().as_ref()],
+        bump,
+        constraint = son.father == father.key() @ CustomError::NotFathersSon
+    )]
+    pub son: Account<'info, Son>,
+}`}
+          />
+
+          <div className="mt-4 rounded-xl border border-green-500/30 bg-green-500/5 p-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.22em] text-green-400 mb-2">
+              Key Defense
+            </div>
+            <p className="text-muted-foreground">
+              Use <code>Signer&lt;&apos;info&gt;</code> instead of{" "}
+              <code>AccountInfo&lt;&apos;info&gt;</code> for all authority
+              accounts. The transaction will fail if the account hasn&apos;t
+              signed.
+            </p>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            2. Fake Account Injection (Unsafe PDA)
+          </h2>
+
+          <div className="mt-4 rounded-xl border border-red-500/30 bg-red-500/5 p-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.22em] text-red-400 mb-2">
+              🎭 The Attack Scene
+            </div>
+            <p className="text-muted-foreground">
+              Someone claims &quot;I am the Father&apos;s Son, give me access to
+              the family account.&quot; The vulnerable Bank says &quot;You say
+              you&apos;re a Son? Okay!&quot; without checking the birth
+              certificate (PDA derivation).
+            </p>
+          </div>
+
+          <CodeBlock
+            language="rust"
+            title="❌ Vulnerable: Accepts any Son account"
+            code={`#[derive(Accounts)]
+pub struct AccessSonVulnerable<'info> {
+    #[account(mut)]
+    pub son: Account<'info, Son>,
+    // ❌ No PDA verification! Any Son account is accepted!
+}
+
+pub fn access(ctx: Context<AccessSonVulnerable>) -> Result<()> {
+    // Accepts ANY Son account, not verified to belong to caller
+    ctx.accounts.son.allowance = 100;
+    Ok(())
+}`}
+          />
+
+          <CodeBlock
+            language="rust"
+            title="✅ Secure: Verifies PDA derivation"
+            code={`#[derive(Accounts)]
+pub struct AccessSonSecure<'info> {
+    #[account(
+        mut,
+        seeds = [b"son", authority.key().as_ref()],  // ✅ Expected derivation
+        bump,                                         // ✅ Validates PDA
+        constraint = son.father == authority.key() @ CustomError::NotFathersSon
+    )]
+    pub son: Account<'info, Son>,
+    pub authority: Signer<'info>,  // ✅ Must be the Father
+}`}
+          />
+
+          <div className="mt-4 rounded-xl border border-green-500/30 bg-green-500/5 p-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.22em] text-green-400 mb-2">
+              Key Defense
+            </div>
+            <p className="text-muted-foreground">
+              Always use <code>seeds</code> + <code>bump</code> constraints for
+              PDA accounts. PDAs are only secure when you verify their
+              derivation.
+            </p>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            3. Allowance Overflow (Integer Overflow)
+          </h2>
+
+          <div className="mt-4 rounded-xl border border-red-500/30 bg-red-500/5 p-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.22em] text-red-400 mb-2">
+              🎭 The Attack Scene
+            </div>
+            <p className="text-muted-foreground">
+              Son&apos;s allowance is 100. He asks for
+              18,446,744,073,709,551,615 more. The vulnerable Bank uses{" "}
+              <code>wrapping_add</code> and the number wraps around to 99!
+            </p>
+          </div>
+
+          <CodeBlock
+            language="rust"
+            title="❌ Vulnerable: Wraps on overflow"
+            code={`pub fn add_allowance(ctx: Context<AllowanceVulnerable>, amount: u64) -> Result<()> {
+    let son = &mut ctx.accounts.son;
+    
+    // ❌ wrapping_add wraps on overflow!
+    son.allowance = son.allowance.wrapping_add(amount);
+    // Example: 1 + u64::MAX = 0 (wrapped!)
+    
+    Ok(())
+}`}
+          />
+
+          <CodeBlock
+            language="rust"
+            title="✅ Secure: checked_add returns error on overflow"
+            code={`pub fn add_allowance(ctx: Context<AllowanceSecure>, amount: u64) -> Result<()> {
+    let son = &mut ctx.accounts.son;
+    
+    // ✅ checked_add returns None on overflow
+    son.allowance = son.allowance
+        .checked_add(amount)
+        .ok_or(CustomError::ArithmeticOverflow)?;
+    
+    Ok(())
+}`}
+          />
+
+          <div className="mt-4 rounded-xl border border-green-500/30 bg-green-500/5 p-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.22em] text-green-400 mb-2">
+              Key Defense
+            </div>
+            <p className="text-muted-foreground">
+              Always use <code>checked_add()</code>, <code>checked_sub()</code>,
+              etc. for financial calculations. Rust&apos;s default arithmetic
+              wraps silently in release mode!
+            </p>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Anchor vs Pinocchio: Same Security, Different Styles
+          </h2>
+
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            The examples above use <strong>Anchor</strong>, Solana&apos;s most
+            popular framework. But what if you need maximum performance and
+            minimal binary size? That&apos;s where <strong>Pinocchio</strong>{" "}
+            comes in — a low-level framework that gives you direct control over
+            Solana primitives.
+          </p>
+
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full text-sm text-muted-foreground border border-border/60 rounded-xl">
+              <thead className="bg-card/60">
+                <tr>
+                  <th className="p-3 text-left text-primary">Aspect</th>
+                  <th className="p-3 text-left text-primary">Anchor</th>
+                  <th className="p-3 text-left text-primary">Pinocchio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">Abstraction</td>
+                  <td className="p-3">High-level macros</td>
+                  <td className="p-3">Raw Solana primitives</td>
+                </tr>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">Signer Check</td>
+                  <td className="p-3">
+                    <code>Signer&lt;&apos;info&gt;</code> type
+                  </td>
+                  <td className="p-3">
+                    <code>account.is_signer()</code>
+                  </td>
+                </tr>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">PDA Validation</td>
+                  <td className="p-3">
+                    <code>seeds</code> + <code>bump</code> constraint
+                  </td>
+                  <td className="p-3">
+                    <code>derive_address()</code> + comparison
+                  </td>
+                </tr>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">Binary Size</td>
+                  <td className="p-3">~200KB+</td>
+                  <td className="p-3">~30KB</td>
+                </tr>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">Learning Curve</td>
+                  <td className="p-3">Easier</td>
+                  <td className="p-3">Steeper</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            Here&apos;s the same <strong>Unsigned Allowance Claim</strong>{" "}
+            vulnerability in Pinocchio. Notice how you must manually check
+            everything that Anchor does automatically:
+          </p>
+
+          <CodeBlock
+            language="rust"
+            title="❌ Pinocchio Vulnerable: No is_signer() check"
+            code={`/// VULNERABLE: Claims allowance without verifying Father's signature
+pub fn claim_allowance(
+    _father: &AccountView,      // Father account (never checked!)
+    son_account: &AccountView,
+    amount: u64,
+) -> ProgramResult {
+    // ❌ NO SIGNER CHECK - father.is_signer() never called!
+    
+    let son_data = son_account.try_borrow()?;
+    let current_allowance = Son::read_allowance(&son_data)?;
+    drop(son_data);
+
+    if amount > current_allowance {
+        return Err(ProgramError::InsufficientFunds);
+    }
+
+    let mut son_data = son_account.try_borrow_mut()?;
+    Son::write_allowance(&mut son_data, current_allowance - amount)?;
+    
+    log!("VULNERABLE: Allowance claimed without signature!");
+    Ok(())
+}`}
+          />
+
+          <CodeBlock
+            language="rust"
+            title="✅ Pinocchio Secure: Manual is_signer() verification"
+            code={`/// SECURE: Claims allowance WITH Father's signature verification
+pub fn claim_allowance(
+    father: &AccountView,
+    son_account: &AccountView,
+    amount: u64,
+) -> ProgramResult {
+    // ✅ SIGNER CHECK - Father must have signed the transaction
+    if !father.is_signer() {
+        log!("SECURE: Rejecting - Father signature required!");
+        return Err(ProgramError::MissingRequiredSignature);
+    }
+
+    let son_data = son_account.try_borrow()?;
+    let current_allowance = Son::read_allowance(&son_data)?;
+    drop(son_data);
+
+    if amount > current_allowance {
+        return Err(ProgramError::InsufficientFunds);
+    }
+
+    let mut son_data = son_account.try_borrow_mut()?;
+    Son::write_allowance(&mut son_data, current_allowance - amount)?;
+
+    log!("SECURE: Allowance claimed with verified Father signature");
+    Ok(())
+}`}
+          />
+
+          <div className="mt-4 rounded-xl border border-blue-500/30 bg-blue-500/5 p-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.22em] text-blue-400 mb-2">
+              Pinocchio Insight
+            </div>
+            <p className="text-muted-foreground">
+              In Anchor, using <code>Signer&lt;&apos;info&gt;</code>{" "}
+              automatically fails if the account didn&apos;t sign. In Pinocchio,
+              you get an <code>AccountView</code> and must call{" "}
+              <code>is_signer()</code> yourself.{" "}
+              <strong>Forget the check = vulnerability.</strong>
+            </p>
+          </div>
+
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            PDA verification in Pinocchio is even more manual — you must
+            re-derive the address and compare it yourself:
+          </p>
+
+          <CodeBlock
+            language="rust"
+            title="✅ Pinocchio: Manual PDA derivation and verification"
+            code={`/// SECURE: Accesses Son account WITH PDA derivation verification
+pub fn access_son_account(
+    program_id: &Address,
+    father: &AccountView,
+    son_account: &AccountView,
+) -> ProgramResult {
+    // ✅ Re-derive the expected PDA address
+    let mut found_pda = false;
+    for bump in (0..=255u8).rev() {
+        let seeds = &[
+            b"son",
+            father.address().as_array().as_slice(),
+            &[bump],
+        ];
+        
+        let derived = pinocchio_pubkey::derive_address(
+            seeds, None, program_id.as_array()
+        );
+        
+        // ✅ Compare provided account with expected PDA
+        if son_account.address().as_array() == &derived {
+            found_pda = true;
+            break;
+        }
+    }
+    
+    if !found_pda {
+        log!("SECURE: Rejecting - Son account not at expected PDA!");
+        return Err(ProgramError::InvalidSeeds);
+    }
+
+    log!("SECURE: Son account verified at correct PDA");
+    Ok(())
+}`}
+          />
+
+          <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 text-sm">
+            <div className="text-xs uppercase tracking-[0.22em] text-amber-400 mb-2">
+              When to use Pinocchio
+            </div>
+            <p className="text-muted-foreground">
+              Choose Pinocchio when you need{" "}
+              <strong>maximum CU efficiency</strong>,
+              <strong>minimal binary size</strong>, or are building
+              performance-critical programs. The security patterns are the same
+              — you just implement them manually.
+            </p>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            All 6 Vulnerabilities at a Glance
+          </h2>
+
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full text-sm text-muted-foreground border border-border/60 rounded-xl">
+              <thead className="bg-card/60">
+                <tr>
+                  <th className="p-3 text-left text-primary">#</th>
+                  <th className="p-3 text-left text-primary">Attack</th>
+                  <th className="p-3 text-left text-primary">Vulnerable</th>
+                  <th className="p-3 text-left text-primary">Secure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">1</td>
+                  <td className="p-3">Unsigned Claim</td>
+                  <td className="p-3">
+                    <code>AccountInfo</code>
+                  </td>
+                  <td className="p-3">
+                    <code>Signer</code>
+                  </td>
+                </tr>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">2</td>
+                  <td className="p-3">Treasury Takeover</td>
+                  <td className="p-3">No owner check</td>
+                  <td className="p-3">
+                    <code>require!(owner == signer)</code>
+                  </td>
+                </tr>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">3</td>
+                  <td className="p-3">Fake Injection</td>
+                  <td className="p-3">No PDA check</td>
+                  <td className="p-3">
+                    <code>seeds + bump</code>
+                  </td>
+                </tr>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">4</td>
+                  <td className="p-3">Overflow</td>
+                  <td className="p-3">
+                    <code>wrapping_add</code>
+                  </td>
+                  <td className="p-3">
+                    <code>checked_add</code>
+                  </td>
+                </tr>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">5</td>
+                  <td className="p-3">Malicious CPI</td>
+                  <td className="p-3">Any program</td>
+                  <td className="p-3">
+                    <code>Program&lt;T&gt;</code> or whitelist
+                  </td>
+                </tr>
+                <tr className="border-t border-border/40">
+                  <td className="p-3">6</td>
+                  <td className="p-3">Twin Fraud</td>
+                  <td className="p-3">No duplicate check</td>
+                  <td className="p-3">
+                    <code>a.key() != b.key()</code>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Run the Full Security Template
+          </h2>
+
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            This post covers 3 of the 6 vulnerabilities. The full repository
+            includes all attack patterns with <strong>32 runnable tests</strong>{" "}
+            — 16 in Anchor (TypeScript) and 16 in Pinocchio (Rust with LiteSVM).
+          </p>
+
+          <CodeBlock
+            language="bash"
+            title="Clone and run the security template"
+            code={`# Clone the repository
+git clone https://github.com/Ovodo/solana-security-template.git
+cd solana-security-template
+
+# === ANCHOR (TypeScript tests) ===
+anchor build --program-name security_template
+anchor test --program-name security_template
+# → 16 passing tests
+
+# === PINOCCHIO (Rust + LiteSVM tests) ===
+cd programs/pinocchio
+cargo test
+# → 16 passing tests
+
+# Expected output for each:
+#   1. Unsigned Allowance Claim   (3 tests)
+#   2. Treasury Takeover          (4 tests)
+#   3. Fake Account Injection     (3 tests)
+#   4. Allowance Overflow         (3 tests)
+#   5. Twin Account Fraud         (3 tests)`}
+          />
+
+          <div className="mt-8 rounded-2xl border border-border/60 bg-card/60 p-5 text-sm text-muted-foreground">
+            <div className="text-xs uppercase tracking-[0.22em] text-primary/70">
+              What&apos;s in the repo
+            </div>
+            <ul className="mt-3 list-disc space-y-2 pl-5">
+              <li>
+                <strong>6 vulnerable patterns</strong> with exploitable code
+                (Anchor + Pinocchio)
+              </li>
+              <li>
+                <strong>6 secure patterns</strong> with best practices (both
+                frameworks)
+              </li>
+              <li>
+                <strong>16 TypeScript tests</strong> for Anchor
+              </li>
+              <li>
+                <strong>16 Rust tests</strong> for Pinocchio (using LiteSVM)
+              </li>
+              <li>
+                <strong>DEEP_DIVE.md</strong> with full documentation per
+                vulnerability
+              </li>
+              <li>
+                <strong>docs/</strong> folder with Anchor vs Pinocchio
+                comparisons for each pattern
+              </li>
+              <li>
+                <strong>Story-based naming</strong>: modules like{" "}
+                <code>unsigned_allowance_claim</code>,{" "}
+                <code>treasury_takeover</code>,{" "}
+                <code>fake_account_injection</code>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-6 flex justify-center">
+            <a
+              href="https://github.com/Ovodo/solana-security-template"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-gray-950 hover:bg-primary/90 transition-colors"
+            >
+              View Full Repository →
+            </a>
+          </div>
+
+          <h2 className="mt-10 text-2xl font-bold text-primary">
+            Key Takeaways
+          </h2>
+
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-muted-foreground">
+            <li>
+              <strong>Solana security is explicit</strong>: unlike
+              Ethereum&apos;s msg.sender, you must verify signers, owners, PDAs,
+              and programs manually.
+            </li>
+            <li>
+              <strong>Anchor helps but doesn&apos;t auto-protect</strong>: you
+              must add constraints, use the right types, and think about attack
+              vectors.
+            </li>
+            <li>
+              <strong>Pinocchio requires even more vigilance</strong>: every
+              check that Anchor automates must be written by hand.
+            </li>
+            <li>
+              <strong>Story-based thinking works</strong>: if you can&apos;t
+              explain who the Father is and why the Bank should check, you
+              probably have a vulnerability.
+            </li>
+            <li>
+              <strong>Test attack scenarios</strong>: every secure pattern
+              should have a test showing the attack being rejected.
+            </li>
+          </ul>
+
+          <div className="mt-8 rounded-2xl border border-primary/30 bg-primary/5 p-5 text-sm">
+            <p className="text-muted-foreground">
+              <strong>Remember:</strong> The Bank&apos;s job is to verify
+              everything. Never trust, always verify — whether you&apos;re using
+              Anchor macros or writing raw Pinocchio checks.
+            </p>
+            <p className="mt-2 text-muted-foreground">
+              👨 Father must sign → 👦 Son must be verified → 🏦 Bank must check
+              everything → 💰 Treasury stays safe
+            </p>
+          </div>
+        </>
+      );
+    },
+  },
+  {
     slug: "hiring-scams-remote-code-execution",
     title: "Hiring Scams: How Fake Job Tests Deploy Malware",
     date: "2026-01-24",
