@@ -68,7 +68,7 @@ const CV = () => {
   return (
     <div style={rubik.style}>
       {/* Theme toggle (easily hide by adding 'hidden' to the wrapper div) */}
-      <div className="cv-theme-toggle hidden fixed top-3 left-1/2 -translate-x-1/2 z-20">
+      <div className="cv-theme-toggle hidden  fixed top-3 left-1/2 -translate-x-1/2 z-20">
         <ThemeToggle />
       </div>
       <ThemeContainer>

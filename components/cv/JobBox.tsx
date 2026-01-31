@@ -15,12 +15,12 @@ const JobBox = ({ job }: { job: Experience }) => {
   return (
     <div className="flex gap-3 border-b pb-3 border-dashed border-res_primary/50 dark:border-gray-600 flex-row">
       {job.image && (
-        <div className="min-w-[48px] w-[48px] h-[48px]  relative">
+        <div className="min-w-[48px] w-[48px] h-[48px] rounded-full relative">
           <Image
             src={job.image}
             alt={job.company}
             fill
-            className="object-contain"
+            className="object-cover rounded-full"
           />
         </div>
       )}
