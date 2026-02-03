@@ -39,10 +39,9 @@ export const posts: BlogPost[] = [
       return (
         <>
           <p className="mb-6 text-lg text-muted-foreground">
-            Most Solana security guides throw technical jargon at you. This one
-            tells a story. Every vulnerability maps to a failure in a simple
-            trust model: a Father authorizing transactions, his Son (a PDA), and
-            a Bank (the program) that should verify everything.
+            Let me tell you a story, where every vulnerability maps to a failure
+            in a simple trust model: a Father authorizing transactions, his Son
+            (a PDA), and a Bank (the program) that should verify everything.
           </p>
 
           <div className="relative mb-8 h-[320px] w-[85vw] lg:w-[700px] mx-auto overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/60">
