@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import type { Metadata } from "next";
 // import Hero from "@/components/Hero";
 import Hero2 from "@/components/Hero2";
 import ProjectsSection from "@/components/ProjectsSection";
-import Services from "@/components/Services";
 // import Reveal from "@/components/Reveal";
 import Skills from "@/components/Skills";
+import StatsSection from "@/components/StatsSection";
 import Testimonials from "@/components/Testimonials";
 
 export const metadata: Metadata = {
@@ -43,12 +43,15 @@ export default function Home() {
       <div className="w-full     section-animate">
         <Skills />
       </div>
+      <div className="w-full section-animate">
+        <StatsSection />
+      </div>
       <div className="w-full  mt-[10%]  ">
         <ProjectsSection />
       </div>
-      <div className="w-full mt-[150px] lg:mt-0  max-h-max  ">
+      {/* <div className="w-full mt-[150px] lg:mt-0  max-h-max  ">
         <Services />
-      </div>
+      </div> */}
       <div className="w-full   section-animate">
         <Testimonials />
       </div>

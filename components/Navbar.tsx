@@ -74,6 +74,18 @@ const MailIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const ServicesIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.5}
+    {...props}
+  >
+    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+  </svg>
+);
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const path = usePathname();
@@ -89,7 +101,7 @@ const Navbar = () => {
       // ref={}
       onOutsideClick={() => setMenuOpen(false)}
     >
-      <div className="relative ">
+      <div className="relative">
         {/* Collapsed floating sidebar (desktop) */}
         {!hideSidebar && (
           <aside
@@ -106,6 +118,7 @@ const Navbar = () => {
                 {[
                   { name: "Home", href: "/", icon: HomeIcon },
                   { name: "Projects", href: "/projects", icon: FolderIcon },
+                  { name: "Services", href: "/services", icon: ServicesIcon },
                   { name: "Blog", href: "/blog", icon: BookIcon },
                   { name: "Music", href: "/music", icon: MusicIcon },
                   { name: "Contact", href: "/#contact", icon: MailIcon },
@@ -184,24 +197,24 @@ const Navbar = () => {
           <ul
             className={` md:flex  hidden relative p-1 bg-transparent   gap-8 flex-row  items-center h-auto `}
           >
-            {["Home", "Projects", "Blog", "Services", "Contact"].map((item) => (
+            {["Home", "Projects", "Services", "Blog", "Contact"].map((item) => (
               <Link
                 href={`${
                   item == "Home"
                     ? "/"
                     : item == "Services"
-                    ? "/#services"
-                    : item == "Contact"
-                    ? "/#contact"
-                    : `/${item.toLowerCase()}`
+                      ? "/services"
+                      : item == "Contact"
+                        ? "/#contact"
+                        : `/${item.toLowerCase()}`
                 }`}
                 key={item}
                 className={`text-night  ${
                   path == "/" && item == "Home"
                     ? "underline text-accent md:text-10"
                     : path.includes(item.toLowerCase())
-                    ? "underline text-accent md:text-10"
-                    : "no-underline md:text-primary"
+                      ? "underline text-accent md:text-10"
+                      : "no-underline md:text-primary"
                 }     cursor-pointer  font-bold underline-offset-2  duration-75  hover:underline underline-to-10 md:hover:text-10`}
               >
                 {item}
@@ -210,30 +223,32 @@ const Navbar = () => {
           </ul>
         </nav>
         <ul
-          className={`bg-primary  w-full absolute z-10 flex flex-col items-start gap-8 ease-in md:hidden p-[20px] h-auto transition-transform duration-400 ${
+          className={`bg-primary w-full absolute z-50 flex flex-col items-start gap-6 ease-in md:hidden p-[20px] h-auto transition-all duration-300 ${
             menuOpen
-              ? "translate-y-0  items-start md:items-center"
-              : "-translate-y-[300px]"
-          } md:translate-y-0 `}
+              ? "translate-y-0 opacity-100 pointer-events-auto"
+              : "-translate-y-[110%] opacity-0 pointer-events-none"
+          } md:translate-y-0`}
         >
-          {["Home", "Projects", "Blog", "Music", "Contact"].map((item) => (
-            <Link
-              href={`${
-                item == "Home"
-                  ? "/"
-                  : item == "Services"
-                  ? "/#services"
-                  : item == "Contact"
-                  ? "/#contact"
-                  : `/${item.toLowerCase()}`
-              }`}
-              onClick={() => setMenuOpen(false)}
-              key={item}
-              className="text-night   cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10"
-            >
-              {item}
-            </Link>
-          ))}
+          {["Home", "Projects", "Services", "Blog", "Music", "Contact"].map(
+            (item) => (
+              <Link
+                href={`${
+                  item == "Home"
+                    ? "/"
+                    : item == "Services"
+                      ? "/services"
+                      : item == "Contact"
+                        ? "/#contact"
+                        : `/${item.toLowerCase()}`
+                }`}
+                onClick={() => setMenuOpen(false)}
+                key={item}
+                className="text-night   cursor-pointer md:text-primary font-bold  duration-75  hover:underline underline-to-10 md:hover:text-10"
+              >
+                {item}
+              </Link>
+            ),
+          )}
         </ul>
       </div>
     </OutsideClickHandler>

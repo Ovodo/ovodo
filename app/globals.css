@@ -425,13 +425,16 @@ section {
 
   section {
     margin-bottom: 100px;
-    min-height: max-content;
+    height: auto;
+    min-height: auto;
   }
 
   .section-animate {
-    min-height: max-content;
+    height: auto;
+    min-height: auto;
     margin-top: 10%;
-
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 }
 
@@ -444,12 +447,16 @@ section {
 
   section {
     margin-bottom: 100px;
-    min-height: max-content;
+    height: auto;
+    min-height: auto;
   }
 
   .section-animate {
-    margin-top: 150px;
-    min-height: max-content;
+    margin-top: 80px;
+    height: auto;
+    min-height: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 }
 

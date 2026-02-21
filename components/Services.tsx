@@ -1,6 +1,7 @@
 "use client";
-import { IconSparkles } from "@tabler/icons-react";
+import { IconSparkles, IconArrowRight } from "@tabler/icons-react";
 import { resume } from "@/app/lib/data";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const Services = () => {
@@ -20,7 +21,7 @@ const Services = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     const cardsObserver = new IntersectionObserver(
@@ -41,7 +42,7 @@ const Services = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     const headerEl = headerRef.current;
@@ -106,21 +107,40 @@ const Services = () => {
             }`}
             style={{ borderLeft: "6px solid var(--accent)" }}
           >
-            <div className="flex flex-col min-w-0 w-full py-4 px-6">
+            <div className="flex flex-col min-w-0 w-full py-4 px-4 sm:px-6">
               <div className="flex items-center gap-3 mb-1">
-                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--accent)] text-[var(--background)]">
+                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--accent)] text-[var(--background)] flex-shrink-0">
                   <IconSparkles size={16} />
                 </span>
-                <span className="font-bold text-lg sm:text-xl text-[var(--text)]">
+                <span className="font-bold text-base sm:text-xl text-[var(--text)]">
                   {item.title}
                 </span>
               </div>
-              <p className="text-muted text-sm sm:text-base pl-1">
+              <p className="text-muted text-xs sm:text-sm pl-0.5 leading-relaxed">
                 {item.description}
               </p>
             </div>
           </div>
         ))}
+      </div>
+      {/* View all CTA */}
+      <div
+        className={`transition-all duration-700 ease-out delay-300 ${
+          headerVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4"
+        }`}
+      >
+        <Link
+          href="/services"
+          className="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all duration-150 no-underline hover:no-underline group"
+        >
+          View full service breakdown
+          <IconArrowRight
+            size={16}
+            className="transition-transform duration-150 group-hover:translate-x-1"
+          />
+        </Link>
       </div>
     </section>
   );
