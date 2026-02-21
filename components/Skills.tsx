@@ -20,7 +20,7 @@ const Skills = () => {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     const cardsObserver = new IntersectionObserver(
@@ -41,7 +41,7 @@ const Skills = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     const headerEl = headerRef.current;
@@ -72,9 +72,9 @@ const Skills = () => {
         {/* <h3 className="text-primary text-xl sm:text-2xl md:text-xl font-bold">
           Skills
         </h3> */}
-        <h1 className="text-primary text-2xl sm:text-3xl md:text-[56px] leading-[1.1] text-center whitespace-pre-wrap font-bold">
+        <h2 className="text-primary text-2xl sm:text-3xl md:text-[56px] leading-[1.1] text-center whitespace-pre-wrap font-bold">
           Explore My Key Programming Languages
-        </h1>
+        </h2>
         <p className="text-primary text-sm sm:text-[16px] md:text-[20px] leading-tight font-light whitespace-pre-wrap max-w-full lg:max-w-[1000px] text-center">
           As a versatile software engineer, I specialize in a variety of
           programming languages. My expertise spans across JavaScript,

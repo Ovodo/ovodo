@@ -35,27 +35,27 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen h-full scrollbar-hide  flex flex-col gap-0">
+    <div className="min-h-screen h-full scrollbar-hide flex flex-col gap-0">
       <Hero2 />
-      <div className="w-full    section-animate">
+      <div className="w-full mt-24 sm:mt-32 md:mt-[14%] section-animate">
         <About />
       </div>
-      <div className="w-full     section-animate">
+      <div className="w-full mt-24 sm:mt-32 md:mt-[14%] section-animate">
         <Skills />
       </div>
-      <div className="w-full section-animate">
+      <div className="w-full mt-24 sm:mt-32 md:mt-[14%] section-animate">
         <StatsSection />
       </div>
-      <div className="w-full  mt-[10%]  ">
+      <div className="w-full mt-24 sm:mt-32 md:mt-[14%]">
         <ProjectsSection />
       </div>
       {/* <div className="w-full mt-[150px] lg:mt-0  max-h-max  ">
         <Services />
       </div> */}
-      <div className="w-full   section-animate">
+      <div className="w-full mt-24 sm:mt-32 md:mt-0 section-animate">
         <Testimonials />
       </div>
-      <div className="w-full   section-animate">
+      <div className="w-full mt-24 sm:mt-32 md:mt-0 section-animate">
         <Contact />
       </div>
       <Footer />

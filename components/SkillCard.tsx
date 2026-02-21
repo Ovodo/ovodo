@@ -1,6 +1,11 @@
 import React from "react";
-import ViewCanvas from "./ViewCanvs";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+
+const ViewCanvas = dynamic(() => import("./ViewCanvs"), {
+  ssr: false,
+  loading: () => <div className="w-[48px] h-[48px]" />,
+});
 
 const SkillCard = ({
   src,

@@ -24,7 +24,7 @@ const Contact = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     const buttonsObserver = new IntersectionObserver(
@@ -45,7 +45,7 @@ const Contact = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     const headerEl = headerRef.current;
@@ -70,9 +70,9 @@ const Contact = () => {
             : "opacity-0 translate-y-10"
         }`}
       >
-        <h1 className="text-primary text-[32px] sm:text-[48px] text-center md:text-[56px] leading-[1.1] font-bold">
+        <h2 className="text-primary text-[32px] sm:text-[48px] text-center md:text-[56px] leading-[1.1] font-bold">
           Let&apos;s Connect
-        </h1>
+        </h2>
         <p className="text-primary text-base sm:text-lg text-center md:text-xl leading-tight font-light max-w-[700px]">
           Interested in collaborating, hiring, or just want to chat about
           blockchain and full stack development? Reach out and let’s build

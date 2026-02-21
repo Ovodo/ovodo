@@ -7,7 +7,8 @@ const Hero2 = () => {
   const [titleVisible, setTitleVisible] = useState(false);
   const [descVisible, setDescVisible] = useState(false);
   const [buttonVisible, setButtonVisible] = useState(false);
-  const [imageVisible, setImageVisible] = useState(false);
+  // Start visible so the LCP image is painted immediately on first render
+  const [imageVisible, setImageVisible] = useState(true);
 
   useEffect(() => {
     // Stagger animations on mount
@@ -74,16 +75,17 @@ const Hero2 = () => {
           className="object-cover  blur-sm hero-image cursor-pointer duration-500 object-right-bottom rounded-md shadow-sm shadow-primary hover:sm:blur-lg"
           alt="Abstract hero background image with gradients and shapes"
           priority
+          fetchPriority="high"
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 80vw"
         />
         <div className="w-[35%] relative overflow-hidden hero-image2 rounded-sm   shadow-primary/20 shadow-[_2px_-2px_2px]  h-full">
           <Image
             src={"/og/re-og.webp"}
             className="object-cover backdrop-blur-xl"
             alt="Overlay hero image featuring abstract shapes"
-            priority
             fill
-            sizes="(max-width: 640px) 100vw, 33vw"
+            sizes="(max-width: 640px) 35vw, (max-width: 1024px) 35vw, 28vw"
           />
         </div>
       </div>

@@ -8,9 +8,10 @@ import SmoothScrollWrapper from "@/components/SmoothScrollWrapper";
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
-  subsets: ["greek"],
+  subsets: ["latin"],
   style: ["normal"],
-  display: "swap", // Improves font loading performance
+  display: "optional", // Eliminates render-blocking; uses fallback if font not cached
+  preload: true,
 });
 
 export const viewport: Viewport = {
