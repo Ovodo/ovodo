@@ -47,21 +47,26 @@ const Hero2 = () => {
             technology.
           </p>
           <div
-            className={`flex items-center gap-4 sm:gap-8 transition-all duration-700 ease-out ${
+            className={`flex mb-4 lg:mb-0 items-center gap-4 sm:gap-8 transition-all duration-700 ease-out ${
               buttonVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-5"
             }`}
           >
+            <a
+              href="https://calendly.com/ovodo/30min"
+              target="_blank"
+              rel="noreferrer"
+              className="block w-full sm:w-auto text-center text-night p-2 md:p-3 hover:scale-105 active:scale-95 text-sm lg:text-base duration-150 bg-primary rounded-[4px] font-semibold shadow"
+            >
+              Book
+            </a>
             <Link
               href="/projects"
-              className="text-night p-2 md:p-4 hover:scale-105 active:scale-95 text-sm lg:text-base duration-150 bg-primary rounded-[4px]"
+              className="text-primary p-2 md:p-4 hover:scale-105 active:scale-95 text-sm lg:text-base duration-150 bg-transparent border border-primary rounded-[4px]"
             >
               Explore
             </Link>
-            {/* <button className='text-primary p-4 bg-transparent duration-150  hover:scale-105 active:scale-95 border-primary border rounded-[4px]'>
-              Donate
-            </button> */}
           </div>
         </div>
       </div>

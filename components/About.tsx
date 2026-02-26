@@ -37,7 +37,7 @@ const About = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     const bulletsObserver = new IntersectionObserver((entries) => {
@@ -69,7 +69,7 @@ const About = () => {
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     );
 
     if (img) imageObserver.observe(img);
@@ -153,6 +153,15 @@ const About = () => {
             </li>
           </ul>
         </div>
+        <div className="bg-primary/5 p-4 rounded-md">
+          <h3 className="text-primary font-semibold mb-2">Available for</h3>
+          <ul className="list-disc pl-5 text-primary text-base font-light">
+            <li>Smart contract architecture & audits</li>
+            <li>Web3 platform builds (DeFi, exchanges, marketplaces)</li>
+            <li>AI agent integrations & RAG architectures</li>
+            <li>Token systems & on-chain accounting</li>
+          </ul>
+        </div>
         <div className="flex flex-col gap-4 mt-2">
           <span className="font-bold text-primary/90 text-base">
             Open to Full Stack Blockchain Developer roles (remote or on-site)
@@ -165,6 +174,14 @@ const About = () => {
                 : "translate-x-20 opacity-0"
             }`}
           >
+            <a
+              href="https://calendly.com/ovodo/30min"
+              target="_blank"
+              rel="noreferrer"
+              className="block w-full sm:w-auto text-center text-night bg-primary px-4 py-2 rounded hover:scale-105 duration-150 font-semibold shadow-lg border-2 border-primary"
+            >
+              Book
+            </a>
             <Link
               href="/ovodo.pdf"
               target="_blank"
