@@ -47,6 +47,7 @@
 - TraderKeys
 - The-Bounty-Hunter-Smart-Contract
 
+
 ---
 
-*This is a draft profile README. Tell me edits and I will apply and push when you approve.*
+*This is a draft profile README for review. Tell me edits and I will apply and push when you approve.*
