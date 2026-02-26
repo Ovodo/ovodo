@@ -4,38 +4,37 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Mesh, TextureLoader } from "three";
 
-type Props = { textureUrl: string };
+type Props = { textureUrl: string; index: number };
 
-// RotatingCube Component
-const RotatingCube = ({ textureUrl }: Props) => {
-  const cubeRef = useRef<Mesh>(null);
+// RotatingSphere Component
+const RotatingSphere = ({ textureUrl, index }: Props) => {
+  const sphereRef = useRef<Mesh>(null);
 
-  // Rotate the cube automatically
-  useFrame(() => {
-    if (cubeRef.current) {
-      cubeRef.current.rotation.y += 0.01; // Rotate around the Y-axis
-      cubeRef.current.rotation.z += 0.01; // Rotate around the Z-axis
-      cubeRef.current.rotation.x += 0.01; // Rotate around the X-axis
+  // Rotate the sphere slightly left and right
+  useFrame(({ clock }) => {
+    if (sphereRef.current) {
+      const time = clock.getElapsedTime() + index; // Offset by index for domino effect
+      sphereRef.current.rotation.y = Math.sin(time) * 1.7; // Oscillate around the Y-axis
     }
   });
 
   return (
-    <mesh ref={cubeRef}>
-      {/* Cube Geometry */}
-      <boxGeometry args={[3, 3, 3]} />
+    <mesh ref={sphereRef}>
+      {/* Sphere Geometry */}
+      <sphereGeometry args={[3, 32, 32]} />
       {/* Material with texture */}
       <meshStandardMaterial map={new TextureLoader().load(textureUrl)} />
     </mesh>
   );
 };
 
-export default function ViewCanvas({ textureUrl }: Props) {
+export default function ViewCanvas({ textureUrl, index }: Props) {
   return (
     <Canvas>
       {/* Orbit controls for interactivity */}
       <OrbitControls />
-      {/* Rotating Cube */}
-      <RotatingCube textureUrl={textureUrl} />
+      {/* Rotating Sphere */}
+      <RotatingSphere index={index} textureUrl={textureUrl} />
       {/* Lighting */}
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 5, 5]} intensity={1} />

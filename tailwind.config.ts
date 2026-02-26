@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  darkMode: 'class',
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,18 +12,21 @@ export default {
         sm: "500px",
       },
       colors: {
-        // primary: "#0C1713",
-        // night: "#F1EDE4",
-        primary: "#F1EDE4",
-        night: "#070D0B",
-        secondary: "#360A14",
-        mint: "#4FB286",
-        10: "#0e79b2",
-        res_primary: "#19273c",
-        res_secondary: "#c4881c",
-        dark_brown: "#433E0E",
+        sf: {
+          bg: '#0b0c0d',
+          panel: '#0f1113',
+          surface: '#131418',
+          text: '#e6e6e6',
+          muted: '#9ea3a6',
+          accent: '#FFD400',
+          'accent-strong': '#E6C200',
+          silver: '#BFC6C9',
+        },
+        primary: '#E6E6E6',
+        accent: '#FFD400',
+        night: '#0b0c0d',
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [],
 } satisfies Config;

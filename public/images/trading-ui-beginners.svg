@@ -1,0 +1,186 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trading UI's for Beginners cover">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="80" x2="1420" y2="860" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1020"/>
+      <stop offset="0.55" stop-color="#111A33"/>
+      <stop offset="1" stop-color="#0A0F1F"/>
+    </linearGradient>
+
+    <linearGradient id="accent" x1="420" y1="220" x2="1280" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C3AED" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="#22C55E" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0.85"/>
+    </linearGradient>
+
+    <linearGradient id="panel" x1="260" y1="220" x2="1340" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F172A" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#0B1224" stop-opacity="0.75"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-40" y="-40" width="1680" height="980" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.2  0 0 0 0 0.5  0 0 0 0 1  0 0 0 0.25 0" result="glow"/>
+      <feBlend mode="screen" in="glow" in2="SourceGraphic"/>
+    </filter>
+
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" fill="none" stroke="#94A3B8" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+
+    <style>
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+      .sans { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <!-- Accent glow blob -->
+  <g filter="url(#softGlow)">
+    <path d="M310 310C430 160 650 110 820 170C995 230 1130 185 1270 300C1425 430 1440 620 1330 730C1200 870 970 820 820 760C640 680 520 760 390 670C245 555 210 415 310 310Z" fill="url(#accent)" fill-opacity="0.35"/>
+  </g>
+
+  <!-- Main panel -->
+  <rect x="160" y="140" width="1280" height="620" rx="28" fill="url(#panel)" stroke="#334155" stroke-opacity="0.55"/>
+
+  <!-- Top bar -->
+  <rect x="160" y="140" width="1280" height="72" rx="28" fill="#0B1224" fill-opacity="0.65"/>
+  <circle cx="210" cy="176" r="7" fill="#EF4444" fill-opacity="0.9"/>
+  <circle cx="234" cy="176" r="7" fill="#F59E0B" fill-opacity="0.9"/>
+  <circle cx="258" cy="176" r="7" fill="#22C55E" fill-opacity="0.9"/>
+  <text x="312" y="183" class="mono" font-size="16" fill="#CBD5E1" fill-opacity="0.9">Trading UI&apos;s for Beginners</text>
+
+  <!-- Left column: Order Book -->
+  <rect x="200" y="244" width="360" height="476" rx="18" fill="#0B1224" fill-opacity="0.55" stroke="#334155" stroke-opacity="0.45"/>
+  <text x="224" y="278" class="mono" font-size="14" fill="#94A3B8">ORDER BOOK</text>
+
+  <!-- Order book rows -->
+  <g class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">
+    <text x="224" y="316">Price</text>
+    <text x="360" y="316">Size</text>
+    <text x="454" y="316">Total</text>
+  </g>
+
+  <!-- Asks (red) -->
+  <g>
+    <rect x="214" y="338" width="332" height="30" rx="10" fill="#EF4444" fill-opacity="0.08"/>
+    <rect x="214" y="338" width="250" height="30" rx="10" fill="#EF4444" fill-opacity="0.14"/>
+    <text x="224" y="358" class="mono" font-size="14" fill="#FCA5A5">50120.50</text>
+    <text x="360" y="358" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">0.812</text>
+    <text x="454" y="358" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">1.944</text>
+
+    <rect x="214" y="372" width="332" height="30" rx="10" fill="#EF4444" fill-opacity="0.06"/>
+    <rect x="214" y="372" width="190" height="30" rx="10" fill="#EF4444" fill-opacity="0.12"/>
+    <text x="224" y="392" class="mono" font-size="14" fill="#FCA5A5">50110.25</text>
+    <text x="360" y="392" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">0.404</text>
+    <text x="454" y="392" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">1.132</text>
+
+    <rect x="214" y="406" width="332" height="30" rx="10" fill="#EF4444" fill-opacity="0.05"/>
+    <rect x="214" y="406" width="145" height="30" rx="10" fill="#EF4444" fill-opacity="0.10"/>
+    <text x="224" y="426" class="mono" font-size="14" fill="#FCA5A5">50100.00</text>
+    <text x="360" y="426" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">0.316</text>
+    <text x="454" y="426" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">0.728</text>
+  </g>
+
+  <!-- Spread separator -->
+  <rect x="214" y="448" width="332" height="34" rx="12" fill="#94A3B8" fill-opacity="0.08"/>
+  <text x="224" y="470" class="mono" font-size="14" fill="#94A3B8">SPREAD</text>
+  <text x="454" y="470" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">$8.25</text>
+
+  <!-- Bids (green) -->
+  <g>
+    <rect x="214" y="494" width="332" height="30" rx="10" fill="#22C55E" fill-opacity="0.06"/>
+    <rect x="214" y="494" width="285" height="30" rx="10" fill="#22C55E" fill-opacity="0.14"/>
+    <text x="224" y="514" class="mono" font-size="14" fill="#86EFAC">50091.75</text>
+    <text x="360" y="514" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">0.922</text>
+    <text x="454" y="514" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">0.922</text>
+
+    <rect x="214" y="528" width="332" height="30" rx="10" fill="#22C55E" fill-opacity="0.05"/>
+    <rect x="214" y="528" width="210" height="30" rx="10" fill="#22C55E" fill-opacity="0.12"/>
+    <text x="224" y="548" class="mono" font-size="14" fill="#86EFAC">50080.00</text>
+    <text x="360" y="548" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">0.522</text>
+    <text x="454" y="548" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">1.444</text>
+
+    <rect x="214" y="562" width="332" height="30" rx="10" fill="#22C55E" fill-opacity="0.04"/>
+    <rect x="214" y="562" width="160" height="30" rx="10" fill="#22C55E" fill-opacity="0.10"/>
+    <text x="224" y="582" class="mono" font-size="14" fill="#86EFAC">50070.50</text>
+    <text x="360" y="582" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">0.310</text>
+    <text x="454" y="582" class="mono" font-size="14" fill="#CBD5E1" fill-opacity="0.9">1.754</text>
+  </g>
+
+  <!-- Middle: Chart panel -->
+  <rect x="592" y="244" width="566" height="332" rx="18" fill="#0B1224" fill-opacity="0.55" stroke="#334155" stroke-opacity="0.45"/>
+  <text x="616" y="278" class="mono" font-size="14" fill="#94A3B8">CHART (candles)</text>
+
+  <!-- Chart grid lines -->
+  <g stroke="#94A3B8" stroke-opacity="0.10">
+    <path d="M616 310H1134"/>
+    <path d="M616 350H1134"/>
+    <path d="M616 390H1134"/>
+    <path d="M616 430H1134"/>
+    <path d="M616 470H1134"/>
+    <path d="M616 510H1134"/>
+  </g>
+
+  <!-- Candlesticks -->
+  <g>
+    <g>
+      <path d="M660 500V422" stroke="#22C55E" stroke-width="4" stroke-linecap="round"/>
+      <rect x="652" y="448" width="16" height="42" rx="6" fill="#22C55E" fill-opacity="0.85"/>
+    </g>
+    <g>
+      <path d="M706 492V360" stroke="#EF4444" stroke-width="4" stroke-linecap="round"/>
+      <rect x="698" y="396" width="16" height="68" rx="6" fill="#EF4444" fill-opacity="0.85"/>
+    </g>
+    <g>
+      <path d="M752 502V404" stroke="#22C55E" stroke-width="4" stroke-linecap="round"/>
+      <rect x="744" y="430" width="16" height="48" rx="6" fill="#22C55E" fill-opacity="0.85"/>
+    </g>
+    <g>
+      <path d="M798 488V332" stroke="#22C55E" stroke-width="4" stroke-linecap="round"/>
+      <rect x="790" y="368" width="16" height="88" rx="6" fill="#22C55E" fill-opacity="0.85"/>
+    </g>
+    <g>
+      <path d="M844 506V414" stroke="#EF4444" stroke-width="4" stroke-linecap="round"/>
+      <rect x="836" y="440" width="16" height="44" rx="6" fill="#EF4444" fill-opacity="0.85"/>
+    </g>
+    <g>
+      <path d="M890 498V380" stroke="#22C55E" stroke-width="4" stroke-linecap="round"/>
+      <rect x="882" y="410" width="16" height="54" rx="6" fill="#22C55E" fill-opacity="0.85"/>
+    </g>
+    <g>
+      <path d="M936 492V346" stroke="#22C55E" stroke-width="4" stroke-linecap="round"/>
+      <rect x="928" y="382" width="16" height="74" rx="6" fill="#22C55E" fill-opacity="0.85"/>
+    </g>
+    <g>
+      <path d="M982 504V410" stroke="#EF4444" stroke-width="4" stroke-linecap="round"/>
+      <rect x="974" y="438" width="16" height="46" rx="6" fill="#EF4444" fill-opacity="0.85"/>
+    </g>
+    <g>
+      <path d="M1028 496V370" stroke="#22C55E" stroke-width="4" stroke-linecap="round"/>
+      <rect x="1020" y="402" width="16" height="60" rx="6" fill="#22C55E" fill-opacity="0.85"/>
+    </g>
+    <g>
+      <path d="M1074 486V340" stroke="#22C55E" stroke-width="4" stroke-linecap="round"/>
+      <rect x="1066" y="374" width="16" height="78" rx="6" fill="#22C55E" fill-opacity="0.85"/>
+    </g>
+  </g>
+
+  <!-- Right column: System notes -->
+  <rect x="1188" y="244" width="232" height="476" rx="18" fill="#0B1224" fill-opacity="0.55" stroke="#334155" stroke-opacity="0.45"/>
+  <text x="1212" y="278" class="mono" font-size="14" fill="#94A3B8">SYSTEM</text>
+
+  <g class="sans" font-size="14" fill="#CBD5E1" fill-opacity="0.92">
+    <text x="1212" y="322">• Low latency</text>
+    <text x="1212" y="350">• Throttle UI</text>
+    <text x="1212" y="378">• Decimal math</text>
+    <text x="1212" y="406">• Reconnect</text>
+    <text x="1212" y="434">• Stale badge</text>
+    <text x="1212" y="462">• Server truth</text>
+  </g>
+
+  <!-- Footer hint -->
+  <text x="200" y="805" class="mono" font-size="14" fill="#94A3B8" fill-opacity="0.9">Architecture • Performance • Correctness • UX</text>
+</svg>

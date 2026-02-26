@@ -1,0 +1,104 @@
+"use client";
+import Link from "next/link";
+import { muse } from "./Navbar";
+import { usePathname } from "next/navigation";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandX,
+  IconMail,
+} from "@tabler/icons-react";
+
+const Footer = () => {
+  // --------------------------------------------VARIABLES
+  const path = usePathname();
+
+  //-----------------------------------------------------------FUNCTIONS
+
+  //------------------------------------------------------------------USE EFFECTS
+
+  return (
+    <div className="w-full flex flex-col h-max lg:h-[50vh] justify-center ">
+      <div className="flex w-full flex-col py-[5vh] lg:py-[10vh]  lg:flex-row h-full">
+        <div className="flex  lg:w-[30%]  h-full flex-col">
+          <h5
+            id="logo"
+            className=" text-[32px] min-w-max mb-10  sm:text-[40px] shadow-primary  leading-none  cursor-pointer  text-primary font-semibold"
+            style={muse.style}
+          >
+            Ovodo O.
+          </h5>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-5 justify-around  flex-1">
+          <div className="flex gap-2.5 lg:gap-5 flex-col">
+            <h6 className="font-medium mb-4 text-lg text-primary lg:text-xl">
+              Quick Links
+            </h6>
+            {["Projects", "Blog", "Services", "Contact"].map((item) => (
+              <Link
+                href={`${
+                  item == "Services"
+                    ? "/?#services"
+                    : item == "Contact"
+                    ? "#contact"
+                    : `/${item.toLowerCase()}`
+                }`}
+                key={item}
+                className={`text-primary  ${
+                  path == "/" && item == "Home"
+                    ? "underline text-10"
+                    : path.includes(item.toLowerCase())
+                    ? "underline text-10"
+                    : "no-underline md:text-primary"
+                }     cursor-pointer  font-light underline-offset-2  duration-75  hover:underline underline-to-10 md:hover:text-10`}
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+          <div id="contact" className="flex gap-2.5 lg:gap-5 flex-col">
+            <h6 className="font-medium mb-4 text-lg text-primary lg:text-xl">
+              Connect with me
+            </h6>
+            <Link
+              target="_blank"
+              href="https://github.com/ovodo"
+              className="flex items-center text-primary cursor-pointer font-light underline-offset-2 duration-75 hover:underline underline-to-10 md:hover:text-10"
+            >
+              <IconBrandGithub className="mr-2" />
+              Github
+            </Link>
+            <Link
+              target="_blank"
+              href="https://x.com/ovdizzle"
+              className="flex items-center text-primary cursor-pointer font-light underline-offset-2 duration-75 hover:underline underline-to-10 md:hover:text-10"
+            >
+              <IconBrandX className="mr-2" />
+              Twitter
+            </Link>
+            <Link
+              target="_blank"
+              href="https://linkedin.com/in/ovodo"
+              className="flex items-center text-primary cursor-pointer font-light underline-offset-2 duration-75 hover:underline underline-to-10 md:hover:text-10"
+            >
+              <IconBrandLinkedin className="mr-2" />
+              Linkedin
+            </Link>
+            <Link
+              target="_blank"
+              href="mailto:ohwovoriole@gmail.com"
+              className="flex items-center text-primary cursor-pointer font-light underline-offset-2 duration-75 hover:underline underline-to-10 md:hover:text-10"
+            >
+              <IconMail className="mr-2" />
+              ohwovoriole@gmail.com
+            </Link>
+          </div>
+        </div>
+      </div>
+      <p className="font-thin my-5  text-xs lg:text-sm text-primary">
+        © 2025 Ovodo Ohwovoriole. All rights reserved.
+      </p>
+    </div>
+  );
+};
+export default Footer;
