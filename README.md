@@ -35,18 +35,6 @@
 
 ## Call to action
 
-- Book a 15‑minute technical consult: mailto:ohwovoriole@gmail.com?subject=15-min%20consult
+- Book a 15‑minute technical consult: https://calendly.com/ovodo/30min
 - Portfolio & case studies: https://ovd.dev
 
-## Pinned repos recommendation
-
-- MoveWithDizzle
-- solana-security-template
-- hyperbridge
-- ovodo
-- TraderKeys
-- The-Bounty-Hunter-Smart-Contract
-
----
-
-*This is a draft profile README. Tell me edits and I will apply and push when you approve.*
